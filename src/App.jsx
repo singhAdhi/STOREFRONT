@@ -1,9 +1,15 @@
 import "./App.css";
+import router from "./routes/router";
+import { RouterProvider } from "react-router-dom";
+import Header from "./views/Header";
+import Footer from "./views/Footer";
 
 function App() {
   return (
     <>
-      <h1 className="flex text-red-500">GIIFT REWARDS</h1>
+      <Header />
+      <RouterProvider router={router} />
+      <Footer />
     </>
   );
 }
