@@ -1,6 +1,30 @@
 import React from "react";
+import WelcomeCard from "../../components/welcome-card/WelcomeCard";
 
 const Welcome = () => {
+  const welcomeData = [
+    {
+      id: 1,
+      figure: "public/assets/images/homepage/welcome-section/1.svg",
+      icon: "public/assets/images/homepage/welcome-section/spend.svg",
+      title: "Spend",
+      text: "Swipe your Card for all your transactions from daily spending to travel and more to start earning Siddhartha Rewards Points.",
+    },
+    {
+      id: 2,
+      figure: "public/assets/images/homepage/welcome-section/2.svg",
+      icon: "public/assets/images/homepage/welcome-section/earn.svg",
+      title: "Earn",
+      text: "You can earn Siddhartha Rewards Points with every swipe of your Siddhartha Card. Every transaction counts, the more you spend, the more you earn.",
+    },
+    {
+      id: 3,
+      figure: "public/assets/images/homepage/welcome-section/3.svg",
+      icon: "public/assets/images/homepage/welcome-section/redeem.svg",
+      title: "Redeem",
+      text: "You can then redeem your earned Siddhartha Rewards Points for excellent options such as fine dining, shopping, or traveling.",
+    },
+  ];
   return (
     <>
       <div className="dvWelcome py-5">
@@ -16,51 +40,11 @@ const Welcome = () => {
             </div>
           </div>
           <div className="row flex-nowrap flex-lg-wrap scroll-hoz mx-lg-n3">
-            <div className="col-md-4 d-flex flex-column h-100">
-              <div className="d-flex align-items-center m-auto">
-                <div className="no">
-                  <img src="public/assets/images/homepage/welcome-section/1.svg" alt="" />
-                </div>
-                <div className="icon text-center mt-3">
-                  <img src="public/assets/images/homepage/welcome-section/spend.svg" alt="" />
-                  <p className="mt-3">Spend</p>
-                </div>
-              </div>
-              <p className="text-center">
-                Swipe your Card for all your transactions from daily spending to travel and more to start earning
-                Siddhartha Rewards Points.
-              </p>
-            </div>
-            <div className="col-md-4 d-flex flex-column h-100">
-              <div className="d-flex align-items-center m-auto">
-                <div className="no">
-                  <img src="public/assets/images/homepage/welcome-section/2.svg" alt="" />
-                </div>
-                <div className="icon text-center mt-3">
-                  <img src="public/assets/images/homepage/welcome-section/earn.svg" alt="" />
-                  <p className="mt-3">Earn</p>
-                </div>
-              </div>
-              <p className="text-center">
-                You can earn Siddhartha Rewards Points with every swipe of your Siddhartha Card. Every transaction
-                counts, the more you spend, the more you earn.
-              </p>
-            </div>
-            <div className="col-md-4 d-flex flex-column h-100">
-              <div className="d-flex align-items-center m-auto">
-                <div className="no">
-                  <img src="public/assets/images/homepage/welcome-section/3.svg" alt="" />
-                </div>
-                <div className="icon text-center mt-3">
-                  <img src="public/assets/images/homepage/welcome-section/redeem.svg" alt="" />
-                  <p className="mt-3">Redeem</p>
-                </div>
-              </div>
-              <p className="text-center">
-                You can then redeem your earned Siddhartha Rewards Points for excellent options such as fine dining,
-                shopping, or traveling.
-              </p>
-            </div>
+            {welcomeData &&
+              welcomeData.map((item) => {
+                const { id } = item;
+                return <WelcomeCard key={id} {...item} />;
+              })}
           </div>
         </div>
       </div>

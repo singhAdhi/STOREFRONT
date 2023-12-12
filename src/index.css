@@ -1,22 +1,19 @@
-<<<<<<< HEAD
+/* .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-=======
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
 @font-face {
   font-family: RobotoThin;
   src: url("assets/fonts/roboto/Roboto-Thin.ttf");
@@ -226,4 +223,3 @@ body {
   }
 }
 /*[[[ MEDIA QUERIES ]]]*/
->>>>>>> 408b89f5b43447b0997f3f6627f065bb61674698
