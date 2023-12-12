@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .swiper-slide {
     text-align: center;
@@ -15,3 +16,214 @@
     height: 100%;
     object-fit: cover;
   }
+=======
+@font-face {
+  font-family: RobotoThin;
+  src: url("assets/fonts/roboto/Roboto-Thin.ttf");
+}
+
+@font-face {
+  font-family: RobotoRegular;
+  src: url("assets/fonts/roboto/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: RobotoLight;
+  src: url("assets/fonts/roboto/Roboto-Light.ttf");
+}
+
+@font-face {
+  font-family: RobotoMedium;
+  src: url("assets/fonts/roboto/Roboto-Medium.ttf");
+}
+
+@font-face {
+  font-family: RobotoBold;
+  src: url("assets/fonts/roboto/Roboto-Bold.ttf");
+}
+
+@font-face {
+  font-family: RobotoBlack;
+  src: url("assets/fonts/roboto/Roboto-Black.ttf");
+}
+
+:root {
+  --primary-colour: #e5a812;
+  --secondary-colour: #000;
+  --bg-section: #f2f2f2;
+  --content-text-colour: #666;
+}
+
+/*[[[ BOOTSTRAP OVERWRITE ]]]*/
+a {
+  text-decoration: none;
+  color: var(--content-text-colour);
+}
+a:hover {
+  text-decoration: none;
+  color: var(--content-text-colour);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+p {
+  margin: 0;
+  padding: 0;
+}
+/*[[[ BOOTSTRAP OVERWRITE ]]]*/
+
+/*[[[ BODY ]]]*/
+body {
+  font-family: RobotoLight;
+  color: var(--content-text-colour);
+}
+/*[[[ BODY ]]]*/
+
+/*[[[ BLACK STRIPE ]]]*/
+.dvBlackStripe {
+  background-color: var(--secondary-colour);
+  padding: 0.5rem;
+}
+/*[[[ BLACK STRIPE ]]]*/
+
+/*[[[ HEADER SECTION ON HOMEPAGE ]]]*/
+.dvHeader .navbar-nav .nav-item.active a {
+  color: var(--primary-colour);
+  border-top: 1px solid var(--primary-colour);
+}
+.dvHeader .navbar-nav .nav-item a {
+  background-color: #fff;
+  color: var(--secondary-colour);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.dvHeader .navbar-nav .nav-item a:hover {
+  color: var(--primary-colour);
+}
+.dvHeader .navbar-nav .nav-item.dropdown .dropdown-menu a:hover {
+  background-color: var(--primary-colour);
+  color: #fff;
+}
+.dvHeader .logo img {
+  width: 200px;
+}
+/*[[[ HEADER SECTION ON HOMEPAGE ]]]*/
+
+/*[[[ VOUCHERS SECTION ON HOMEPAGE ]]]*/
+.dvVouchers {
+  background-color: var(--bg-section);
+}
+.dvVouchers .swiper-button-prev,
+.dvVouchers .swiper-button-next {
+  position: static !important;
+  /* flex: 0 0 41.66; */
+  width: auto !important;
+  margin: 0 !important;
+  height: auto !important;
+}
+.dvVouchers .swiper-button-prev img,
+.dvVouchers .swiper-button-next img {
+  width: 40px;
+}
+/*[[[ VOUCHERS SECTION ON HOMEPAGE ]]]*/
+
+/*[[[ SHOPDEALS SECTION ON HOMEPAGE ]]]*/
+.dvShopDeals .swiper-button-prev,
+.dvShopDeals .swiper-button-next {
+  position: static !important;
+  /* flex: 0 0 41.66; */
+  width: auto !important;
+  margin: 0 !important;
+  height: auto !important;
+}
+.dvShopDeals .swiper-button-prev img,
+.dvShopDeals .swiper-button-next img {
+  width: 40px;
+}
+/*[[[ SHOPDEALS SECTION ON HOMEPAGE ]]]*/
+
+/*[[[ TRAVEL SECTION ON HOMEPAGE ]]]*/
+.dvTravel {
+  background-color: var(--bg-section);
+}
+.dvTravel .img-container {
+  padding-bottom: 60%;
+}
+/*[[[ TRAVEL SECTION ON HOMEPAGE ]]]*/
+
+/*[[[ EARN SECTION ON HOMEPAGE ]]]*/
+.dvEarn .bg {
+  background: url("public/assets/images/homepage/earn/bg-image.svg") no-repeat top center;
+  background-size: cover;
+  padding: 3rem 1rem;
+}
+.dvEarn .bg p {
+  color: var(--secondary-colour);
+}
+.dvEarn .bg-icon {
+  background-color: var(--bg-section);
+}
+.dvEarn .bg-icon img {
+  max-width: 100%;
+  height: 70px;
+}
+.dvEarn .heading-md-bold {
+  color: var(--primary-colour);
+}
+/*[[[ EARN SECTION ON HOMEPAGE ]]]*/
+
+/*[[[ FOOTER ON HOMEPAGE ]]]*/
+.dvFooter {
+  background-color: var(--secondary-colour);
+}
+.dvFooter .dvLinks a {
+  color: var(--primary-colour);
+}
+.dvFooter .dvLinks a::after {
+  content: "|";
+  padding: 0 0.25rem 0 0.5rem;
+}
+.dvFooter .dvLinks a:last-child::after {
+  content: "";
+  padding: 0 0.25rem 0 0.5rem;
+}
+.dvFooter .footer-logo {
+  width: 150px;
+}
+.dvFooter .border-thin {
+  border-top: 1px solid #303030;
+}
+/*[[[ FOOTER ON HOMEPAGE ]]]*/
+
+/*[[[ MEDIA QUERIES ]]]*/
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+  .dvEarn .bg {
+    min-height: 400px;
+  }
+  .dvEarn .mn-top {
+    margin-top: -13rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .dvEarn .mn-top {
+    margin-top: -9rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dvEarn .mn-top {
+    margin-top: -12rem;
+  }
+}
+/*[[[ MEDIA QUERIES ]]]*/
+>>>>>>> 408b89f5b43447b0997f3f6627f065bb61674698

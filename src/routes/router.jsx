@@ -2,9 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../views/Root";
 import Flight from "../views/Flight";
 import Hotel from "../views/Hotel";
-import Home from "../views/Home";
 import Shop from "../views/Shop/Shop";
 import ShopList from "../views/ShopList/ShopList";
+import Home from "../views/home/Home";
 
 const router = createBrowserRouter([
   {
