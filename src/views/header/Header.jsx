@@ -6,16 +6,11 @@ const Header = () => {
       <div className="container-lg">
         <nav className="navbar navbar-expand-lg flex-lg-wrap p-0">
           <div className="navbar-brand logo m-0 col-auto col-lg-6 px-0 px-lg-3 mt-n2">
-<<<<<<< Updated upstream
-            <a href="/">
-              <img src="public/assets/images/logos/siddhartha-logo.svg" alt="" />
-=======
             <a href="index.html">
               <img
                 src="public/assets/images/logos/siddhartha-logo.svg"
                 alt=""
               />
->>>>>>> Stashed changes
             </a>
           </div>
           <div className="navbar-brand logo m-0 col-lg-6 d-none d-lg-block text-lg-end mt-n3">
