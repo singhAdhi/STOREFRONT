@@ -6,7 +6,7 @@ const Header = () => {
       <div className="container-lg">
         <nav className="navbar navbar-expand-lg flex-lg-wrap p-0">
           <div className="navbar-brand logo m-0 col-auto col-lg-6 px-0 px-lg-3 mt-n2">
-            <a href="index.html">
+            <a href="/">
               <img src="public/assets/images/logos/siddhartha-logo.svg" alt="" />
             </a>
           </div>
