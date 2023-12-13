@@ -5,6 +5,7 @@ import Hotel from "../views/Hotel";
 import Shop from "../views/Shop/Shop";
 import ShopList from "../views/ShopList/ShopList";
 import Home from "../views/home/Home";
+import ProductDetails from "../views/ProductDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { path: "/HotelSearch", element: <Hotel /> },
       { path: "/Shop", element: <Shop /> },
       { path: "/ShopList", element: <ShopList /> },
+      { path: "/ProductDetails/:id", element: <ProductDetails /> },
     ],
   },
 ]);

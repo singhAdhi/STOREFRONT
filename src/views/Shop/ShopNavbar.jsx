@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ShopNavbar = () => {
-  return <div>shopNavbar</div>;
+  return (
+    <div>
+      <div className="left"></div>
+      <div className="right"></div>
+    </div>
+  );
 };
 
 export default ShopNavbar;

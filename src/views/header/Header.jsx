@@ -6,13 +6,24 @@ const Header = () => {
       <div className="container-lg">
         <nav className="navbar navbar-expand-lg flex-lg-wrap p-0">
           <div className="navbar-brand logo m-0 col-auto col-lg-6 px-0 px-lg-3 mt-n2">
+<<<<<<< Updated upstream
             <a href="/">
               <img src="public/assets/images/logos/siddhartha-logo.svg" alt="" />
+=======
+            <a href="index.html">
+              <img
+                src="public/assets/images/logos/siddhartha-logo.svg"
+                alt=""
+              />
+>>>>>>> Stashed changes
             </a>
           </div>
           <div className="navbar-brand logo m-0 col-lg-6 d-none d-lg-block text-lg-end mt-n3">
             <a href="#">
-              <img src="public/assets/images/logos/siddhartha-rewards-logo.svg" alt="" />
+              <img
+                src="public/assets/images/logos/siddhartha-rewards-logo.svg"
+                alt=""
+              />
             </a>
           </div>
           <button
@@ -27,7 +38,10 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <hr className="m-0 w-100 d-none d-lg-block" />
-          <div className="collapse navbar-collapse col-lg-6 px-0 mb-1 mb-lg-0" id="navbarSupportedContent">
+          <div
+            className="collapse navbar-collapse col-lg-6 px-0 mb-1 mb-lg-0"
+            id="navbarSupportedContent"
+          >
             <ul className="navbar-nav me-auto align-items-lg-center">
               <li className="nav-item active">
                 <a className="nav-link border-bottom text-uppercase" href="#">

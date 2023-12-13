@@ -20,7 +20,7 @@ const Shop = () => {
 
         <CardSlider />
       </div>
-      <div className="container">
+      <div className="container my-5">
         <div>
           <h3 className="text-center py-4 align-items-center d-flex justify-content-between">
             <span>Featured Offers</span>
