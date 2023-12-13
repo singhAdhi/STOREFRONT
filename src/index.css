@@ -15,6 +15,22 @@
     height: 100%;
     object-fit: cover;
   }
+/* .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
 @font-face {
   font-family: RobotoThin;
   src: url("assets/fonts/roboto/Roboto-Thin.ttf");
@@ -223,4 +239,8 @@ body {
     margin-top: -12rem;
   }
 }
+<<<<<<< HEAD
 
+=======
+/*[[[ MEDIA QUERIES ]]]*/
+>>>>>>> cfc5c642b541faf2fc1741e9e33970e3faefa39b

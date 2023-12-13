@@ -47,11 +47,15 @@ body {
 
 /*[[[ SWIPER CONTROLS ]]]*/
 .swiper-button-next:after,
-.swiper-button-prev:after {
+.swiper-button-prev:after,
+.swiper-button-next2:after,
+.swiper-button-prev2:after {
   display: none;
 }
 .swiper-button-prev,
-.swiper-button-next {
+.swiper-button-next,
+.swiper-button-prev2,
+.swiper-button-next2 {
   position: static !important;
   /* flex: 0 0 41.66; */
   width: auto !important;
@@ -59,7 +63,9 @@ body {
   height: auto !important;
 }
 .swiper-button-prev img,
-.swiper-button-next img {
+.swiper-button-next img,
+.swiper-button-prev2 img,
+.swiper-button-next2 img {
   width: 40px;
 }
 /*[[[ SWIPER CONTROLS ]]]*/

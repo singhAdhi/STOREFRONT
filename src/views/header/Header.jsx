@@ -26,7 +26,7 @@ const Header = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <hr class="m-0 w-100 d-none d-lg-block" />
+          <hr className="m-0 w-100 d-none d-lg-block" />
           <div className="collapse navbar-collapse col-lg-6 px-0 mb-1 mb-lg-0" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto align-items-lg-center">
               <li className="nav-item active">
