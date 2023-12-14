@@ -3,7 +3,7 @@ import RootLayout from "../views/RootLayout";
 import FlightSearch from "../views/flight/flight-search/FlightSearch";
 import HotelSearch from "../views/hotel/hotel-search/HotelSearch";
 import Shop from "../views/shop/Index";
-import ShopList from "../views/shop/shoplist/ShopList";
+import ShopList from "../views/shoplist/list/ShopList";
 import Home from "../views/home/Index";
 import ProductDetails from "../views/shop/product-details/ProductDetails";
 
