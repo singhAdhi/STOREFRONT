@@ -1,0 +1,18 @@
+/*[[[ SHOP PAGE MENU ]]]*/
+.dvMenu {
+  background-color: var(--bg-section);
+}
+.dvMenu .navbar-light .navbar-nav .nav-link {
+  color: var(--secondary-colour);
+}
+.dvMenu .dropdown-item:focus,
+.dvMenu .dropdown-item:hover {
+  background-color: var(--primary-colour) !important;
+  color: #fff;
+}
+.dvMenu .dropdown-item.active,
+.dvMenu .dropdown-item:active {
+  background-color: var(--primary-colour) !important;
+  color: #fff;
+}
+/*[[[ SHOP PAGE MENU ]]]*/

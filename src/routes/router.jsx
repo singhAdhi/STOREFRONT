@@ -1,20 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
-import Root from "../views/Root";
-import Flight from "../views/Flight";
-import Hotel from "../views/Hotel";
-import Shop from "../views/Shop/Shop";
-import ShopList from "../views/ShopList/ShopList";
-import Home from "../views/home/Home";
-import ProductDetails from "../views/ProductDetails/ProductDetails";
+import RootLayout from "../views/RootLayout";
+import FlightSearch from "../views/flight/flight-search/FlightSearch";
+import HotelSearch from "../views/hotel/hotel-search/HotelSearch";
+import Shop from "../views/shop/Index";
+import ShopList from "../views/shop/shoplist/ShopList";
+import Home from "../views/home/Index";
+import ProductDetails from "../views/shop/product-details/ProductDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <RootLayout />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/FlightSearch", element: <Flight /> },
-      { path: "/HotelSearch", element: <Hotel /> },
+      { path: "/FlightSearch", element: <FlightSearch /> },
+      { path: "/HotelSearch", element: <HotelSearch /> },
       { path: "/Shop", element: <Shop /> },
       { path: "/ShopList", element: <ShopList /> },
       { path: "/ProductDetails/:id", element: <ProductDetails /> },

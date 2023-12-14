@@ -1,0 +1,22 @@
+/*[[[ FOOTER ON HOMEPAGE ]]]*/
+.dvFooter {
+  background-color: var(--secondary-colour);
+}
+.dvFooter .dvLinks a {
+  color: var(--primary-colour);
+}
+.dvFooter .dvLinks a::after {
+  content: "|";
+  padding: 0 0.25rem 0 0.5rem;
+}
+.dvFooter .dvLinks a:last-child::after {
+  content: "";
+  padding: 0 0.25rem 0 0.5rem;
+}
+.dvFooter .footer-logo {
+  width: 150px;
+}
+.dvFooter .border-thin {
+  border-top: 1px solid #303030;
+}
+/*[[[ FOOTER ON HOMEPAGE ]]]*/

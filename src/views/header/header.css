@@ -1,0 +1,22 @@
+/*[[[ HEADER SECTION ON HOMEPAGE ]]]*/
+.dvHeader .navbar-nav .nav-item.active a {
+  color: var(--primary-colour);
+  border-top: 1px solid var(--primary-colour);
+}
+.dvHeader .navbar-nav .nav-item a {
+  background-color: #fff;
+  color: var(--secondary-colour);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.dvHeader .navbar-nav .nav-item a:hover {
+  color: var(--primary-colour);
+}
+.dvHeader .navbar-nav .nav-item.dropdown .dropdown-menu a:hover {
+  background-color: var(--primary-colour);
+  color: #fff;
+}
+.dvHeader .logo img {
+  width: 200px;
+}
+/*[[[ HEADER SECTION ON HOMEPAGE ]]]*/
