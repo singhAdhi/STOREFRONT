@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import "./shop-nav.css";
 import Dropdown from "../../../components/Dropdown/Dropdown";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { useSelector } from "react-redux";
 
 const ShopNavbar = () => {
+  const data = useSelector((store) => store.example.items);
+  console.log(data);
   const [val, setVal] = useState(null);
   const [arrow, setArrow] = useState(true);
   const categoryOptions = [
@@ -53,6 +56,7 @@ const ShopNavbar = () => {
             id="exampleFormControlInput1"
             placeholder="name@example.com"
           />
+          <p className="d-flex">cart {data.length}</p>
         </div>
       </div>
     </>

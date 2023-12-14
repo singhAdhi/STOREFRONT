@@ -1,4 +1,4 @@
-const SearchProductsFeatured_DATA = {
+export const SearchProductsFeatured_DATA = {
   totalCount: 5,
   Products: [
     {

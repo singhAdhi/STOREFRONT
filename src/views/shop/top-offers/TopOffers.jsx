@@ -6,17 +6,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Card from "../../../components/card/Card";
 import { Link } from "react-router-dom";
+import { SearchProductsTop_DATA } from "../../../dummy/SearchProductsTop_DATA";
 
 const TopOffers = () => {
-  const topOffersData = [
-    { id: 1, title: "Top Offers 1", content: "Content for Top Offers 1" },
-    { id: 2, title: "Top Offers 2", content: "Content for Top Offers 2" },
-    { id: 3, title: "Top Offers 3", content: "Content for Top Offers 3" },
-    { id: 4, title: "Top Offers 4", content: "Content for Top Offers 3" },
-    { id: 5, title: "Top Offers 5", content: "Content for Top Offers 3" },
-    { id: 6, title: "Top Offers 6", content: "Content for Top Offers 3" },
-    { id: 7, title: "Top Offers 7", content: "Content for Top Offers 3" },
-  ];
+  console.log(SearchProductsTop_DATA.Products);
   return (
     <>
       <div className="dvTopOffers py-5">
@@ -25,8 +18,9 @@ const TopOffers = () => {
             <div className="col-12 col-lg-8 offset-lg-2 text-center mb-4">
               <h2 className="heading-xl mb-2">Top Offers</h2>
               <p>
-                Get more for your points with our fantastic selection of curated products, featuring the best deals on
-                everything from electronics to fashion, home goods, and more.
+                Get more for your points with our fantastic selection of curated
+                products, featuring the best deals on everything from
+                electronics to fashion, home goods, and more.
               </p>
             </div>
           </div>
@@ -39,10 +33,16 @@ const TopOffers = () => {
                 <div className="swiper-buttons">
                   <div className="d-flex justify-content-center">
                     <div className="swiper-button-prev-topoffers pe-3">
-                      <img src="public/assets/images/icons/arrows/left-black-arrow.svg" alt="" />
+                      <img
+                        src="public/assets/images/icons/arrows/left-black-arrow.svg"
+                        alt=""
+                      />
                     </div>
                     <div className="swiper-button-next-topoffers">
-                      <img src="public/assets/images/icons/arrows/right-black-arrow.svg" alt="" />
+                      <img
+                        src="public/assets/images/icons/arrows/right-black-arrow.svg"
+                        alt=""
+                      />
                     </div>
                   </div>
                 </div>
@@ -69,12 +69,18 @@ const TopOffers = () => {
                   },
                 }}
               >
-                {topOffersData &&
-                  topOffersData.map((item) => {
-                    const { id } = item;
+                {SearchProductsTop_DATA.Products &&
+                  SearchProductsTop_DATA.Products.map((item) => {
+                    const { Id } = item;
+
                     return (
-                      <SwiperSlide key={id}>
-                        <Card heading={"top"} {...item} />
+                      <SwiperSlide key={Id}>
+                        <Card
+                          heading={"top"}
+                          id={Id}
+                          Name={item.Name}
+                          img={item.PrimaryImage.Url}
+                        />
                       </SwiperSlide>
                     );
                   })}

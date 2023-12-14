@@ -1,4 +1,4 @@
-const SearchProductsTop_DATA = {
+export const SearchProductsTop_DATA = {
   totalCount: 6,
   Products: [
     {
