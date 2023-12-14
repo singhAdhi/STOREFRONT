@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./shop-nav.css";
 import Dropdown from "../../../components/Dropdown/Dropdown";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 const ShopNavbar = () => {
   const [val, setVal] = useState(null);
+  const [arrow, setArrow] = useState(true);
   const categoryOptions = [
     { value: "electronics", label: "Electronics" },
     { value: "homeAndKitchen", label: "Home & Kitchen" },
@@ -13,10 +15,12 @@ const ShopNavbar = () => {
 
   const handleMouseEnter = (value) => {
     setVal(value);
+    setArrow(!arrow);
   };
 
   const handleMouseLeave = () => {
     setVal(null);
+    setArrow(!arrow);
   };
 
   return (
@@ -31,7 +35,10 @@ const ShopNavbar = () => {
                   onMouseEnter={() => handleMouseEnter(cur.value)}
                   onMouseLeave={() => handleMouseLeave(cur.value)}
                 >
-                  <button>{cur.label}</button>
+                  <button>
+                    <span className="px-2">{cur.label}</span>
+                    {val === cur.value ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                  </button>
 
                   {val === cur.value && <Dropdown value={cur.value} />}
                 </div>

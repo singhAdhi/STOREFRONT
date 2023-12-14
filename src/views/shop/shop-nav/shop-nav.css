@@ -27,9 +27,9 @@ header {
 
 
 button {
-  background: #000;
+  background: transparent;
   box-shadow: 0px 10px 30px 0px rgba(82, 63, 105, 0.05);
-  color: #fff;
+  color: #000;
   padding: 12px 25px;
   border: none;
   cursor: pointer;
