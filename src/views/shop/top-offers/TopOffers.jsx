@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./top-offers.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -7,9 +7,15 @@ import "swiper/css/navigation";
 import Card from "../../../components/card/Card";
 import { Link } from "react-router-dom";
 import { SearchProductsTop_DATA } from "../../../dummy/SearchProductsTop_DATA";
+import { useDispatch } from "react-redux";
+import { addProducts } from "../../../utils/topOffers";
 
 const TopOffers = () => {
+  const Dispatch = useDispatch();
   console.log(SearchProductsTop_DATA.Products);
+  useEffect(() => {
+    Dispatch(addProducts(SearchProductsTop_DATA.Products));
+  }, []);
   return (
     <>
       <div className="dvTopOffers py-5">

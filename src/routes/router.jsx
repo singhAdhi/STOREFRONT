@@ -6,6 +6,7 @@ import Shop from "../views/shop/Index";
 import ShopList from "../views/shoplist/list/ShopList";
 import Home from "../views/home/Index";
 import ProductDetails from "../views/shop/product-details/ProductDetails";
+import Cart from "../views/cart/Cart";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "/Shop", element: <Shop /> },
       { path: "/ShopList", element: <ShopList /> },
       { path: "/ProductDetails/:id", element: <ProductDetails /> },
+      { path: "/Cart", element: <Cart /> },
     ],
   },
 ]);

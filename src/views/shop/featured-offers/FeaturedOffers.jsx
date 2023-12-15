@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./featured-offers.css";
 import Card from "../../../components/card/Card";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,8 +7,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Link } from "react-router-dom";
 import { SearchProductsFeatured_DATA } from "../../../dummy/SearchProductsFeatured_DATA";
+import { useDispatch } from "react-redux";
+import { newProducts } from "../../../utils/featuredOffers";
 
 const FeaturedOffers = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(newProducts(SearchProductsFeatured_DATA.Products));
+  }, []);
   return (
     <>
       <div className="dvFeaturedOffers py-5">
