@@ -1,33 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "./redemptionmenu.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addOutline } from "../../../utils/exSlice";
 
-const RedemptionMenu = () => {
+const RedemptionMenu = ({ RedemptionList }) => {
   const navigate = useNavigate();
-  const [redemptions, setredemptions] = useState(null);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    import("../../../dummy/SearchCategories_DATA")
-      .then((module) => {
-        setredemptions(
-          module.SearchCategories_DATA.filter((x) => x.ParentId == null).sort(
-            (a, b) => a - b
-          )
-        );
-      })
-      .catch((error) => {
-        console.error("Error loading data:", error);
-      });
-  }, []);
-
+  const handleClick = (item) => {
+    dispatch(addOutline(item.Id));
+    navigate(item.Name.toLowerCase());
+  };
   return (
     <div className="dvRedemptions pt-5">
-      {redemptions &&
-        redemptions.map((item, idx) => (
+      {RedemptionList &&
+        RedemptionList.map((item, idx) => (
           <div
             key={idx}
             className="redemption-card"
-            onClick={() => navigate(item.Name.toLowerCase())}
+            onClick={() => handleClick(item)}
           >
             {item.PrimaryImage && item.PrimaryImage.Url && (
               <div className="imageBox">

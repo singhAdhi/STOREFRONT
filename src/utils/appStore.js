@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ExSlice from "./ExSlice";
+import ExSlice from "./exSlice";
 
 const appStore = configureStore({
   reducer: {
