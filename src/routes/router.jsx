@@ -5,7 +5,7 @@ import HotelSearch from "../views/hotel/hotel-search/HotelSearch";
 import Shop from "../views/shop/Index";
 import ShopList from "../views/shoplist/list/ShopList";
 import Home from "../views/home/Index";
-import ProductDetails from "../views/shop/product-details/ProductDetails";
+import ProductDetails from "../views/shoplist/product-details/ProductDetails";
 import Cart from "../views/cart/Cart";
 import PageNotFound from "../components/other/pagenotfound/PageNotFound";
 

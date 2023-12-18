@@ -97,7 +97,7 @@ body {
 /*[[[ SCROLL HORIZONTAL ]]]*/
 .scroll-hoz {
   overflow-x: auto;
-  margin: 0;
+  overflow-y: hidden;
 }
 /*[[[ SCROLL HORIZONTAL ]]]*/
 
@@ -287,6 +287,58 @@ body {
   color: #fff;
   border-color: var(--primary-colour);
 }
+
+/*[[[ ADD TO CART BUTTON ]]]*/
+.btn-addtocart {
+  font-family: RobotoRegular;
+  /* background-color: var(--primary-colour); */
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--bg-section);
+  padding: 0 !important;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-addtocart i {
+  background-color: var(--bg-section);
+  color: #000;
+  border: none;
+}
+.btn-addtocart:hover i {
+  background-color: var(--bg-section);
+  color: #000;
+  border: none;
+}
+/*[[[ ADD TO CART BUTTON ]]]*/
+
+/*[[[ DENOMATION ]]]*/
+.denomination-btn {
+  padding: 0.5rem 0.75rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--bg-section);
+  color: var(--secondary-colour);
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  /* flex: 0 0 16.66%;
+  max-width: 16.66%; */
+}
+.denomination-checkbox {
+  display: none;
+}
+.denomination-checkbox:checked + .denomination-btn {
+  background-color: var(--primary-colour);
+  color: #fff;
+}
+/*[[[ DENOMATION ]]]*/
+
 /*[[[ BUTTONS ]]]*/
 
 /*[[[ PRODUCT HEADINGS & TITLES ]]]*/
@@ -441,11 +493,28 @@ li li.show > .dropdown-toggle:after {
 /*[[[ ACCORDION ]]]*/
 
 /*[[[ FORM ELEMENTS ]]]*/
-.form-select:focus {
+.form-select:focus,
+.form-control:focus {
   box-shadow: none;
   border-color: #dee2e6;
 }
 /*[[[ FORM ELEMENTS ]]]*/
+
+/*[[[ TABS ]]]*/
+.dvDetails .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  background-color: var(--primary-colour);
+  color: #fff !important;
+}
+.dvDetails .nav-tabs .nav-link {
+  color: var(--secondary-colour);
+}
+.dvDetails #nav-description ul li,
+.dvDetails #nav-termsconditions ul li,
+.dvDetails #nav-specifications ul li {
+  font-family: RobotoMedium;
+}
+/*[[[ TABS ]]]*/
 
 /*[[[ MEDIA QUERIES ]]]*/
 @media (min-width: 576px) {

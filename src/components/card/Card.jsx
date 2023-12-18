@@ -2,8 +2,8 @@ import React from "react";
 import "./card.css";
 import { Link } from "react-router-dom";
 
-const Card = ({ heading, id, title, type, Name, img, item }) => {
-  console.log(item);
+const Card = ({ heading, id, title, type, Name, img }) => {
+  // console.log(item);
 
   if (heading === "products") {
     return (
