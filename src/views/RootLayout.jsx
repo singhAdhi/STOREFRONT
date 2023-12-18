@@ -6,8 +6,10 @@ import Footer from "./footer/Footer";
 const Root = () => {
   return (
     <>
-      <Header />
-      <Outlet />
+      <div className="dvMain">
+        <Header />
+        <Outlet />
+      </div>
       <Footer />
     </>
   );
