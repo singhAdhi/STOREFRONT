@@ -7,7 +7,7 @@ import Products from "../products/Products";
 const ShopList = () => {
   return (
     <>
-      <Breadcrumbs text="Shop List" />
+      <Breadcrumbs />
       <div className="dvShopList pb-5">
         <div className="container-lg">
           <div className="row d-flex flex-md-row align-items-baseline">
