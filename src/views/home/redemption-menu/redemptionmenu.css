@@ -1,25 +1,7 @@
-.dvRedemptions {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
+.dvRedemptionMenu {
+  background-color: var(--bg-section);
 }
-.dvRedemptions .imageBox {
-  background: #00425f;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  line-height: 70px;
-  margin: 0 auto;
-}
-
-.dvRedemptions .redemption-card {
-  cursor: pointer;
-  text-align: center;
-  padding: 20px !important;
-  width: 15%;
-  margin: 0 8px;
-  padding: 0;
-  background: #f9fafb;
-  border-radius: 20px;
+.dvRedemptionMenu a {
+  font-family: RobotoRegular;
+  background-color: var(--primary-colour);
 }

@@ -6,16 +6,38 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Card from "../../../components/card/Card";
 import { Link } from "react-router-dom";
-import { SearchProductsTop_DATA } from "../../../dummy/SearchProductsTop_DATA";
-import { useDispatch } from "react-redux";
-import { addProducts } from "../../../utils/topOffers";
+import { useDispatch, useSelector } from "react-redux";
+import { addProducts } from "../../../redux/shop/topoffers/TopOffersSlice";
+import Loading from "../../../components/other/loading/Loading";
+import Error from "../../../components/other/error/Error";
 
 const TopOffers = () => {
-  const Dispatch = useDispatch();
-  console.log(SearchProductsTop_DATA.Products);
+  const dispatch = useDispatch();
+
+  const { isError, isLoading, isLoadingText, topOffers } = useSelector(
+    (state) => state.topOffersReducer
+  );
+
   useEffect(() => {
-    Dispatch(addProducts(SearchProductsTop_DATA.Products));
+    dispatch(addProducts());
   }, []);
+
+  if (isLoading) {
+    return (
+      <>
+        <Loading isLoadingText={isLoadingText} />
+      </>
+    );
+  }
+
+  if (isError) {
+    return (
+      <>
+        <Error isError={isError} isLoadingText={isLoadingText} />
+      </>
+    );
+  }
+
   return (
     <>
       <div className="dvTopOffers py-5">
@@ -75,8 +97,8 @@ const TopOffers = () => {
                   },
                 }}
               >
-                {SearchProductsTop_DATA.Products &&
-                  SearchProductsTop_DATA.Products.map((item) => {
+                {topOffers &&
+                  topOffers.map((item) => {
                     const { Id } = item;
 
                     return (

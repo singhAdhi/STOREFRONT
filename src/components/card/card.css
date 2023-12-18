@@ -1,0 +1,8 @@
+.dvVoucherSlider .swiper-slide a,
+.dvShopDealsSlider .swiper-slide a,
+.dvFeaturedOffers .swiper-slide a,
+.dvTopOffers .swiper-slide a,
+.dvProducts a {
+  border: 1px solid #ddd;
+  display: block;
+}

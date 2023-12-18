@@ -2,9 +2,9 @@
 .dvVouchers {
   background-color: var(--bg-section);
 }
-.dvVouchers .swiper-slide {
+/* .dvVouchers .swiper-slide {
   box-shadow: 0px 0 5px 2px #ddd;
-}
+} */
 .dvVouchers .swiper-wrapper {
   padding-bottom: 1rem;
 }

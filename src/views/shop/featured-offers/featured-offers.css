@@ -1,6 +1,13 @@
-.dvFeaturedOffers .swiper-slide {
+/* .dvFeaturedOffers .swiper-slide {
   box-shadow: 0px 0 5px 2px #ddd;
-}
+} */
+/* .dvFeaturedOffers .swiper-slide a {
+  border: 1px solid #ddd;
+  display: block;
+} */
 .dvFeaturedOffers .swiper-wrapper {
   padding-bottom: 1rem;
+}
+.dvFeaturedOffers .img-container img {
+  padding: 1rem;
 }

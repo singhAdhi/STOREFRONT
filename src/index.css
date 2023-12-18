@@ -363,6 +363,90 @@ li li.show > .dropdown-toggle:after {
 /*rotate icon animation before 992px*/
 /*[[[ BOOTSTRAP NAVBAR MENU ]]]*/
 
+/*[[[ CHECKBOX ]]]*/
+/* The checkbox-container */
+.dvLabel .checkbox-container {
+  position: relative;
+  padding-left: 15px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.dvLabel .checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox with an image */
+.dvLabel .checkmark {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  border: 1px solid var(--primary-colour);
+  border-radius: 3px;
+}
+
+/* When the checkbox is checked */
+.dvLabel .checkbox-container input:checked ~ .checkmark {
+  background-color: #2196f3;
+  background: url("/images/icons/arrows/checkmark.png") no-repeat center center
+    var(--primary-colour);
+  background-size: contain;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.dvLabel .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.dvLabel .checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+/*[[[ CHECKBOX ]]]*/
+
+/*[[[ ACCORDION ]]]*/
+#filterAccordion .accordion-button:not(.collapsed) {
+  background-color: transparent;
+  color: var(--secondary-colour);
+}
+#filterAccordion .accordion-button {
+  box-shadow: none;
+}
+/*active arrow colour*/
+#filterAccordion .accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+#filterAccordion .accordion-button:focus {
+  box-shadow: none;
+}
+#filterAccordion .accordion-body {
+  padding-top: 0;
+}
+#filterAccordion .accordion-collapse {
+  max-height: 200px;
+  overflow-x: hidden;
+}
+/*[[[ ACCORDION ]]]*/
+
+/*[[[ FORM ELEMENTS ]]]*/
+.form-select:focus {
+  box-shadow: none;
+  border-color: #dee2e6;
+}
+/*[[[ FORM ELEMENTS ]]]*/
+
 /*[[[ MEDIA QUERIES ]]]*/
 @media (min-width: 576px) {
 }
@@ -398,11 +482,21 @@ li li.show > .dropdown-toggle:after {
   /* open submenus on hover */
 
   /* open subsubmenus on hover */
-  .dropdown:hover .dropdown-menu .dropdown-submenu .dropdown-menu .dropdown-submenu .dropdown-menu {
+  .dropdown:hover
+    .dropdown-menu
+    .dropdown-submenu
+    .dropdown-menu
+    .dropdown-submenu
+    .dropdown-menu {
     display: none;
     margin-top: 0;
   }
-  .dropdown:hover .dropdown-menu .dropdown-submenu .dropdown-menu .dropdown-submenu:hover .dropdown-menu {
+  .dropdown:hover
+    .dropdown-menu
+    .dropdown-submenu
+    .dropdown-menu
+    .dropdown-submenu:hover
+    .dropdown-menu {
     display: block;
     margin-top: 0;
   }
@@ -420,6 +514,10 @@ li li.show > .dropdown-toggle:after {
   }
   /*remove rotating icon animation after 992px*/
   /*[[[ BOOTSTRAP NAVBAR MENU ON HOVER ]]]*/
+
+  .dvEarn .mn-top {
+    margin-top: -9rem;
+  }
 }
 
 @media (min-width: 1200px) {

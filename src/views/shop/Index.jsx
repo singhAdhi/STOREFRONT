@@ -13,9 +13,9 @@ const Index = () => {
 
   return (
     <>
-      <ShopSlider />
-      <ShopNavbar />
-      <Breadcrumbs text={"Shop"} />
+      {/* <ShopSlider /> */}
+      {/* <ShopNavbar /> */}
+      {/* <Breadcrumbs text={"Shop"} /> */}
       <FeaturedOffers />
       <TopOffers />
     </>

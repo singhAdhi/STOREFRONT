@@ -1,7 +1,12 @@
 import React from "react";
+import ShopList from "./list/ShopList";
 
 const Index = () => {
-  return <div>shoplist index</div>;
+  return (
+    <>
+      <ShopList />
+    </>
+  );
 };
 
 export default Index;

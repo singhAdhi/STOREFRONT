@@ -1,9 +1,16 @@
 .dvTopOffers {
   background-color: var(--bg-section);
 }
-.dvTopOffers .swiper-slide {
+/* .dvTopOffers .swiper-slide {
   box-shadow: 0px 0 5px 2px #ddd;
-}
+} */
+/* .dvTopOffers .swiper-slide a {
+  border: 1px solid #ddd;
+  display: block;
+} */
 .dvTopOffers .swiper-wrapper {
   padding-bottom: 1rem;
+}
+.dvTopOffers .img-container img {
+  padding: 1rem;
 }

@@ -6,15 +6,38 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Link } from "react-router-dom";
-import { SearchProductsFeatured_DATA } from "../../../dummy/SearchProductsFeatured_DATA";
-import { useDispatch } from "react-redux";
-import { newProducts } from "../../../utils/featuredOffers";
+import { useDispatch, useSelector } from "react-redux";
+import { newProducts } from "../../../redux/shop/featuredoffers/FeaturedOffersSlice";
+import Loading from "../../../components/other/loading/Loading";
+import Error from "../../../components/other/error/Error";
 
 const FeaturedOffers = () => {
   const dispatch = useDispatch();
+  const { featuredOffers, isLoading, isError, isLoadingText } = useSelector(
+    (state) => state.featuredOffersReducer
+  );
+  console.log(featuredOffers, isLoading, isError, isLoadingText);
+
   useEffect(() => {
-    dispatch(newProducts(SearchProductsFeatured_DATA.Products));
+    dispatch(newProducts());
   }, []);
+
+  if (isLoading) {
+    return (
+      <>
+        <Loading isLoadingText={isLoadingText} />
+      </>
+    );
+  }
+
+  if (isError) {
+    return (
+      <>
+        <Error isError={isError} isLoadingText={isLoadingText} />
+      </>
+    );
+  }
+
   return (
     <>
       <div className="dvFeaturedOffers py-5">
@@ -74,10 +97,10 @@ const FeaturedOffers = () => {
                   },
                 }}
               >
-                {SearchProductsFeatured_DATA.Products &&
-                  SearchProductsFeatured_DATA.Products.map((item) => {
+                {featuredOffers &&
+                  featuredOffers.map((item) => {
                     const { Id } = item;
-                    console.log(item);
+                    // console.log(item);
                     return (
                       <SwiperSlide key={Id}>
                         <Card

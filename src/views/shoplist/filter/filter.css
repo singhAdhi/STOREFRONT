@@ -1,0 +1,30 @@
+/*[[[ FILTER ON SHOPLIST PAGE ]]]*/
+.dvFilter .modal-content {
+  overflow: hidden;
+}
+/*[[[ FILTER ON SHOPLIST PAGE ]]]*/
+
+@media (min-width: 992px) {
+  /*[[[ FILTER ON SHOPLIST PAGE ]]]*/
+  .dvFilter.modal {
+    display: block;
+    opacity: 1;
+    position: static;
+    top: auto;
+    left: auto;
+    z-index: 0;
+    width: 33.33%;
+    height: auto;
+  }
+  .dvFilter.modal .modal-dialog {
+    margin: 0 auto;
+    transform: none;
+  }
+  /*[[[ FILTER ON SHOPLIST PAGE ]]]*/
+}
+
+@media (min-width: 1200px) {
+  .dvFilter.modal {
+    width: 25%;
+  }
+}
