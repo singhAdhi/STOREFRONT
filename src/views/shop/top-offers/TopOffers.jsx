@@ -7,7 +7,6 @@ import "swiper/css/navigation";
 import Card from "../../../components/card/Card";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< Updated upstream
 import { addProducts } from "../../../redux/shop/topoffers/TopOffersSlice";
 import Loading from "../../../components/other/loading/Loading";
 import Error from "../../../components/other/error/Error";
@@ -38,47 +37,6 @@ const TopOffers = () => {
       </>
     );
   }
-=======
-import { addProducts } from "../../../utils/topOffers";
-import { STORE_ID } from "../../../config";
-
-const TopOffers = () => {
-  const dispatch = useDispatch();
-  const id = useSelector((store) => store.example.catalog_id);
-  const [topOfferProd, setTopOfferProd] = useState([]);
-  console.log(id);
-  useEffect(() => {
-    topOffer();
-  }, []);
-
-  const topOffer = () => {
-    let body = {
-      StoreId: STORE_ID,
-      CatalogId: id,
-      ResponseGroup: "ItemLarge",
-      Outline: "",
-      Currency: "AED",
-      LanguageCode: "en-US",
-      Skip: 0,
-      Take: 10,
-      Terms: [
-        //"Tags:FEATURED,TOP"
-        //"Tags:TOP"
-      ],
-      SearchPhrase: "",
-      Sort: "",
-    };
-    let url = `/api/StoreFront/SearchProducts`;
-    import("../../../dummy/SearchProductsTop_DATA")
-      .then((item) => {
-        dispatch(addProducts(item.SearchProductsTop_DATA.Products));
-        setTopOfferProd(item.SearchProductsTop_DATA.Products);
-      })
-      .catch((error) => {
-        console.error("Error loading data:", error);
-      });
-  };
->>>>>>> Stashed changes
 
   return (
     <>
@@ -139,13 +97,8 @@ const TopOffers = () => {
                   },
                 }}
               >
-<<<<<<< Updated upstream
                 {topOffers &&
                   topOffers.map((item) => {
-=======
-                {topOfferProd &&
-                  topOfferProd.map((item) => {
->>>>>>> Stashed changes
                     const { Id } = item;
 
                     return (
