@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { baseUrl } from "../../api/baseUrl";
 
 // const url = "GetStoreDetails_DATA";
-const url = "SearchCategories_DATA-";
+const url = "SearchCategories_DATA";
 
 const initialState = {
   redemptionMenuLinks: [],
@@ -21,6 +21,7 @@ export const fetchRedemptionMenu = createAsyncThunk(
         throw new Error("TOP OFFERS NOT FOUND");
       }
       const data = await response.json();
+      console.log(data);
       return data.filter((item) => item.ParentId === null);
     } catch (error) {
       throw new Error("An error occurred while fetching redemption menu.");

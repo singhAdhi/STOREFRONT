@@ -7,7 +7,7 @@ import ShopList from "../views/shoplist/list/ShopList";
 import Home from "../views/home/Index";
 import ProductDetails from "../views/shop/product-details/ProductDetails";
 import Cart from "../views/cart/Cart";
-import PageNotFound from "../components/pagenotfound/PageNotFound";
+import PageNotFound from "../components/other/pagenotfound/PageNotFound";
 
 const router = createBrowserRouter([
   {

@@ -25,7 +25,10 @@ const Vouchers = () => {
           <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2 text-center mb-4">
               <h2 className="heading-xl mb-2">Vouchers</h2>
-              <p>Siddhartha Rewards brings you a wide variety of gift vouchers with over 5000+ options to pick from.</p>
+              <p>
+                Siddhartha Rewards brings you a wide variety of gift vouchers
+                with over 5000+ options to pick from.
+              </p>
             </div>
           </div>
           <div className="row">
@@ -69,10 +72,16 @@ const Vouchers = () => {
               <div className="swiper-buttons">
                 <div className="d-flex justify-content-center">
                   <div className="swiper-button-prev-vouchers pe-3">
-                    <img src="public/assets/images/icons/arrows/left-yellow-arrow-2.svg" alt="" />
+                    <img
+                      src="public/assets/images/icons/arrows/left-yellow-arrow-2.svg"
+                      alt=""
+                    />
                   </div>
                   <div className="swiper-button-next-vouchers">
-                    <img src="public/assets/images/icons/arrows/right-yellow-arrow-2.svg" alt="" />
+                    <img
+                      src="public/assets/images/icons/arrows/right-yellow-arrow-2.svg"
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>

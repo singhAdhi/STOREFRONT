@@ -17,7 +17,7 @@ const FeaturedOffers = () => {
   const { featuredOffers, isLoading, isError, isLoadingText } = useSelector(
     (state) => state.featuredOffersReducer
   );
-  console.log(featuredOffers, isLoading, isError, isLoadingText);
+  // console.log(featuredOffers, isLoading, isError, isLoadingText);
 
   useEffect(() => {
     dispatch(newProducts());

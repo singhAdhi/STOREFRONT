@@ -27,8 +27,9 @@ const ShopDeals = () => {
             <div className="col-12 col-lg-8 offset-lg-2 text-center mb-4">
               <h2 className="heading-xl mb-2">Shop The Best Deals</h2>
               <p>
-                Get more for your points with our fantastic selection of curated products, featuring the best deals on
-                everything from electronics to fashion, home goods, and more.
+                Get more for your points with our fantastic selection of curated
+                products, featuring the best deals on everything from
+                electronics to fashion, home goods, and more.
               </p>
             </div>
           </div>
@@ -75,10 +76,16 @@ const ShopDeals = () => {
               <div className="swiper-buttons">
                 <div className="d-flex justify-content-center">
                   <div className="swiper-button-prev-shopdeals pe-3">
-                    <img src="public/assets/images/icons/arrows/left-yellow-arrow-2.svg" alt="" />
+                    <img
+                      src="public/assets/images/icons/arrows/left-yellow-arrow-2.svg"
+                      alt=""
+                    />
                   </div>
                   <div className="swiper-button-next-shopdeals">
-                    <img src="public/assets/images/icons/arrows/right-yellow-arrow-2.svg" alt="" />
+                    <img
+                      src="public/assets/images/icons/arrows/right-yellow-arrow-2.svg"
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>
