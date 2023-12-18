@@ -21,7 +21,7 @@ export const fetchRedemptionMenu = createAsyncThunk(
         throw new Error("TOP OFFERS NOT FOUND");
       }
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       return data.filter((item) => item.ParentId === null);
     } catch (error) {
       throw new Error("An error occurred while fetching redemption menu.");

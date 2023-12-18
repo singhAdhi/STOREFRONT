@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const RedempMenu = ({ Name, Images }) => {
+const RedempMenu = ({ Name, Images, handleClick }) => {
   return (
     <>
-      <div className="col-6 col-sm-4 col-lg-2 text-center mb-3">
+      <div
+        className="col-6 col-sm-4 col-lg-2 text-center mb-3"
+        onClick={handleClick}
+      >
         <Link
           className="d-flex flex-column align-items-center justify-content-center p-2 p-lg-2 p-xl-4 border rounded h-100"
           to={`${Name}`}

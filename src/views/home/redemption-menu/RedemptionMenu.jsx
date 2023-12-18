@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
 import "./redemptionmenu.css";
-import { fetchRedemptionMenu } from "../../../redux/home/RedemptionMenuSlice";
-import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../components/other/loading/Loading";
 import Error from "../../../components/other/error/Error";
 import RedempMenu from "../../../components/redempmenu/RedempMenu";
+import { useDispatch } from "react-redux";
+import { addOutline } from "../../../redux/common";
 
-const RedemptionMenu = () => {
+const RedemptionMenu = ({
+  isLoading,
+  isError,
+  isLoadingText,
+  redemptionMenuLinks,
+}) => {
   const dispatch = useDispatch();
-  const { isLoading, isError, isLoadingText, redemptionMenuLinks } =
-    useSelector((state) => state.redemptionMenuReducer);
-  console.log(redemptionMenuLinks);
-
-  useEffect(() => {
-    dispatch(fetchRedemptionMenu());
-  }, []);
 
   if (isLoading) {
     return (
@@ -32,6 +29,10 @@ const RedemptionMenu = () => {
     );
   }
 
+  const handleClick = (item) => {
+    dispatch(addOutline(item.Id));
+  };
+
   return (
     <>
       <div className="dvRedemptionMenu py-5">
@@ -44,7 +45,13 @@ const RedemptionMenu = () => {
             {redemptionMenuLinks &&
               redemptionMenuLinks.map((item) => {
                 const { Id } = item;
-                return <RedempMenu key={Id} {...item} />;
+                return (
+                  <RedempMenu
+                    key={Id}
+                    {...item}
+                    handleClick={() => handleClick(item)}
+                  />
+                );
               })}
           </div>
         </div>
