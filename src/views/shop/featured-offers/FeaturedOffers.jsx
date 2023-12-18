@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./featured-offers.css";
 import Card from "../../../components/card/Card";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,6 +6,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Link } from "react-router-dom";
+<<<<<<< Updated upstream
 import { useDispatch, useSelector } from "react-redux";
 import { newProducts } from "../../../redux/shop/featuredoffers/FeaturedOffersSlice";
 import Loading from "../../../components/other/loading/Loading";
@@ -38,6 +39,49 @@ const FeaturedOffers = () => {
     );
   }
 
+=======
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { STORE_ID } from "../../../config";
+import { newProducts } from "../../../utils/featuredOffers";
+
+const FeaturedOffers = () => {
+  const dispatch = useDispatch();
+  const id = useSelector((store) => store.example.catalog_id);
+  const [featuredOfferProd, setfeaturedOfferProd] = useState([]);
+  console.log(id);
+  useEffect(() => {
+    featuredOffer();
+  }, []);
+
+  const featuredOffer = () => {
+    let body = {
+      StoreId: STORE_ID,
+      CatalogId: id,
+      ResponseGroup: "ItemLarge",
+      Outline: "",
+      Currency: "AED",
+      LanguageCode: "en-US",
+      Skip: 0,
+      Take: 10,
+      Terms: [
+        //"Tags:FEATURED,TOP"
+        //"Tags:TOP"
+      ],
+      SearchPhrase: "",
+      Sort: "",
+    };
+    let url = `/api/StoreFront/SearchProducts`;
+    import("../../../dummy/SearchProductsFeatured_DATA")
+      .then((item) => {
+        dispatch(newProducts(item.SearchProductsFeatured_DATA.Products));
+        setfeaturedOfferProd(item.SearchProductsFeatured_DATA.Products);
+      })
+      .catch((error) => {
+        console.error("Error loading data:", error);
+      });
+  };
+>>>>>>> Stashed changes
   return (
     <>
       <div className="dvFeaturedOffers py-5">
@@ -97,8 +141,13 @@ const FeaturedOffers = () => {
                   },
                 }}
               >
+<<<<<<< Updated upstream
                 {featuredOffers &&
                   featuredOffers.map((item) => {
+=======
+                {featuredOfferProd &&
+                  featuredOfferProd.map((item) => {
+>>>>>>> Stashed changes
                     const { Id } = item;
                     // console.log(item);
                     return (

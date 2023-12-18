@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ExSlice from "./ExSlice";
+import exSlice from "./exSlice";
 import topOffers from "./topOffers";
 import featuredReducers from "./featuredOffers";
 
 const appStore = configureStore({
   reducer: {
-    example: ExSlice,
+    example: exSlice,
     topOffers: topOffers,
     featuredOffers: featuredReducers,
   },
