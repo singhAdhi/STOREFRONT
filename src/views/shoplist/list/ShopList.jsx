@@ -10,7 +10,7 @@ const ShopList = () => {
       <Breadcrumbs text="Shop List" />
       <div className="dvShopList pb-5">
         <div className="container-lg">
-          <div className="row">
+          <div className="row d-flex flex-md-row align-items-baseline">
             <div className="col-12 mb-3 d-lg-none">
               <button
                 data-bs-toggle="modal"

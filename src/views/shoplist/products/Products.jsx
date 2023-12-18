@@ -2,24 +2,31 @@ import React from "react";
 import Sort from "../sort/Sort";
 import Card from "../../../components/card/Card";
 import "./products.css";
+import { useSelector } from "react-redux";
 
 const Products = () => {
-  const products = [
-    { id: 1, Name: "product 1", type: "physical" },
-    { id: 2, Name: "product 2", type: "physical" },
-    { id: 3, Name: "product 3", type: "physical" },
-    { id: 4, Name: "product 4", type: "physical" },
-  ];
+  const data = useSelector(
+    (store) => store.featuredOffersReducer.featuredOffers
+  );
+  console.log(data);
   return (
     <>
       <div className="col-lg-8">
         <Sort />
         <div className="dvProducts row">
-          {products &&
-            products.map((item) => {
-              const { id } = item;
-              return <Card heading="products" key={id} {...item} />;
-            })}
+          {data.map((item) => {
+            const { id } = item;
+            return (
+              <div className="col-md-4 mb-3">
+                <Card
+                  heading="featured"
+                  key={id}
+                  {...item}
+                  img={item.PrimaryImage.Url}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
