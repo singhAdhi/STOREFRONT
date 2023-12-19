@@ -22,7 +22,7 @@ export const fetchRedemptionMenu = createAsyncThunk(
       }
       const data = await response.json();
       // console.log(data);
-      return data.filter((item) => item.ParentId === null);
+      return data;
     } catch (error) {
       throw new Error("An error occurred while fetching redemption menu.");
     }

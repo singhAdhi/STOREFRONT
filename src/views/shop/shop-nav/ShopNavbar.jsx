@@ -6,9 +6,7 @@ import { useSelector } from "react-redux";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-const ShopNavbar = () => {
-  const data = useSelector((store) => store.example.items);
-  //console.log(data);
+const ShopNavbar = ({ categoryList }) => {
   const [val, setVal] = useState(null);
   const [arrow, setArrow] = useState(true);
   const categoryOptions = [
@@ -28,104 +26,95 @@ const ShopNavbar = () => {
     setArrow(!arrow);
   };
 
-  return (
+  const Submenu = ({ submenu }) => (
     <>
-      <div className="bg-nav">
-        <div className="container d-flex flex-md-row flex-column justify-content-between align-content-center">
-          <div
-            class="accordion accordion-flush d-md-none d-block"
-            id="accordionFlushExample"
-          >
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingOne">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#flush-collapseOne"
-                  aria-expanded="false"
-                  aria-controls="flush-collapseOne"
-                >
-                  Accordion Item #1
-                </button>
-              </h2>
-              <div
-                id="flush-collapseOne"
-                class="accordion-collapse collapse"
-                aria-labelledby="flush-headingOne"
-                data-bs-parent="#accordionFlushExample"
+      <ul
+        className="dropdown-menu py-0 dropdown-content"
+        aria-labelledby="navbarDropdownMenuLink"
+      >
+        {submenu &&
+          submenu.map((item) => (
+            <li className="nav-item dropdown" key={item.Id}>
+              <a
+                className={`nav-link ${
+                  item.submenu.length > 0 ? "dropdown-toggle" : ""
+                } d-flex align-items-center justify-content-between text-uppercase`}
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-                <div className="left">
-                  <div className="menu ">
-                    <div className="d-flex gap-4">
-                      {categoryOptions.map((cur, i) => (
-                        <div
-                          key={cur.value}
-                          onMouseEnter={() => handleMouseEnter(cur.value)}
-                          onMouseLeave={() => handleMouseLeave(cur.value)}
-                        >
-                          <button>
-                            <span className="px-2">{cur.label}</span>
-                            {val === cur.value ? (
-                              <IoIosArrowUp />
-                            ) : (
-                              <IoIosArrowDown />
-                            )}
-                          </button>
-
-                          {val === cur.value && <Dropdown value={cur.value} />}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="left d-md-block d-none">
-            <div className="menu ">
-              <div className="d-flex gap-4">
-                {categoryOptions.map((cur, i) => (
-                  <div
-                    key={cur.value}
-                    onMouseEnter={() => handleMouseEnter(cur.value)}
-                    onMouseLeave={() => handleMouseLeave(cur.value)}
-                  >
-                    <button>
-                      <span className="px-2">{cur.label}</span>
-                      {val === cur.value ? (
-                        <IoIosArrowUp />
-                      ) : (
-                        <IoIosArrowDown />
-                      )}
-                    </button>
-
-                    {val === cur.value && <Dropdown value={cur.value} />}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="right d-flex align-items-center justify-content-center">
-            <input
-              type="email"
-              class="form-control"
-              id="exampleFormControlInput1"
-              placeholder="name@example.com"
-            />
-            <Link to="/cart">
-              <p className="d-flex align-items-center justify-content-center">
-                <FiShoppingCart className="cart mx-3" />
-
-                <span className="border bg-white px-2 py-1 rounded-2">
-                  {data.length}
-                </span>
-              </p>
-            </Link>
-          </div>
-        </div>
-      </div>
+                {item.Name}
+              </a>
+              {item.submenu.length > 0 ? (
+                <Submenu submenu={item.submenu} />
+              ) : null}
+            </li>
+          ))}
+      </ul>
     </>
+  );
+  return (
+    <div className="dvMenu">
+      <div className="container-lg">
+        <nav className="navbar navbar-expand-lg navbar-light px-0 mx-n2">
+          <div className="col-2 d-lg-none order-lg-0">
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#dvMenu"
+              aria-controls="dvMenu"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div className="col-10 col-lg-3 d-flex align-items-center justify-content-end order-lg-2">
+            <form className="mx-2">
+              <input
+                className="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+            </form>
+            <button type="button" className="btn p-0">
+              <div className="d-flex align-items-center">
+                <span>
+                  <i className="fa fa-shopping-cart"></i>
+                </span>
+                <span className="badge text-bg-light border p-2 ms-2">0</span>
+              </div>
+            </button>
+          </div>
+          <div className="col-12 col-lg-9 order-lg-1">
+            <div className="collapse navbar-collapse" id="dvMenu">
+              <ul className="navbar-nav mr-auto">
+                {categoryList &&
+                  categoryList.map((item) => (
+                    <li className="nav-item dropdown" key={item.Id}>
+                      <a
+                        className="nav-link dropdown-toggle d-flex align-items-center justify-content-between text-uppercase"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        {item.Name}
+                      </a>
+                      {item.submenu.length > 0 ? (
+                        <Submenu submenu={item.submenu} />
+                      ) : null}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
   );
 };
 

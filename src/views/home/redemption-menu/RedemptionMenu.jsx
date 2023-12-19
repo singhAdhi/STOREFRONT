@@ -43,16 +43,18 @@ const RedemptionMenu = ({
               <p>Lorem ipsum dolor sit amet.</p>
             </div>
             {redemptionMenuLinks &&
-              redemptionMenuLinks.map((item) => {
-                const { Id } = item;
-                return (
-                  <RedempMenu
-                    key={Id}
-                    {...item}
-                    handleClick={() => handleClick(item)}
-                  />
-                );
-              })}
+              redemptionMenuLinks
+                .filter((item) => item.ParentId === null)
+                .map((item) => {
+                  const { Id } = item;
+                  return (
+                    <RedempMenu
+                      key={Id}
+                      {...item}
+                      handleClick={() => handleClick(item)}
+                    />
+                  );
+                })}
           </div>
         </div>
       </div>
