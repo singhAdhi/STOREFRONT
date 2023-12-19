@@ -4,6 +4,8 @@ import featuredOffersReducer from "../redux/shop/featuredoffers/FeaturedOffersSl
 import topOffersReducer from "../redux/shop/topoffers/TopOffersSlice";
 import storeDetailsReducer from "./common/storeDetails/storeDetailsSlice";
 import commonReducer from "./common/index";
+import productDetailReducer from "./product-details/ProductDetailsSlice";
+
 export const store = configureStore({
   reducer: {
     redemptionMenuReducer,
@@ -11,5 +13,6 @@ export const store = configureStore({
     topOffersReducer,
     storeDetailsReducer,
     commonReducer,
+    productDetailReducer,
   },
 });
