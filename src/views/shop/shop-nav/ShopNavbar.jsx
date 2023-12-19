@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const ShopNavbar = () => {
   const data = useSelector((store) => store.example.items);
-  console.log(data);
+  //console.log(data);
   const [val, setVal] = useState(null);
   const [arrow, setArrow] = useState(true);
   const categoryOptions = [

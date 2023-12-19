@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./filter.css";
+import { useParams } from "react-router";
 
 const Filter = () => {
   let [Category, setCategory] = useState([]);
+  const { id } = useParams();
+
+  const parts = id.split("_");
+
+  // Extract the second part (index 1) from the array
+  const secondPart = parts[0];
 
   useEffect(() => {
     fetchCategory();
@@ -10,12 +17,12 @@ const Filter = () => {
 
   let fetchCategory = async () => {
     const response = await fetch(
-      "http://localhost:8000/SearchProductsFeatured_DATA"
+      `http://localhost:8000/SearchProducts${secondPart}_DATA`
     );
     const data = await response.json();
     setCategory(data.Aggregations);
   };
-  console.log(Category);
+
   return (
     <>
       <div

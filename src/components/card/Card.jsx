@@ -77,7 +77,7 @@ const Card = ({ heading, id, title, type, Name, img }) => {
     );
   }
 
-  if (heading === "featured") {
+  if (heading === "Featured") {
     return (
       <>
         {/* <div className="swiper-slide shadow"> */}
@@ -98,7 +98,7 @@ const Card = ({ heading, id, title, type, Name, img }) => {
     );
   }
 
-  if (heading === "top") {
+  if (heading === "Top") {
     return (
       <>
         {/* <div className="swiper-slide shadow"> */}

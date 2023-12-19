@@ -23,8 +23,9 @@ const FeaturedOffers = () => {
             <div className="col-12 col-lg-8 offset-lg-2 text-center mb-4">
               <h2 className="heading-xl mb-2">Featured Offers</h2>
               <p>
-                Get more for your points with our fantastic selection of curated products, featuring the best deals on
-                everything from electronics to fashion, home goods, and more.
+                Get more for your points with our fantastic selection of curated
+                products, featuring the best deals on everything from
+                electronics to fashion, home goods, and more.
               </p>
             </div>
           </div>
@@ -37,10 +38,16 @@ const FeaturedOffers = () => {
                 <div className="swiper-buttons">
                   <div className="d-flex justify-content-center">
                     <div className="swiper-button-prev-featured pe-3">
-                      <img src="public/assets/images/icons/arrows/left-black-arrow.svg" alt="" />
+                      <img
+                        src="public/assets/images/icons/arrows/left-black-arrow.svg"
+                        alt=""
+                      />
                     </div>
                     <div className="swiper-button-next-featured">
-                      <img src="public/assets/images/icons/arrows/right-black-arrow.svg" alt="" />
+                      <img
+                        src="public/assets/images/icons/arrows/right-black-arrow.svg"
+                        alt=""
+                      />
                     </div>
                   </div>
                 </div>
@@ -70,10 +77,15 @@ const FeaturedOffers = () => {
                 {SearchProductsFeatured_DATA.Products &&
                   SearchProductsFeatured_DATA.Products.map((item) => {
                     const { Id } = item;
-                    console.log(item);
+
                     return (
                       <SwiperSlide key={Id}>
-                        <Card heading={"featured"} id={Id} Name={item.Name} img={item.PrimaryImage.Url} />
+                        <Card
+                          heading={"featured"}
+                          id={Id}
+                          Name={item.Name}
+                          img={item.PrimaryImage.Url}
+                        />
                       </SwiperSlide>
                     );
                   })}

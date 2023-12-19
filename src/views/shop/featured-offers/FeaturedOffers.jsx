@@ -11,7 +11,7 @@ import { newProducts } from "../../../redux/shop/featuredoffers/FeaturedOffersSl
 import Loading from "../../../components/other/loading/Loading";
 import Error from "../../../components/other/error/Error";
 
-const FeaturedOffers = () => {
+const FeaturedOffers = ({ feature }) => {
   const dispatch = useDispatch();
   const { featuredOffers, isLoading, isError, isLoadingText } = useSelector(
     (state) => state.featuredOffersReducer
@@ -21,7 +21,12 @@ const FeaturedOffers = () => {
   useEffect(() => {
     dispatch(newProducts());
   }, []);
+  const parts = feature.split("|");
 
+  // Extract the second part (index 1) from the array
+  const secondPart = parts[1].trim();
+  const firstPart = parts[0].trim();
+  //console.log(feature);
   if (isLoading) {
     return (
       <>
@@ -44,7 +49,8 @@ const FeaturedOffers = () => {
         <div className="container-lg">
           <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2 text-center mb-4">
-              <h2 className="heading-xl mb-2">Featured Offers</h2>
+              <h2 className="heading-xl mb-2">{secondPart}</h2>
+
               <p>
                 Get more for your points with our fantastic selection of curated
                 products, featuring the best deals on everything from
@@ -55,7 +61,7 @@ const FeaturedOffers = () => {
           <div className="row">
             <div className="dvFeaturedOffersSlider px-3">
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <Link to="/shoplist" className="btn btn-primary">
+                <Link to={`/shoplist/${firstPart}`} className="btn btn-primary">
                   View All
                 </Link>
                 <div className="swiper-buttons">
@@ -104,7 +110,7 @@ const FeaturedOffers = () => {
                     return (
                       <SwiperSlide key={Id}>
                         <Card
-                          heading={"featured"}
+                          heading={"Featured"}
                           id={Id}
                           Name={item.Name}
                           img={item.PrimaryImage.Url}

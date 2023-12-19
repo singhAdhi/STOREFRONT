@@ -11,7 +11,7 @@ import { addProducts } from "../../../redux/shop/topoffers/TopOffersSlice";
 import Loading from "../../../components/other/loading/Loading";
 import Error from "../../../components/other/error/Error";
 
-const TopOffers = () => {
+const TopOffers = ({ top }) => {
   const dispatch = useDispatch();
 
   const { isError, isLoading, isLoadingText, topOffers } = useSelector(
@@ -21,7 +21,11 @@ const TopOffers = () => {
   useEffect(() => {
     dispatch(addProducts());
   }, []);
+  const parts = top.split("|");
 
+  // Extract the second part (index 1) from the array
+  const secondPart = parts[1].trim();
+  const firstPart = parts[0].trim();
   if (isLoading) {
     return (
       <>
@@ -44,7 +48,7 @@ const TopOffers = () => {
         <div className="container-lg">
           <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2 text-center mb-4">
-              <h2 className="heading-xl mb-2">Top Offers</h2>
+              <h2 className="heading-xl mb-2">{secondPart}</h2>
               <p>
                 Get more for your points with our fantastic selection of curated
                 products, featuring the best deals on everything from
@@ -55,7 +59,7 @@ const TopOffers = () => {
           <div className="row">
             <div className="dvTopOffersSlider px-3">
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <Link to="/shoplist" className="btn btn-primary">
+                <Link to={`/shoplist/${firstPart}`} className="btn btn-primary">
                   View All
                 </Link>
                 <div className="swiper-buttons">
@@ -104,7 +108,7 @@ const TopOffers = () => {
                     return (
                       <SwiperSlide key={Id}>
                         <Card
-                          heading={"top"}
+                          heading={"Top"}
                           id={Id}
                           Name={item.Name}
                           img={item.PrimaryImage.Url}
