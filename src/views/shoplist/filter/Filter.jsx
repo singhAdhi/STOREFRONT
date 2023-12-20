@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./filter.css";
 import { useParams } from "react-router";
+import { useDispatch } from "react-redux";
+import { latestValue } from "../../../redux/shop/filteredData/filteredDataSlice";
 
 const Filter = () => {
   let [Category, setCategory] = useState([]);
+  const [checkedData, setCheckedData] = useState("");
   const { id } = useParams();
-
+  const dispatch = useDispatch();
   const parts = id.split("_");
 
   // Extract the second part (index 1) from the array
@@ -23,6 +26,11 @@ const Filter = () => {
     setCategory(data.Aggregations);
   };
 
+  function handleCheckboxChange(val) {
+    setCheckedData(val);
+    dispatch(latestValue(val));
+  }
+  console.log(checkedData);
   return (
     <>
       <div
@@ -85,7 +93,12 @@ const Filter = () => {
                                 >
                                   <label className="checkbox-container d-flex">
                                     <span className="d-inline-block input">
-                                      <input type="checkbox" />
+                                      <input
+                                        type="checkbox"
+                                        onClick={() =>
+                                          handleCheckboxChange(Value)
+                                        }
+                                      />
                                       <span className="checkmark"></span>
                                     </span>
                                     <span className="d-inline-block ms-2 name">

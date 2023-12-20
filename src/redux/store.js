@@ -6,6 +6,7 @@ import storeDetailsReducer from "./common/storeDetails/storeDetailsSlice";
 import commonReducer from "./common/index";
 import productDetailReducer from "./product-details/ProductDetailsSlice";
 
+import filteredDataReducer from "./shop/filteredData/filteredDataSlice";
 export const store = configureStore({
   reducer: {
     redemptionMenuReducer,
@@ -14,5 +15,6 @@ export const store = configureStore({
     storeDetailsReducer,
     commonReducer,
     productDetailReducer,
+    filteredDataReducer,
   },
 });
