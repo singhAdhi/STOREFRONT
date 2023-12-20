@@ -1,48 +1,88 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./shop-nav.css";
-import Dropdown from "../../../components/Dropdown/Dropdown";
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-import { useSelector } from "react-redux";
-import { FiShoppingCart } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { STORE_ID } from "../../../config";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRedemptionMenu } from "../../../redux/home/RedemptionMenuSlice";
 
-const ShopNavbar = ({ categoryList }) => {
-  const [val, setVal] = useState(null);
-  const [arrow, setArrow] = useState(true);
-  const categoryOptions = [
-    { value: "electronics", label: "Electronics" },
-    { value: "homeAndKitchen", label: "Home & Kitchen" },
-    { value: "clothing", label: "Clothing" },
-    { value: "books", label: "Books" },
-  ];
+const ShopNavbar = () => {
+  const { CATALOG_ID, OUTLINE } = useSelector((state) => state.commonReducer);
+  let dispatch = useDispatch();
 
-  const handleMouseEnter = (value) => {
-    setVal(value);
-    setArrow(!arrow);
+  const [filteredList, setfilteredList] = useState(null);
+
+  useEffect(() => {
+    FetchSearchCategories(CATALOG_ID);
+  }, []);
+
+  const FetchSearchCategories = (catalogId) => {
+    let body = {
+      StoreId: STORE_ID,
+      CatalogId: catalogId,
+      LanguageCode: "en-US",
+      ResponseGroup: "Full",
+      Terms: [],
+    };
+    let url = `/api/StoreFront/SearchCategories`;
+
+    dispatch(fetchRedemptionMenu({ url, body }))
+      .then(({ payload }) => {
+        let shopcatlog = payload.find(
+          (x) => x.Id == localStorage.getItem("OUTLINE")
+        );
+        bindMenu(shopcatlog.Id, payload);
+      })
+      .catch(() => {});
   };
 
-  const handleMouseLeave = () => {
-    setVal(null);
-    setArrow(!arrow);
-  };
+  function bindMenu(categoryId, categories) {
+    var mainList = [];
+    if (categories && categories.length > 0) {
+      var mainmenus = categories.filter((x) => x.ParentId === categoryId);
+
+      mainmenus.forEach(function (mainMenu) {
+        var categoryItem = {
+          ...mainMenu,
+          submenu: bindSubMenu(mainMenu.Id, categories),
+        };
+
+        mainList.push(categoryItem);
+      });
+      setfilteredList(mainList);
+    }
+  }
+
+  function bindSubMenu(categoryId, categories) {
+    var submenuList = [];
+    var menus = categories.filter((x) => categoryId === x.ParentId);
+
+    if (menus && menus.length > 0) {
+      menus.forEach(function (menu) {
+        var submenuItem = {
+          ...menu,
+          submenu: bindSubMenu(menu.Id, categories),
+        };
+
+        submenuList.push(submenuItem);
+      });
+    }
+
+    return submenuList;
+  }
 
   const Submenu = ({ submenu }) => (
     <>
       <ul
-        className="dropdown-menu py-0 dropdown-content"
+        className="dropdown-menu py-0"
         aria-labelledby="navbarDropdownMenuLink"
       >
         {submenu &&
           submenu.map((item) => (
-            <li className="nav-item dropdown" key={item.Id}>
+            <li className="dropdown-submenu" key={item.Id}>
               <a
-                className={`nav-link ${
+                className={`dropdown-item ${
                   item.submenu.length > 0 ? "dropdown-toggle" : ""
-                } d-flex align-items-center justify-content-between text-uppercase`}
+                }`}
                 href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
               >
                 {item.Name}
               </a>
@@ -92,8 +132,8 @@ const ShopNavbar = ({ categoryList }) => {
           <div className="col-12 col-lg-9 order-lg-1">
             <div className="collapse navbar-collapse" id="dvMenu">
               <ul className="navbar-nav mr-auto">
-                {categoryList &&
-                  categoryList.map((item) => (
+                {filteredList &&
+                  filteredList.map((item) => (
                     <li className="nav-item dropdown" key={item.Id}>
                       <a
                         className="nav-link dropdown-toggle d-flex align-items-center justify-content-between text-uppercase"

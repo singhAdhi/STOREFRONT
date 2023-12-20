@@ -5,6 +5,7 @@ import Filter from "../filter/Filter";
 import Products from "../products/Products";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
+import ShopNavbar from "../../Shop/shop-nav/ShopNavbar";
 
 const ShopList = () => {
   const history = useNavigate();
@@ -26,8 +27,8 @@ const ShopList = () => {
           </nav>
         </div>
       </div>
-
-      <div className="dvShopList pb-5">
+      <ShopNavbar />
+      <div className="dvShopList pb-5 pt-3">
         <div className="container-lg">
           <div className="row d-flex flex-md-row align-items-baseline">
             <div className="col-12 mb-3 d-lg-none">

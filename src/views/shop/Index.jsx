@@ -3,18 +3,13 @@ import ShopNavbar from "./shop-nav/ShopNavbar";
 import FeaturedOffers from "./featured-offers/FeaturedOffers";
 import TopOffers from "./top-offers/TopOffers";
 import ShopSlider from "./shop-slider/ShopSlider";
-import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addStoreDetails } from "../../redux/common/storeDetails/storeDetailsSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
-import { STORE_ID } from "../../config";
-import { fetchRedemptionMenu } from "../../redux/home/RedemptionMenuSlice";
 
 const Index = () => {
   const history = useNavigate();
-  const [categoryList, setcategoryList] = useState(null);
-  const { CATALOG_ID, OUTLINE } = useSelector((state) => state.commonReducer);
   let [featureHead, setFeatureHead] = useState([]);
   let dispatch = useDispatch();
 
@@ -22,7 +17,6 @@ const Index = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     getStoreDetail();
-    FetchSearchCategories(CATALOG_ID);
   }, []);
 
   const getStoreDetail = async () => {
@@ -31,62 +25,6 @@ const Index = () => {
     setFeatureHead(data.DynamicProperties[1].Values);
     dispatch(addStoreDetails(data));
   };
-  //console.log(featureHead);
-
-  const FetchSearchCategories = (catalogId) => {
-    let body = {
-      StoreId: STORE_ID,
-      CatalogId: catalogId,
-      LanguageCode: "en-US",
-      ResponseGroup: "Full",
-      Terms: [],
-    };
-    let url = `/api/StoreFront/SearchCategories`;
-
-    dispatch(fetchRedemptionMenu({ url, body }))
-      .then(({ payload }) => {
-        let shopcatlog = payload.find(
-          (x) => x.Id == localStorage.getItem("OUTLINE")
-        );
-        bindMenu(shopcatlog.Id, payload);
-      })
-      .catch(() => {});
-  };
-
-  function bindMenu(categoryId, categories) {
-    var mainList = [];
-    if (categories && categories.length > 0) {
-      var mainmenus = categories.filter((x) => x.ParentId === categoryId);
-
-      mainmenus.forEach(function (mainMenu) {
-        var categoryItem = {
-          ...mainMenu,
-          submenu: bindSubMenu(mainMenu.Id, categories),
-        };
-
-        mainList.push(categoryItem);
-      });
-      setcategoryList(mainList);
-    }
-  }
-
-  function bindSubMenu(categoryId, categories) {
-    var submenuList = [];
-    var menus = categories.filter((x) => categoryId === x.ParentId);
-
-    if (menus && menus.length > 0) {
-      menus.forEach(function (menu) {
-        var submenuItem = {
-          ...menu,
-          submenu: bindSubMenu(menu.Id, categories),
-        };
-
-        submenuList.push(submenuItem);
-      });
-    }
-
-    return submenuList;
-  }
 
   return (
     <>
@@ -111,7 +49,7 @@ const Index = () => {
 
       {featureHead.length > 0 && (
         <>
-          {categoryList && <ShopNavbar categoryList={categoryList} />}
+          <ShopNavbar />
           <FeaturedOffers feature={featureHead[0].Value} />
           <TopOffers top={featureHead[1].Value} />
         </>
