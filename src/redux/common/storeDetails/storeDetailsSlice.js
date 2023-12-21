@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { baseUrl } from "../../../api/baseUrl";
+import { makeGetRequest } from "../../../api/services";
 
 const url = "GetStoreDetails_DATA";
 
@@ -13,14 +14,10 @@ const initialState = {
 //fetching GetStoreDetails_DATA
 export const storeDetails = createAsyncThunk(
   "common/storeDetailsSlice",
-  async () => {
+  async ({ url1, body }) => {
     try {
-      const response = await fetch(`${baseUrl}/${url}`);
-      if (!response.ok) {
-        throw new Error("Store Details DATA NOT FOUND");
-      }
-      const data = await response.json();
-      return data;
+      const response = await makeGetRequest({ url, body });
+      return response.data;
     } catch (error) {
       throw new Error("An error occurred while fetching store detail.");
     }
