@@ -16,10 +16,10 @@ const FeaturedOffers = ({ feature }) => {
   const { featuredOffers, isLoading, isError, isLoadingText } = useSelector(
     (state) => state.featuredOffersReducer
   );
-  // console.log(featuredOffers, isLoading, isError, isLoadingText);
+  console.log(featuredOffers);
 
   useEffect(() => {
-    dispatch(newProducts());
+    dispatch(newProducts(featuredOffers));
   }, []);
   const parts = feature.split("|");
 

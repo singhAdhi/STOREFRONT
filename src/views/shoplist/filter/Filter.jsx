@@ -4,33 +4,16 @@ import { useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { latestValue } from "../../../redux/shop/filteredData/filteredDataSlice";
 
-const Filter = () => {
-  let [Category, setCategory] = useState([]);
+const Filter = ({ Category }) => {
   const [checkedData, setCheckedData] = useState("");
-  const { id } = useParams();
   const dispatch = useDispatch();
-  const parts = id.split("_");
-
-  // Extract the second part (index 1) from the array
-  const secondPart = parts[0];
-
-  useEffect(() => {
-    fetchCategory();
-  }, []);
-
-  let fetchCategory = async () => {
-    const response = await fetch(
-      `http://localhost:8000/SearchProducts${secondPart}_DATA`
-    );
-    const data = await response.json();
-    setCategory(data.Aggregations);
-  };
 
   function handleCheckboxChange(val) {
     setCheckedData(val);
     dispatch(latestValue(val));
+    console.log(val);
   }
-  console.log(checkedData);
+
   return (
     <>
       <div
@@ -105,9 +88,6 @@ const Filter = () => {
                                       {Value}
                                     </span>
                                   </label>
-                                  {/* <span className="d-inline-block ms-2 count">
-                                    45
-                                  </span> */}
                                 </div>
                               );
                             })}

@@ -3,6 +3,7 @@ import "./shop-nav.css";
 import { STORE_ID } from "../../../config";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRedemptionMenu } from "../../../redux/home/RedemptionMenuSlice";
+import { Link } from "react-router-dom";
 
 const ShopNavbar = () => {
   const { CATALOG_ID, OUTLINE } = useSelector((state) => state.commonReducer);
@@ -120,14 +121,16 @@ const ShopNavbar = () => {
                 aria-label="Search"
               />
             </form>
-            <button type="button" className="btn p-0">
-              <div className="d-flex align-items-center">
-                <span>
-                  <i className="fa fa-shopping-cart"></i>
-                </span>
-                <span className="badge text-bg-light border p-2 ms-2">0</span>
-              </div>
-            </button>
+            <Link to="/cart">
+              <button type="button" className="btn p-0">
+                <div className="d-flex align-items-center">
+                  <span>
+                    <i className="fa fa-shopping-cart"></i>
+                  </span>
+                  <span className="badge text-bg-light border p-2 ms-2">0</span>
+                </div>
+              </button>
+            </Link>
           </div>
           <div className="col-12 col-lg-9 order-lg-1">
             <div className="collapse navbar-collapse" id="dvMenu">

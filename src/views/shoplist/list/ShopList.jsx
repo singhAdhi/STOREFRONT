@@ -1,13 +1,73 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./shop-list.css";
 import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 import Filter from "../filter/Filter";
 import Products from "../products/Products";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import ShopNavbar from "../../Shop/shop-nav/ShopNavbar";
+import { useSelector } from "react-redux";
+import { head } from "lodash";
+import axios from "axios";
 
 const ShopList = () => {
+  let [products, setProducts] = useState([]);
+  let [Category, setCategory] = useState([]);
+  const filterData = useSelector((store) => store.filteredDataReducer.value);
+
+  const { id } = useParams();
+  const parts = id.split("_");
+
+  const secondPart = parts[0];
+  const urlText =
+    secondPart.toLowerCase().charAt(0).toUpperCase() +
+    secondPart.slice(1).toLowerCase();
+
+  useEffect(() => {
+    fetchCategory(filterData);
+    fetchProductData(filterData);
+    console.log("one");
+  }, [filterData]);
+
+  useEffect(() => {
+    fetchCategory();
+    fetchProductData();
+    console.log("two");
+  }, []);
+
+  let fetchCategory = async (filter) => {
+    const url = `http://localhost:8000/SearchProducts${
+      filter ? filter : urlText
+    }_DATA`;
+
+    axios
+      .get(url)
+      .then((response) => {
+        const data = response.data;
+        setCategory(data.Aggregations);
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.error("Error fetching category:", error);
+      });
+  };
+
+  let fetchProductData = async (filter) => {
+    const url = `http://localhost:8000/SearchProducts${
+      filter ? filter : urlText
+    }_DATA`;
+    axios
+      .get(url)
+      .then((response) => {
+        const data = response.data;
+        setProducts(data.Products);
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.error("Error fetching category:", error);
+      });
+  };
+  // console.log(Category, products, filterData);
   const history = useNavigate();
   return (
     <>
@@ -41,8 +101,8 @@ const ShopList = () => {
                 Filter
               </button>
             </div>
-            <Filter />
-            <Products />
+            <Filter Category={Category} />
+            <Products products={products} />
           </div>
         </div>
       </div>

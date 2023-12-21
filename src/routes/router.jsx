@@ -8,6 +8,7 @@ import Home from "../views/home/Index";
 import ProductDetails from "../views/shoplist/product-details/ProductDetails";
 import Cart from "../views/cart/Cart";
 import PageNotFound from "../components/other/pagenotfound/PageNotFound";
+import Checkout from "../views/Shop/checkout/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: "/ShopList/:id", element: <ShopList /> },
       { path: "/ProductDetails/:id", element: <ProductDetails /> },
       { path: "/Cart", element: <Cart /> },
+      { path: "/Checkout", element: <Checkout /> },
       { path: "*", element: <PageNotFound /> },
     ],
   },
