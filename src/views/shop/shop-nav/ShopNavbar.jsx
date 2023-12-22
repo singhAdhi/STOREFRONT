@@ -3,9 +3,11 @@ import "./shop-nav.css";
 import { STORE_ID } from "../../../config";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRedemptionMenu } from "../../../redux/home/RedemptionMenuSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { setCategoryFilter } from "../../../redux/shop/filteredData/filteredDataSlice";
 
 const ShopNavbar = () => {
+  const navigate = useNavigate();
   const { CATALOG_ID, OUTLINE } = useSelector((state) => state.commonReducer);
   let dispatch = useDispatch();
 
@@ -70,12 +72,14 @@ const ShopNavbar = () => {
     return submenuList;
   }
 
-  const Submenu = ({ submenu }) => (
+  const handleClick = (val) => {
+    dispatch(setCategoryFilter(val));
+    navigate("/ShopList/1_1");
+  };
+
+  const SubmenuDesktop = ({ submenu }) => (
     <>
-      <ul
-        className="dropdown-menu py-0"
-        aria-labelledby="navbarDropdownMenuLink"
-      >
+      <ul className="dropdown-menu py-0">
         {submenu &&
           submenu.map((item) => (
             <li className="dropdown-submenu" key={item.Id}>
@@ -83,18 +87,44 @@ const ShopNavbar = () => {
                 className={`dropdown-item ${
                   item.submenu.length > 0 ? "dropdown-toggle" : ""
                 }`}
-                href="#"
               >
-                {item.Name}
+                <span onClick={() => handleClick(item.Id)}>{item.Name}</span>
               </a>
               {item.submenu.length > 0 ? (
-                <Submenu submenu={item.submenu} />
+                <SubmenuDesktop submenu={item.submenu} />
               ) : null}
             </li>
           ))}
       </ul>
     </>
   );
+  const SubmenuMobile = ({ submenu }) => (
+    <>
+      <ul className="dropdown-menu shadow py-0">
+        {submenu &&
+          submenu.map((item) => (
+            <li
+              className={`${item.submenu.length > 0 ? "dropend" : ""}`}
+              key={item.Id}
+            >
+              <a
+                className={`dropdown-item ${
+                  item.submenu.length > 0 ? "dropdown-toggle" : ""
+                }`}
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
+              >
+                <span onClick={() => handleClick(item.Id)}>{item.Name}</span>
+              </a>
+              {item.submenu.length > 0 ? (
+                <SubmenuMobile submenu={item.submenu} />
+              ) : null}
+            </li>
+          ))}
+      </ul>
+    </>
+  );
+
   return (
     <div className="dvMenu">
       <div className="container-lg">
@@ -140,15 +170,23 @@ const ShopNavbar = () => {
                     <li className="nav-item dropdown" key={item.Id}>
                       <a
                         className="nav-link dropdown-toggle d-flex align-items-center justify-content-between text-uppercase"
-                        href="#"
-                        role="button"
+                        // href="#"
                         data-bs-toggle="dropdown"
-                        aria-expanded="false"
+                        data-bs-auto-close="outside"
                       >
-                        {item.Name}
+                        <span onClick={() => handleClick(item.Id)}>
+                          {item.Name}
+                        </span>
                       </a>
                       {item.submenu.length > 0 ? (
-                        <Submenu submenu={item.submenu} />
+                        <>
+                          <div className="mobile">
+                            <SubmenuMobile submenu={item.submenu} />
+                          </div>
+                          <div className="desktop">
+                            <SubmenuDesktop submenu={item.submenu} />
+                          </div>
+                        </>
                       ) : null}
                     </li>
                   ))}

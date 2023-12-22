@@ -9,11 +9,17 @@ import ShopNavbar from "../../Shop/shop-nav/ShopNavbar";
 import { useSelector } from "react-redux";
 import { head } from "lodash";
 import axios from "axios";
+import { STORE_ID } from "../../../config";
+import { makeGetRequest } from "../../../api/services";
 
 const ShopList = () => {
   let [products, setProducts] = useState([]);
   let [Category, setCategory] = useState([]);
   const filterData = useSelector((store) => store.filteredDataReducer.value);
+  const categoryFilter = useSelector(
+    (store) => store.filteredDataReducer.categoryFilter
+  );
+  const { CATALOG_ID } = useSelector((state) => state.commonReducer);
 
   const { id } = useParams();
   const parts = id.split("_");
@@ -28,6 +34,44 @@ const ShopList = () => {
     fetchProductData(filterData);
     console.log("one");
   }, [filterData]);
+
+  useEffect(() => {
+    let body = {
+      StoreId: STORE_ID,
+      CatalogId: CATALOG_ID,
+      CategoryId: null,
+      CategoryIds: null,
+      ResponseGroup: 16383,
+      Outline: categoryFilter,
+      Currency: "QAR",
+      PriceRange: null,
+      LanguageCode: "en-US",
+      SearchPhrase: "",
+      SortSearchPhaseResponse: false,
+      Terms: [],
+      Sort: "",
+      Skip: 0,
+      Take: 15,
+      IncludeAggregations: null,
+      ExcludeAggregations: null,
+      Latitude: null,
+      Longitude: null,
+      Distance: 0.0,
+      GeoLocationPropertyName: null,
+    };
+    // let url = `/api/StoreFront/SearchProducts`;
+    let url = `CategoryMenu_DATA`;
+    makeGetRequest({ url, body })
+      .then(({ data }) => {
+        if (data.totalCount > 0) {
+          setProducts(data.Products);
+          setCategory(data.Aggregations);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [categoryFilter]);
 
   useEffect(() => {
     fetchCategory();

@@ -60,3 +60,20 @@ li:hover {
 .bg-nav{
   background-color: #E6E6E6;
 } */
+
+@media screen and (max-width: 991px) {
+  .dvMenu .mobile {
+    display: block;
+  }
+  .dvMenu .desktop {
+    display: none;
+  }
+}
+@media screen and (min-width: 992px) {
+  .dvMenu .mobile {
+    display: none;
+  }
+  .dvMenu .desktop {
+    display: block;
+  }
+}
