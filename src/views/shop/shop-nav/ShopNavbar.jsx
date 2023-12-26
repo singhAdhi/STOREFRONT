@@ -9,6 +9,8 @@ import { setCategoryFilter } from "../../../redux/shop/filteredData/filteredData
 const ShopNavbar = () => {
   const navigate = useNavigate();
   const { CATALOG_ID, OUTLINE } = useSelector((state) => state.commonReducer);
+  const cart = useSelector((store) => store.CartReducer.cartItems);
+  const newArray = cart.filter((obj) => obj.Images && obj.Images.length > 0);
   let dispatch = useDispatch();
 
   const [filteredList, setfilteredList] = useState(null);
@@ -157,7 +159,9 @@ const ShopNavbar = () => {
                   <span>
                     <i className="fa fa-shopping-cart"></i>
                   </span>
-                  <span className="badge text-bg-light border p-2 ms-2">0</span>
+                  <span className="badge text-bg-light border p-2 ms-2">
+                    {newArray.length}
+                  </span>
                 </div>
               </button>
             </Link>

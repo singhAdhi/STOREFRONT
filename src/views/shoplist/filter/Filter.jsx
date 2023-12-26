@@ -4,15 +4,19 @@ import { useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { latestValue } from "../../../redux/shop/filteredData/filteredDataSlice";
 
-const Filter = ({ Category }) => {
-  const [checkedData, setCheckedData] = useState("");
+const Filter = ({ Category, onFilterChange }) => {
+  const [ischecked, setIsChecked] = useState({});
   const dispatch = useDispatch();
 
   function handleCheckboxChange(val) {
-    setCheckedData(val);
     dispatch(latestValue(val));
-    console.log(val);
+    onFilterChange(val);
+    setIsChecked((prevState) => ({
+      ...prevState,
+      [val]: !prevState[val],
+    }));
   }
+  console.log(ischecked);
 
   return (
     <>
@@ -78,6 +82,7 @@ const Filter = ({ Category }) => {
                                     <span className="d-inline-block input">
                                       <input
                                         type="checkbox"
+                                        checked={ischecked[Value]}
                                         onClick={() =>
                                           handleCheckboxChange(Value)
                                         }

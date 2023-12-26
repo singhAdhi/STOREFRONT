@@ -5,6 +5,7 @@ import topOffersReducer from "../redux/shop/topoffers/TopOffersSlice";
 import storeDetailsReducer from "./common/storeDetails/storeDetailsSlice";
 import commonReducer from "./common/index";
 import productDetailReducer from "./product-details/ProductDetailsSlice";
+import CartReducer from "./shop/cart/CartSlice";
 
 import filteredDataReducer from "./shop/filteredData/filteredDataSlice";
 export const store = configureStore({
@@ -16,5 +17,6 @@ export const store = configureStore({
     commonReducer,
     productDetailReducer,
     filteredDataReducer,
+    CartReducer,
   },
 });

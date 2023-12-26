@@ -14,37 +14,89 @@ import { useParams } from "react-router-dom";
 import { newProducts } from "../../../redux/shop/featuredoffers/FeaturedOffersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductDetails } from "../../../redux/product-details/ProductDetailsSlice";
+import axios from "axios";
+import ShopNavbar from "../../Shop/shop-nav/ShopNavbar";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
+  const [cartItems, setCartItems] = useState([]);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [count, setCount] = useState(0);
+  const [bodyItem, setBodyItem] = useState([
+    {
+      ProductId: "36550875971736",
+      Quantity: 1,
+    },
+  ]);
 
   const { id: productid } = useParams();
   const { productDetails, isLoading, isError, isLoadingText } = useSelector(
     (state) => state.productDetailReducer
   );
-  // console.log(productDetails);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(fetchProductDetails());
+    cartData();
   }, []);
 
   const singleProduct =
     productDetails && productDetails.filter((item) => item.Id === productid);
 
-  console.log(productid);
-
   let imgUrl = singleProduct && singleProduct.Images;
   let title = singleProduct && singleProduct.Name;
-  console.log(singleProduct);
-  // console.log(imgUrl);
-  // console.log(title);
 
+  const handleChange = () => {
+    setCount(count + 1);
+  };
+  const handleChangeminus = () => {
+    if (count === 0) {
+      setCount(0);
+    } else {
+      setCount(count - 1);
+    }
+  };
+  let addToCart = async (ProductId) => {
+    cartItems.push(singleProduct[0]);
+    const newItem = {
+      ProductId: ProductId,
+      Quantity: count,
+    };
+    const existingItemIndex = bodyItem.findIndex(
+      (item) => item.ProductId === ProductId
+    );
+    setBodyItem((prev) => [...prev, newItem]);
+
+    const body = {
+      CatalogId: "{{catalog_id}}",
+      CartId: "{{cart_id}}",
+      Items: bodyItem,
+    };
+    //console.log(existingItemIndex);
+    const url = `/api/StoreFront/AddOrUpdateItemInCart`;
+
+    axios
+      .get(url)
+      .then((response) => {
+        const data = response.data;
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.error("Error fetching category:", error);
+      });
+  };
+
+  const cartData = async () => {
+    const response = await fetch("http://localhost:8000/SearchCart_DATA");
+    const data = await response.json();
+    setCartItems(data.Items);
+  };
+  console.log(cartItems);
   return (
     <>
       {/* <Breadcrumbs /> */}
+      <ShopNavbar />
       <div className="dvBreadcrumbs">
         <div className="container-lg">
           <nav>
@@ -92,7 +144,7 @@ const ProductDetails = () => {
                       })} */}
                     {singleProduct.map((item) =>
                       item.Images.map((item, index) => {
-                        const { Url } = item;
+                        const { Url, Id } = item;
                         return (
                           <SwiperSlide key={index}>
                             <img src={Url} />
@@ -138,19 +190,27 @@ const ProductDetails = () => {
                       <div className="row">
                         <div className="d-flex align-items-center col-10 col-sm-6 col-md-9 col-xl-6">
                           <div className="plus col-auto">
-                            <button type="button" className="btn-addtocart p-0">
+                            <button
+                              type="button"
+                              onClick={handleChangeminus}
+                              className="btn-addtocart p-0"
+                            >
                               <FaMinus />
                             </button>
                           </div>
                           <div className="value mx-2 col-4">
                             <input
                               type="text"
-                              defaultValue="1"
+                              Value={count}
                               className="form-control text-center"
                             />
                           </div>
                           <div className="minus col-auto">
-                            <button type="button" className="btn-addtocart p-0">
+                            <button
+                              type="button"
+                              className="btn-addtocart p-0"
+                              onClick={handleChange}
+                            >
                               <FaPlus />
                             </button>
                           </div>
@@ -297,7 +357,11 @@ const ProductDetails = () => {
                   </div>
                   <div className="dvButtons row mb-4">
                     <div className="col-12 col-sm-4 col-xl-3 mb-3">
-                      <button type="button" className="btn btn-primary w-100">
+                      <button
+                        type="button"
+                        onClick={() => addToCart(productid)}
+                        className="btn btn-primary w-100"
+                      >
                         Add to Cart
                       </button>
                     </div>

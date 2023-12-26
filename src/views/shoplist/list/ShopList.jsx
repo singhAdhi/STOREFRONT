@@ -11,6 +11,7 @@ import { head } from "lodash";
 import axios from "axios";
 import { STORE_ID } from "../../../config";
 import { makeGetRequest } from "../../../api/services";
+import Loading from "../../../components/other/loading/Loading";
 
 const ShopList = () => {
   let [products, setProducts] = useState([]);
@@ -20,6 +21,10 @@ const ShopList = () => {
     (store) => store.filteredDataReducer.categoryFilter
   );
   const { CATALOG_ID } = useSelector((state) => state.commonReducer);
+  const [fil, setFil] = useState("");
+  const [loading, setLoading] = useState(true);
+  let cur = filterData.split(" ")[0];
+  // const filterData = useSelector((store) => store.filteredDataReducer.value);
 
   const { id } = useParams();
   const parts = id.split("_");
@@ -30,10 +35,9 @@ const ShopList = () => {
     secondPart.slice(1).toLowerCase();
 
   useEffect(() => {
-    fetchCategory(filterData);
-    fetchProductData(filterData);
-    console.log("one");
-  }, [filterData]);
+    fetchCategory(cur);
+    fetchProductData(cur);
+  }, [cur]);
 
   useEffect(() => {
     let body = {
@@ -76,7 +80,6 @@ const ShopList = () => {
   useEffect(() => {
     fetchCategory();
     fetchProductData();
-    console.log("two");
   }, []);
 
   let fetchCategory = async (filter) => {
@@ -88,6 +91,7 @@ const ShopList = () => {
       .get(url)
       .then((response) => {
         const data = response.data;
+
         setCategory(data.Aggregations);
       })
       .catch((error) => {
@@ -104,6 +108,7 @@ const ShopList = () => {
       .get(url)
       .then((response) => {
         const data = response.data;
+        setLoading(false);
         setProducts(data.Products);
       })
       .catch((error) => {
@@ -113,6 +118,9 @@ const ShopList = () => {
   };
   // console.log(Category, products, filterData);
   const history = useNavigate();
+  const handleFilterChange = (newFilterData) => {
+    setFil(newFilterData);
+  };
   return (
     <>
       {/* <Breadcrumbs /> */}
@@ -145,8 +153,8 @@ const ShopList = () => {
                 Filter
               </button>
             </div>
-            <Filter Category={Category} />
-            <Products products={products} />
+            <Filter Category={Category} onFilterChange={handleFilterChange} />
+            {loading ? <Loading /> : <Products products={products} />}
           </div>
         </div>
       </div>
