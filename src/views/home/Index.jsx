@@ -8,9 +8,11 @@ import Earn from "./earn/Earn";
 import RedemptionMenu from "./redemption-menu/RedemptionMenu";
 import { storeDetails } from "../../redux/common/storeDetails/storeDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { addCatalogId } from "../../redux/common";
+import { addCartId, addCatalogId } from "../../redux/common";
 import { fetchRedemptionMenu } from "../../redux/home/RedemptionMenuSlice";
-import { STORE_ID } from "../../config";
+import { CustomerId, CustomerName, STORE_ID } from "../../config";
+import { makeGetRequest } from "../../api/services";
+import { fetchcartDetails } from "../../redux/common/cartDetails/cartDetailsSlice";
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -20,6 +22,7 @@ const Index = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     GetStoreDetails();
+    GetCartDetails();
   }, []);
 
   const GetAuthToken = () => {
@@ -29,6 +32,27 @@ const Index = () => {
       client_secret: CLIENT_SECRET,
     };
     let url = `/api/StoreFront/GetAuthToken`;
+  };
+
+  const GetCartDetails = () => {
+    // let url = `/api/StoreFront/SearchCart`;
+    let url = `SearchCart_DATA`;
+    let body = {
+      StoreId: STORE_ID,
+      Name: "default",
+      CustomerId: CustomerId,
+      CustomerName: CustomerName,
+      Type: null,
+      CurrencyCode: "AED",
+      LanguageCode: "en-US",
+    };
+    dispatch(fetchcartDetails({ url, body }))
+      .then(({ data }) => {
+        dispatch(addCartId(data.Id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const GetStoreDetails = () => {

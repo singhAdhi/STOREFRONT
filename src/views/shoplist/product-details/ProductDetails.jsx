@@ -16,11 +16,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductDetails } from "../../../redux/product-details/ProductDetailsSlice";
 import axios from "axios";
 import ShopNavbar from "../../Shop/shop-nav/ShopNavbar";
+import { CustomerId, CustomerName, STORE_ID } from "../../../config";
+import { makeGetRequest } from "../../../api/services";
+import {
+  addCartCount,
+  fetchcartDetails,
+} from "../../../redux/common/cartDetails/cartDetailsSlice";
+import { addCartId } from "../../../redux/common";
 
 const ProductDetails = () => {
+  const { CATALOG_ID, CART_ID } = useSelector((state) => state.commonReducer);
+  const [productData, setproductData] = useState(null);
+  const [cartItems, setcartItems] = useState([]);
+
   const dispatch = useDispatch();
-  const history = useNavigate();
-  const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate();
+  const [cartItems1, setCartItems1] = useState([]);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [count, setCount] = useState(0);
   const [bodyItem, setBodyItem] = useState([
@@ -31,68 +42,111 @@ const ProductDetails = () => {
   ]);
 
   const { id: productid } = useParams();
-  const { productDetails, isLoading, isError, isLoadingText } = useSelector(
-    (state) => state.productDetailReducer
-  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(fetchProductDetails());
-    cartData();
+    getProductDetails();
+    getCartDetails();
   }, []);
 
-  const singleProduct =
-    productDetails && productDetails.filter((item) => item.Id === productid);
-
-  let imgUrl = singleProduct && singleProduct.Images;
-  let title = singleProduct && singleProduct.Name;
-
-  const handleChange = () => {
-    setCount(count + 1);
-  };
-  const handleChangeminus = () => {
-    if (count === 0) {
-      setCount(0);
-    } else {
-      setCount(count - 1);
+  const getProductDetails = () => {
+    if (!productid) {
+      navigate(-1);
+      return;
     }
-  };
-  let addToCart = async (ProductId) => {
-    cartItems.push(singleProduct[0]);
-    const newItem = {
-      ProductId: ProductId,
-      Quantity: count,
-    };
-    const existingItemIndex = bodyItem.findIndex(
-      (item) => item.ProductId === ProductId
-    );
-    setBodyItem((prev) => [...prev, newItem]);
-
-    const body = {
-      CatalogId: "{{catalog_id}}",
-      CartId: "{{cart_id}}",
-      Items: bodyItem,
-    };
-    //console.log(existingItemIndex);
-    const url = `/api/StoreFront/AddOrUpdateItemInCart`;
-
-    axios
-      .get(url)
-      .then((response) => {
-        const data = response.data;
+    // let url = `/api/StoreFront/GetProductById/${productid}?StoreId=${STORE_ID}&CatalogId=${CATALOG_ID}&LanguageCode=en-US&CurrencyCode=AED`;
+    let url = productid;
+    makeGetRequest({ url })
+      .then(({ data }) => {
+        setproductData(data);
       })
-      .catch((error) => {
-        // Handle errors here
-        console.error("Error fetching category:", error);
+      .catch((err) => {
+        console.log(err);
+        // makeGetRequest({ url: "ER-iPhone-15-512GB-Black" })
+        //   .then(({ data }) => {
+        //     setproductData(data);
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   });
       });
   };
 
-  const cartData = async () => {
-    const response = await fetch("http://localhost:8000/SearchCart_DATA");
-    const data = await response.json();
-    setCartItems(data.Items);
+  const getCartDetails = () => {
+    // let url = `/api/StoreFront/SearchCart`;
+    let url = `SearchCart_DATA`;
+    let body = {
+      StoreId: STORE_ID,
+      Name: "default",
+      CustomerId: CustomerId,
+      CustomerName: CustomerName,
+      Type: null,
+      CurrencyCode: "AED",
+      LanguageCode: "en-US",
+    };
+    //this is temp impl
+    GettempCart();
+    return;
+    // Below is API impl
+    dispatch(fetchcartDetails({ url, body }))
+      .then(({ payload }) => {
+        setcartItems(
+          payload.Items.map(({ ProductId, Quantity }) => ({
+            ProductId,
+            Quantity,
+          }))
+        );
+        dispatch(addCartId(payload.Id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-  console.log(cartItems);
+
+  const addToCart = async () => {
+    if (count < 1) {
+      alert("Please select one quantity");
+      return;
+    }
+    let existingItem = cartItems.filter((x) => x.ProductId === productid);
+    if (existingItem.length > 0) {
+      existingItem[0].Quantity = count;
+    } else {
+      cartItems.push({ ProductId: productid, Quantity: count });
+    }
+    setcartItems([...cartItems]);
+    //this is temp impl
+    SettempCart(cartItems);
+    dispatch(addCartCount(cartItems.length));
+    return;
+    // Below is API impl
+    let url = `/api/StoreFront/AddOrUpdateItemInCart`;
+    let body = {
+      CatalogId: CATALOG_ID,
+      CartId: CART_ID,
+      Items: [...cartItems],
+    };
+    makeGetRequest({ url, body })
+      .then((result) => {
+        result.data.Items.map(({ ProductId, Quantity }) => ({
+          ProductId,
+          Quantity,
+        }));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  function SettempCart(items) {
+    localStorage.setItem("cart", JSON.stringify(items));
+  }
+  function GettempCart() {
+    let cart = localStorage.getItem("cart");
+    dispatch(addCartCount(cart ? JSON.parse(cart).length : 0));
+    setcartItems(cart ? JSON.parse(cart) : []);
+  }
+
   return (
     <>
       {/* <Breadcrumbs /> */}
@@ -102,10 +156,13 @@ const ProductDetails = () => {
           <nav>
             <ul className="breadcrumb py-3 px-0 align-items-center">
               <li className="me-2">
-                <FaArrowLeft onClick={() => history(-1)} />
+                <FaArrowLeft onClick={() => navigate(-1)} />
               </li>
               <li className="breadcrumb-item">
                 <Link to="/">Home</Link>
+              </li>
+              <li className="breadcrumb-item">
+                <Link to="/shop">Shop</Link>
               </li>
               <li className="breadcrumb-item active">ProductDetails</li>
             </ul>
@@ -116,7 +173,7 @@ const ProductDetails = () => {
       <div className="dvProductDetail pb-5">
         <div className="container-lg">
           <div className="row">
-            {singleProduct && (
+            {productData && (
               <>
                 <div className="dvThumbSwiperSlider col-12 col-md-4">
                   <Swiper
@@ -142,16 +199,15 @@ const ProductDetails = () => {
                           </SwiperSlide>
                         );
                       })} */}
-                    {singleProduct.map((item) =>
-                      item.Images.map((item, index) => {
+                    {productData &&
+                      productData.Images.map((item, index) => {
                         const { Url, Id } = item;
                         return (
                           <SwiperSlide key={index}>
                             <img src={Url} />
                           </SwiperSlide>
                         );
-                      })
-                    )}
+                      })}
                   </Swiper>
                   <Swiper
                     onSwiper={setThumbsSwiper}
@@ -165,22 +221,23 @@ const ProductDetails = () => {
                     {/* <SwiperSlide>
                       <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
                     </SwiperSlide> */}
-                    {singleProduct.map((item) =>
-                      item.Images.map((item, index) => {
+                    {productData &&
+                      productData.Images.map((item, index) => {
                         const { Url } = item;
                         return (
                           <SwiperSlide key={index}>
                             <img src={Url} />
                           </SwiperSlide>
                         );
-                      })
-                    )}
+                      })}
                   </Swiper>
                 </div>
                 <div className="dvProductInfo col-12 col-md-8">
                   <div className="dvInfo row mb-4">
                     <div className="col-12">
-                      <h2 className="heading-xl">{title}</h2>
+                      <h2 className="heading-xl">
+                        {productData && productData.Name}
+                      </h2>
                       <h2 className="heading-md-semibold">358 points</h2>
                     </div>
                   </div>
@@ -192,24 +249,20 @@ const ProductDetails = () => {
                           <div className="plus col-auto">
                             <button
                               type="button"
-                              onClick={handleChangeminus}
+                              onClick={() => setCount((prev) => prev - 1)}
                               className="btn-addtocart p-0"
                             >
                               <FaMinus />
                             </button>
                           </div>
-                          <div className="value mx-2 col-4">
-                            <input
-                              type="text"
-                              Value={count}
-                              className="form-control text-center"
-                            />
+                          <div className="value mx-2 col-2">
+                            <p className="border text-center">{count}</p>
                           </div>
                           <div className="minus col-auto">
                             <button
                               type="button"
                               className="btn-addtocart p-0"
-                              onClick={handleChange}
+                              onClick={() => setCount((prev) => prev + 1)}
                             >
                               <FaPlus />
                             </button>
@@ -218,7 +271,7 @@ const ProductDetails = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="dvDenominations row mb-4">
+                  <div className="dvDenominations row mb-4" hidden>
                     <div className="col-12">
                       <h2 className="heading-sm-regular mb-2">Denominations</h2>
                     </div>
@@ -366,11 +419,15 @@ const ProductDetails = () => {
                       </button>
                     </div>
                     <div className="col-6 col-sm-4 col-xl-3">
-                      <button type="button" className="btn btn-primary w-100">
+                      <button
+                        type="button"
+                        className="btn btn-primary w-100"
+                        onClick={() => navigate(-1)}
+                      >
                         Back
                       </button>
                     </div>
-                    <div className="col-6 col-sm-4 col-xl-3">
+                    <div className="col-6 col-sm-4 col-xl-3" hidden>
                       <button type="button" className="btn btn-primary w-100">
                         Redeem
                       </button>

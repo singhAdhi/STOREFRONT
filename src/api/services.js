@@ -3,12 +3,12 @@ import { BASE_URL } from "../config";
 
 const makeGetRequest = async ({ url, body }) => {
   return await axios
-    .get(`${BASE_URL}/${url}`, body)
+    .get(`${BASE_URL}/${url}`, body ? body : null)
     .then((result) => {
       return result;
     })
     .catch((err) => {
-      return err;
+      throw new Error(err);
     });
 };
 const makePostRequest = async ({ url, body }) => {

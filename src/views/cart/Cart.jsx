@@ -1,53 +1,96 @@
 import React, { useEffect, useState } from "react";
 import "./cart.css";
-import { FaPlus, FaMinus, FaArrowLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { makeGetRequest } from "../../api/services";
+import { FaArrowLeft } from "react-icons/fa6";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../../redux/shop/cart/CartSlice";
+import {
+  addCartCount,
+  fetchcartDetails,
+} from "../../redux/common/cartDetails/cartDetailsSlice";
+import { CustomerId, CustomerName, STORE_ID } from "../../config";
+import { MdDelete } from "react-icons/md";
 
 const Cart = () => {
-  const [cartData, setCartData] = useState([]);
-  const cart = useSelector((store) => store.CartReducer.cartItems);
-  const newArray = cart.filter((obj) => obj.Images && obj.Images.length > 0);
+  const navigate = useNavigate();
+  const [cartItems, setcartItems] = useState(null);
+  const [cartData, setCartData] = useState(null);
+  const { isLoading } = useSelector((state) => state.cartDetailsSlice);
+
   let dispatch = useDispatch();
   useEffect(() => {
-    fetchProductData();
+    getCartDetails();
   }, []);
-  let fetchProductData = async () => {
-    const body = {
-      StoreId: "{{store_id}}",
+
+  const getCartDetails = () => {
+    // // Below is API impl
+    // return;
+    // let url = `/api/StoreFront/SearchCart`;
+    let url = `SearchCart_DATA`;
+    let body = {
+      StoreId: STORE_ID,
       Name: "default",
-      CustomerId: "britestuser",
-      CustomerName: "Tester",
+      CustomerId: CustomerId,
+      CustomerName: CustomerName,
       Type: null,
       CurrencyCode: "AED",
       LanguageCode: "en-US",
     };
-    const url = `http://localhost:8000/SearchCart_DATA`;
-    // let url = `SearchCart_DATA`;
-    // makeGetRequest({ url, body })
-    //   .then(({ data }) => {
-    //     setCartData(data.Items);
-    //     console.log(data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    axios
-      .get(url)
-      .then((response) => {
-        const data = response.data;
-        setCartData(data.Items);
-        console.log(data.Items);
+    dispatch(fetchcartDetails({ url, body }))
+      .then(({ payload }) => {
+        // dispatch(addCartId(payload.Id));
+        // setItems(payload.Items);
+        setCartData(payload);
       })
-      .catch((error) => {
-        // Handle errors here
-        console.error("Error fetching category:", error);
+      .catch((err) => {
+        console.log(err);
       });
+
+    //this is temp impl
+    GettempCart();
   };
-  console.log(cartData);
+
+  function GettempCart() {
+    let cart = localStorage.getItem("cart");
+    if (cart) {
+      let items = JSON.parse(cart);
+      import("../../../storefront.json")
+        .then(({ SearchProductsFeatured_DATA: { Products } }) => {
+          setcartItems(
+            items
+              .map(({ ProductId, Quantity }) => {
+                let prod = Products.find((x) => x.Id === ProductId);
+                if (prod) {
+                  prod.Quantity = Quantity;
+                  return prod;
+                }
+              })
+              .filter((prod) => prod != undefined)
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setcartItems(null);
+      setCartData(null);
+    }
+  }
+
+  function handleDelete(id) {
+    let cart = localStorage.getItem("cart");
+    if (cart) {
+      let items = JSON.parse(cart);
+      let newitems = items.filter((item) => item.ProductId !== id);
+      if (newitems.length > 0) {
+        localStorage.setItem("cart", JSON.stringify(newitems));
+      } else {
+        localStorage.removeItem("cart");
+      }
+      dispatch(addCartCount(newitems.length));
+      GettempCart();
+    }
+  }
+
   return (
     <>
       {/* <Breadcrumbs /> */}
@@ -61,7 +104,10 @@ const Cart = () => {
               <li className="breadcrumb-item">
                 <Link to="/">Home</Link>
               </li>
-              <li className="breadcrumb-item active">ProductDetails</li>
+              <li className="breadcrumb-item">
+                <Link to="/shop">Shop</Link>
+              </li>
+              <li className="breadcrumb-item active">Cart</li>
             </ul>
           </nav>
         </div>
@@ -69,11 +115,18 @@ const Cart = () => {
 
       <div className="dvCart pb-5">
         <div className="container-lg">
-          {newArray.length === 0 ? (
-            <div>Cart is Empty</div>
+          {cartItems === null ? (
+            <>
+              {!isLoading && <div>Cart is Empty</div>}
+              {isLoading && (
+                <div class="spinner-grow" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              )}
+            </>
           ) : (
-            newArray.map((items) => {
-              console.log(items);
+            cartItems &&
+            cartItems.map((items) => {
               return (
                 <div className="row mb-3" key={items.Id}>
                   <div className="col-12">
@@ -81,7 +134,7 @@ const Cart = () => {
                       <div className="row">
                         <div className="col-3 col-sm-2 col-md-1">
                           <img
-                            src={items.PrimaryImage.Url}
+                            src={items.PrimaryImage && items.PrimaryImage.Url}
                             alt=""
                             className="img-fluid"
                           />
@@ -94,17 +147,12 @@ const Cart = () => {
                             <div className="col-12 col-sm-4 col-lg-3 col-xl-2">
                               <div className="dvAdd row">
                                 <div className="col-12">
-                                  <h2 className="heading-sm-regular mb-2 d-none">
-                                    {items.Quantity}
-                                  </h2>
                                   <div className="row">
                                     <div className="d-flex align-items-center justify-content-md-end col-12">
                                       <div className="value mx-2 col-4">
-                                        <input
-                                          type="text"
-                                          value={1}
-                                          className="form-control text-center"
-                                        />
+                                        <p className="border text-center">
+                                          {items.Quantity}
+                                        </p>
                                       </div>
                                     </div>
                                   </div>
@@ -113,10 +161,18 @@ const Cart = () => {
                             </div>
                             <div className="col-12 col-sm-4 col-lg-3 col-xl-2 d-flex align-items-center justify-content-sm-end">
                               <div>
-                                <span>514</span> <span>points</span>
+                                <span>
+                                  {items.Price &&
+                                    items.Price.ActualPrice.Amount}
+                                </span>{" "}
+                                <span>points</span>
                               </div>
-                              <button type="button" className="btn btnRemove">
-                                Remove
+                              <button
+                                type="button"
+                                className="btn btnRemove"
+                                onClick={() => handleDelete(items.Id)}
+                              >
+                                <MdDelete />
                               </button>
                             </div>
                           </div>
@@ -127,6 +183,28 @@ const Cart = () => {
                 </div>
               );
             })
+          )}
+
+          {cartItems && cartData && (
+            <>
+              <div className=" d-flex justify-content-end">
+                <ul className="list-unstyled">
+                  <li>
+                    Sub-Total: {cartData.Price.SubTotal.Amount} Giift-Points
+                  </li>
+                  <li>
+                    Shipping: {cartData.Price.ShippingPrice.Amount} Giift-Points
+                  </li>
+                  <li>Total: {cartData.Price.Total.Amount} Giift-Points</li>
+                </ul>
+              </div>
+              <div className=" d-flex justify-content-center gap-3">
+                <button onClick={() => navigate("/shop")}>
+                  Continue Shopping
+                </button>
+                <button onClick={() => navigate("/checkout")}>Checkout</button>
+              </div>
+            </>
           )}
         </div>
       </div>

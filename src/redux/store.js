@@ -6,6 +6,7 @@ import storeDetailsReducer from "./common/storeDetails/storeDetailsSlice";
 import commonReducer from "./common/index";
 import productDetailReducer from "./product-details/ProductDetailsSlice";
 import CartReducer from "./shop/cart/CartSlice";
+import cartDetailsSlice from "./common/cartDetails/cartDetailsSlice";
 
 import filteredDataReducer from "./shop/filteredData/filteredDataSlice";
 export const store = configureStore({
@@ -18,5 +19,6 @@ export const store = configureStore({
     productDetailReducer,
     filteredDataReducer,
     CartReducer,
+    cartDetailsSlice,
   },
 });

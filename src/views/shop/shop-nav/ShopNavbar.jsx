@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchRedemptionMenu } from "../../../redux/home/RedemptionMenuSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { setCategoryFilter } from "../../../redux/shop/filteredData/filteredDataSlice";
+import { CiShoppingCart } from "react-icons/ci";
 
 const ShopNavbar = () => {
   const navigate = useNavigate();
   const { CATALOG_ID, OUTLINE } = useSelector((state) => state.commonReducer);
+  const { cartCount } = useSelector((state) => state.cartDetailsSlice);
   const cart = useSelector((store) => store.CartReducer.cartItems);
   const newArray = cart.filter((obj) => obj.Images && obj.Images.length > 0);
   let dispatch = useDispatch();
@@ -156,11 +158,9 @@ const ShopNavbar = () => {
             <Link to="/cart">
               <button type="button" className="btn p-0">
                 <div className="d-flex align-items-center">
-                  <span>
-                    <i className="fa fa-shopping-cart"></i>
-                  </span>
+                  <CiShoppingCart />
                   <span className="badge text-bg-light border p-2 ms-2">
-                    {newArray.length}
+                    {cartCount}
                   </span>
                 </div>
               </button>
