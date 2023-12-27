@@ -31,6 +31,7 @@ const Index = () => {
       <ShopSlider />
 
       {/* <Breadcrumbs /> */}
+      <ShopNavbar />
       <div className="dvBreadcrumbs">
         <div className="container-lg">
           <nav>
@@ -49,7 +50,6 @@ const Index = () => {
 
       {featureHead.length > 0 && (
         <>
-          <ShopNavbar />
           <FeaturedOffers feature={featureHead[0].Value} />
           <TopOffers top={featureHead[1].Value} />
         </>

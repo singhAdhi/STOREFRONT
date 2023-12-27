@@ -76,7 +76,7 @@ const ShopNavbar = () => {
 
   const handleClick = (val) => {
     dispatch(setCategoryFilter(val));
-    navigate("/ShopList/1_1");
+    navigate(`/ShopList/${val}`);
   };
 
   const SubmenuDesktop = ({ submenu }) => (
@@ -90,7 +90,7 @@ const ShopNavbar = () => {
                   item.submenu.length > 0 ? "dropdown-toggle" : ""
                 }`}
               >
-                <span onClick={() => handleClick(item.Id)}>{item.Name}</span>
+                <span onClick={() => handleClick(item.Name)}>{item.Name}</span>
               </a>
               {item.submenu.length > 0 ? (
                 <SubmenuDesktop submenu={item.submenu} />
@@ -116,7 +116,7 @@ const ShopNavbar = () => {
                 data-bs-toggle="dropdown"
                 data-bs-auto-close="outside"
               >
-                <span onClick={() => handleClick(item.Id)}>{item.Name}</span>
+                <span onClick={() => handleClick(item.Name)}>{item.Name}</span>
               </a>
               {item.submenu.length > 0 ? (
                 <SubmenuMobile submenu={item.submenu} />
@@ -178,7 +178,7 @@ const ShopNavbar = () => {
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
                       >
-                        <span onClick={() => handleClick(item.Id)}>
+                        <span onClick={() => handleClick(item.Name)}>
                           {item.Name}
                         </span>
                       </a>

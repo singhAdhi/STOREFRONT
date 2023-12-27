@@ -13,7 +13,7 @@ import { STORE_ID } from "../../../config";
 import { makeGetRequest } from "../../../api/services";
 import Loading from "../../../components/other/loading/Loading";
 
-const ShopList = () => {
+const ShopList = ({}) => {
   let [products, setProducts] = useState([]);
   let [Category, setCategory] = useState([]);
   const filterData = useSelector((store) => store.filteredDataReducer.value);
@@ -27,12 +27,11 @@ const ShopList = () => {
   // const filterData = useSelector((store) => store.filteredDataReducer.value);
 
   const { id } = useParams();
-  const parts = id.split("_");
+  const parts = id.split(/[_\s]+/);
 
-  const secondPart = parts[0];
   const urlText =
-    secondPart.toLowerCase().charAt(0).toUpperCase() +
-    secondPart.slice(1).toLowerCase();
+    parts[0].toLowerCase().charAt(0).toUpperCase() +
+    parts[0].slice(1).toLowerCase();
 
   useEffect(() => {
     fetchCategory(cur);
@@ -116,7 +115,7 @@ const ShopList = () => {
         console.error("Error fetching category:", error);
       });
   };
-  // console.log(Category, products, filterData);
+  console.log(urlText);
   const history = useNavigate();
   const handleFilterChange = (newFilterData) => {
     setFil(newFilterData);
@@ -124,6 +123,7 @@ const ShopList = () => {
   return (
     <>
       {/* <Breadcrumbs /> */}
+
       <div className="dvBreadcrumbs">
         <div className="container-lg">
           <nav>
@@ -139,7 +139,7 @@ const ShopList = () => {
           </nav>
         </div>
       </div>
-      <ShopNavbar />
+
       <div className="dvShopList pb-5 pt-3">
         <div className="container-lg">
           <div className="row d-flex flex-md-row align-items-baseline">

@@ -66,8 +66,8 @@ const Index = () => {
         />
       )}
       <Welcome />
-      <Vouchers />
-      <ShopDeals />
+      {/* <Vouchers />
+      <ShopDeals /> */}
       <Travel />
       <Earn />
     </>

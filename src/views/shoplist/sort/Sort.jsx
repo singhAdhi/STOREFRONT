@@ -1,20 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./sort.css";
+import { makeGetRequest } from "../../../api/services";
+import { useDispatch } from "react-redux";
+import { latestValue } from "../../../redux/shop/filteredData/filteredDataSlice";
 
 const Sort = () => {
+  const [sortOption, setSortOption] = useState("");
+  const [sortProduct, setSortProduct] = useState([]);
+  const dispatch = useDispatch();
+  console.log(sortOption);
+
+  useEffect(() => {
+    let body = {
+      StoreId: "QIBMKT",
+      CatalogId: "164d5545-22f3-472c-8a24-14d2b3be6300",
+      CategoryId: null,
+      CategoryIds: null,
+      ResponseGroup: 16383,
+      Outline: "94eba8bd-0609-448d-b862-0a2730f163e0",
+      Currency: "QAR",
+      PriceRange: null,
+      LanguageCode: "en-US",
+      SearchPhrase: "",
+      SortSearchPhaseResponse: false,
+      Terms: ["best-selling"],
+      Sort: "",
+      Skip: 0,
+      Take: 15,
+      IncludeAggregations: null,
+      ExcludeAggregations: null,
+      Latitude: null,
+      Longitude: null,
+      Distance: 0.0,
+      GeoLocationPropertyName: null,
+    };
+    let url = `CategoryMenu_DATA`;
+    makeGetRequest({ url, body })
+      .then(({ data }) => {
+        setSortProduct(data);
+        // console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const handleChange = (val) => {
+    setSortOption(val);
+    dispatch(latestValue(val));
+    console.log(val);
+  };
   return (
     <>
       <div className="dvSort row mb-3">
         <div className="col-12">
-          <select className="form-select" aria-label="Default select example">
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            onChange={(e) => handleChange(e.target.value)}
+          >
             <option defaultValue>Sort By</option>
-            <option defaultValue="1">Best Selling</option>
-            <option defaultValue="2">Ascending</option>
-            <option defaultValue="2">Descending</option>
-            <option defaultValue="2">Price Low to High</option>
-            <option defaultValue="2">Price High to Low</option>
-            <option defaultValue="2">Date New to Old</option>
-            <option defaultValue="2">Date Old to New</option>
+            <option Value="Best">Best Selling</option>
+            <option Value="Ascending">Ascending</option>
+            <option Value="Descending">Descending</option>
+            <option Value="PriceLowToHigh">Price Low to High</option>
+            <option Value="PriceHighToLow">Price High to Low</option>
+            <option Value="DateNewtoOld">Date New to Old</option>
+            <option Value="DateOldtoNew">Date Old to New</option>
           </select>
         </div>
       </div>
