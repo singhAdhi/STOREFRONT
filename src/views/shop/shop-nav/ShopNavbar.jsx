@@ -8,7 +8,6 @@ import { setCategoryFilter } from "../../../redux/shop/filteredData/filteredData
 import { CiShoppingCart } from "react-icons/ci";
 
 const ShopNavbar = () => {
-  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const { CATALOG_ID, OUTLINE } = useSelector((state) => state.commonReducer);
   const { cartCount } = useSelector((state) => state.cartDetailsSlice);
@@ -20,14 +19,7 @@ const ShopNavbar = () => {
 
   useEffect(() => {
     FetchSearchCategories(CATALOG_ID);
-
-    let timer = setTimeout(() => {
-      console.log("input data");
-    }, 1000);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchQuery]);
+  }, []);
 
   const FetchSearchCategories = (catalogId) => {
     let body = {
@@ -161,8 +153,6 @@ const ShopNavbar = () => {
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </form>
             <Link to="/cart">
