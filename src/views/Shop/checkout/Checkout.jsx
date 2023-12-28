@@ -90,92 +90,101 @@ const Checkout = () => {
       </div>
       <div className="container my-5">
         <div className="row">
-          <div className="col-md-8 bg-body-secondary py-3">
-            <h4 class="mb-4">Billing address</h4>
-            <form class="row g-3">
-              <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">
+          <div className="bg-body-secondary col-md-8 order-1 order-md-0">
+            <h4 className="mb-4 fw-semibold">Billing address</h4>
+            <form className="row g-3">
+              <div className="col-md-6">
+                <label for="inputEmail4" className="form-label">
                   Email
                 </label>
-                <input type="email" class="form-control" id="inputEmail4" />
+                <input type="email" className="form-control" id="inputEmail4" />
               </div>
-              <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">
+              <div className="col-md-6">
+                <label for="inputPassword4" className="form-label">
                   Password
                 </label>
                 <input
                   type="password"
-                  class="form-control"
+                  className="form-control"
                   id="inputPassword4"
                 />
               </div>
-              <div class="col-12">
-                <label for="inputAddress" class="form-label">
+              <div className="col-12">
+                <label for="inputAddress" className="form-label">
                   Address
                 </label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="inputAddress"
                   placeholder="1234 Main St"
                 />
               </div>
-              <div class="col-12">
-                <label for="inputAddress2" class="form-label">
+              <div className="col-12">
+                <label for="inputAddress2" className="form-label">
                   Address 2
                 </label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="inputAddress2"
                   placeholder="Apartment, studio, or floor"
                 />
               </div>
-              <div class="col-md-6">
-                <label for="inputCity" class="form-label">
+              <div className="col-md-6">
+                <label for="inputCity" className="form-label">
                   City
                 </label>
-                <input type="text" class="form-control" id="inputCity" />
+                <input type="text" className="form-control" id="inputCity" />
               </div>
-              <div class="col-md-4">
-                <label for="inputState" class="form-label">
+              <div className="col-md-4">
+                <label for="inputState" className="form-label">
                   State
                 </label>
-                <select id="inputState" class="form-select">
+                <select id="inputState" className="form-select">
                   <option selected>Choose...</option>
                   <option>...</option>
                 </select>
               </div>
-              <div class="col-md-2">
-                <label for="inputZip" class="form-label">
+              <div className="col-md-2">
+                <label for="inputZip" className="form-label">
                   Zip
                 </label>
-                <input type="text" class="form-control" id="inputZip" />
+                <input type="text" className="form-control" id="inputZip" />
               </div>
-              <div class="col-12">
-                <div class="form-check">
+              <div className="col-12">
+                <div className="form-check">
                   <input
-                    class="form-check-input"
+                    className="form-check-input"
                     type="checkbox"
                     id="gridCheck"
                   />
-                  <label class="form-check-label" for="gridCheck">
+                  <label className="form-check-label" for="gridCheck">
                     Check me out
                   </label>
                 </div>
               </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary w-100">
-                  checkout
+              <hr />
+              <div className="col-12 mb-3">
+                <button
+                  className="btn btn-primary w-100"
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  CONTINUE TO CHECKOUT
                 </button>
               </div>
             </form>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-4 mb-3 mb-md-0 px-0 px-md-3">
             <div className="bg-body-secondary p-2">
               <div className="d-flex justify-content-between">
-                <h5>Your Cart</h5>
-                <p class="bg-dark-subtle rounded-circle px-2">
+                <h5 className="fw-semibold">Your Cart</h5>
+                <p
+                  className="rounded-circle px-2"
+                  style={{ backgroundColor: "#E5A812" }}
+                >
                   {cartItems && cartItems.length}
                 </p>
               </div>
@@ -188,7 +197,7 @@ const Checkout = () => {
                     >
                       <p>{item.Name}</p>
                       <p
-                        class="rounded-circle px-2"
+                        className="rounded-circle px-2"
                         style={{ whiteSpace: "nowrap" }}
                       >
                         {"Qty: "}
@@ -198,8 +207,8 @@ const Checkout = () => {
                     </div>
                   ))}
                 <div className="d-flex justify-content-between">
-                  <h5>Total</h5>
-                  <p class="rounded-circle px-2">
+                  <h5 className="fw-semibold">Total</h5>
+                  <p className="rounded-circle px-2">
                     {cartData && cartData.Price.Total.Amount} {" Giift-Points"}
                   </p>
                 </div>
