@@ -235,7 +235,7 @@ const ProductDetails = () => {
                 <div className="dvProductInfo col-12 col-md-8">
                   <div className="dvInfo row mb-4">
                     <div className="col-12">
-                      <h2 className="heading-xl">
+                      <h2 className="heading-md mb-4">
                         {productData && productData.Name}
                       </h2>
                       <h2 className="heading-md-semibold">358 points</h2>

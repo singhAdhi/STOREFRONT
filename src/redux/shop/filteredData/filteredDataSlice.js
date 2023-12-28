@@ -5,6 +5,7 @@ const filteredDataSlice = createSlice({
   initialState: {
     value: "",
     categoryFilter: "",
+    searchItem: "",
   },
   reducers: {
     latestValue: (state, action) => {
@@ -13,7 +14,11 @@ const filteredDataSlice = createSlice({
     setCategoryFilter: (state, action) => {
       state.categoryFilter = action.payload;
     },
+    searchItem: (state, action) => {
+      state.searchItem = action.payload;
+    },
   },
 });
-export const { latestValue, setCategoryFilter } = filteredDataSlice.actions;
+export const { latestValue, setCategoryFilter, searchItem } =
+  filteredDataSlice.actions;
 export default filteredDataSlice.reducer;

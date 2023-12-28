@@ -23,7 +23,8 @@ const Index = () => {
     const response = await fetch("http://localhost:8000/GetStoreDetails_DATA");
     const data = await response.json();
     setFeatureHead(data.DynamicProperties[1].Values);
-    dispatch(addStoreDetails(data));
+    dispatch(addStoreDetails(data.DynamicProperties[1].Values));
+    console.log(data.DynamicProperties[1].Values);
   };
 
   return (
@@ -31,7 +32,7 @@ const Index = () => {
       <ShopSlider />
 
       {/* <Breadcrumbs /> */}
-      <ShopNavbar />
+
       <div className="dvBreadcrumbs">
         <div className="container-lg">
           <nav>

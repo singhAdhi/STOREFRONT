@@ -9,6 +9,7 @@ import {
 } from "../../redux/common/cartDetails/cartDetailsSlice";
 import { CustomerId, CustomerName, STORE_ID } from "../../config";
 import { MdDelete } from "react-icons/md";
+import Loading from "../../components/other/loading/Loading";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -118,11 +119,7 @@ const Cart = () => {
           {cartItems === null ? (
             <>
               {!isLoading && <div>Cart is Empty</div>}
-              {isLoading && (
-                <div class="spinner-grow" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-              )}
+              {isLoading && <Loading />}
             </>
           ) : (
             cartItems &&
@@ -188,21 +185,31 @@ const Cart = () => {
           {cartItems && cartData && (
             <>
               <div className=" d-flex justify-content-end">
-                <ul className="list-unstyled">
-                  <li>
+                <ul className="list-unstyled w-100">
+                  <li className="heading-md p-2 bg-body-secondary text-end">
                     Sub-Total: {cartData.Price.SubTotal.Amount} Giift-Points
                   </li>
-                  <li>
+                  <li className="heading-md p-2 my-2 bg-body-tertiary text-end">
                     Shipping: {cartData.Price.ShippingPrice.Amount} Giift-Points
                   </li>
-                  <li>Total: {cartData.Price.Total.Amount} Giift-Points</li>
+                  <li className="heading-md p-2 bg-body-secondary text-end">
+                    Total: {cartData.Price.Total.Amount} Giift-Points
+                  </li>
                 </ul>
               </div>
-              <div className=" d-flex justify-content-center gap-3">
-                <button onClick={() => navigate("/shop")}>
+              <div className=" d-flex justify-content-center gap-3 mt-5">
+                <button
+                  className="btn btn-primary"
+                  onClick={() => navigate("/shop")}
+                >
                   Continue Shopping
                 </button>
-                <button onClick={() => navigate("/checkout")}>Checkout</button>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => navigate("/checkout")}
+                >
+                  Checkout
+                </button>
               </div>
             </>
           )}

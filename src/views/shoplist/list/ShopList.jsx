@@ -17,6 +17,9 @@ const ShopList = ({}) => {
   let [products, setProducts] = useState([]);
   let [Category, setCategory] = useState([]);
   const filterData = useSelector((store) => store.filteredDataReducer.value);
+  const searchValue = useSelector(
+    (store) => store.filteredDataReducer.searchItem
+  );
   const categoryFilter = useSelector(
     (store) => store.filteredDataReducer.categoryFilter
   );
@@ -79,7 +82,15 @@ const ShopList = ({}) => {
   useEffect(() => {
     fetchCategory();
     fetchProductData();
-  }, []);
+  }, [urlText]);
+
+  useEffect(() => {
+    let filteredProducts = products.filter((item) =>
+      item.Name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    console.log(filteredProducts);
+    setProducts(filteredProducts);
+  }, [searchValue]);
 
   let fetchCategory = async (filter) => {
     const url = `http://localhost:8000/SearchProducts${
@@ -115,15 +126,16 @@ const ShopList = ({}) => {
         console.error("Error fetching category:", error);
       });
   };
-  console.log(urlText);
+
   const history = useNavigate();
   const handleFilterChange = (newFilterData) => {
     setFil(newFilterData);
   };
+
   return (
     <>
       {/* <Breadcrumbs /> */}
-
+      <ShopNavbar />
       <div className="dvBreadcrumbs">
         <div className="container-lg">
           <nav>
