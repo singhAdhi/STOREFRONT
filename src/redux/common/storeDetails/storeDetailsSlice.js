@@ -14,7 +14,7 @@ const initialState = {
 //fetching GetStoreDetails_DATA
 export const storeDetails = createAsyncThunk(
   "common/storeDetailsSlice",
-  async ({ url1, body }) => {
+  async ({ url, body }) => {
     try {
       const response = await makeGetRequest({ url, body });
       return response.data;

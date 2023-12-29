@@ -9,16 +9,13 @@ const Header = () => {
         <nav className="navbar navbar-expand-lg flex-lg-wrap p-0">
           <div className="navbar-brand logo m-0 col-auto col-lg-6 px-0 px-lg-3 mt-n2">
             <Link to="/">
-              <img
-                src="public/assets/images/logos/siddhartha-logo.svg"
-                alt=""
-              />
+              <img src="/assets/images/logos/siddhartha-logo.svg" alt="" />
             </Link>
           </div>
           <div className="navbar-brand logo m-0 col-lg-6 d-none d-lg-block text-lg-end mt-n3">
             <a href="#">
               <img
-                src="public/assets/images/logos/siddhartha-rewards-logo.svg"
+                src="/assets/images/logos/siddhartha-rewards-logo.svg"
                 alt=""
               />
             </a>

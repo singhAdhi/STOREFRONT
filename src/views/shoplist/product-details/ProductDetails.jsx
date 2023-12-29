@@ -105,7 +105,7 @@ const ProductDetails = () => {
 
   const addToCart = async () => {
     if (count < 1) {
-      alert("Please select one quantity");
+      alert("add quantity to cart");
       return;
     }
     let existingItem = cartItems.filter((x) => x.ProductId === productid);
@@ -175,7 +175,7 @@ const ProductDetails = () => {
           <div className="row">
             {productData && (
               <>
-                <div className="dvThumbSwiperSlider col-12 col-md-4">
+                <div className="dvThumbSwiperSlider col-12 col-md-3">
                   <Swiper
                     style={{
                       "--swiper-navigation-color": "var(--primary-colour)",
@@ -232,7 +232,7 @@ const ProductDetails = () => {
                       })}
                   </Swiper>
                 </div>
-                <div className="dvProductInfo col-12 col-md-8">
+                <div className="dvProductInfo col-12 col-md-9">
                   <div className="dvInfo row mb-4">
                     <div className="col-12">
                       <h2 className="heading-md mb-4">

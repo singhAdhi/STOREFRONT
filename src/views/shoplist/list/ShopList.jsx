@@ -14,6 +14,7 @@ import { makeGetRequest } from "../../../api/services";
 import Loading from "../../../components/other/loading/Loading";
 
 const ShopList = ({}) => {
+  let [originalProduct, setOriginalProduct] = useState([]);
   let [products, setProducts] = useState([]);
   let [Category, setCategory] = useState([]);
   const filterData = useSelector((store) => store.filteredDataReducer.value);
@@ -70,6 +71,7 @@ const ShopList = ({}) => {
     makeGetRequest({ url, body })
       .then(({ data }) => {
         if (data.totalCount > 0) {
+          setOriginalProduct(data.Products);
           setProducts(data.Products);
           setCategory(data.Aggregations);
         }
@@ -85,12 +87,17 @@ const ShopList = ({}) => {
   }, [urlText]);
 
   useEffect(() => {
-    let filteredProducts = products.filter((item) =>
-      item.Name.toLowerCase().includes(searchValue.toLowerCase())
-    );
-    console.log(filteredProducts);
-    setProducts(filteredProducts);
-  }, [searchValue]);
+    if (searchValue) {
+      let filteredProducts = products.filter((item) =>
+        item.Name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      console.log(filteredProducts);
+      setProducts(filteredProducts);
+    } else {
+      setProducts(originalProduct);
+    }
+    console.log(originalProduct);
+  }, [searchValue, originalProduct]);
 
   let fetchCategory = async (filter) => {
     const url = `http://localhost:8000/SearchProducts${
@@ -120,6 +127,7 @@ const ShopList = ({}) => {
         const data = response.data;
         setLoading(false);
         setProducts(data.Products);
+        setOriginalProduct(data.Products);
       })
       .catch((error) => {
         // Handle errors here

@@ -9,19 +9,19 @@ const Footer = () => {
           <div className="row">
             <div className="dvSocialIcons col-lg-3 text-center text-lg-start order-lg-0 mb-3 mb-lg-0">
               <a className="d-inline-block px-1" href="#" target="_blank">
-                <img src="public/assets/images/icons/social/facebook.svg" />
+                <img src="/assets/images/icons/social/facebook.svg" />
               </a>
               <a className="d-inline-block px-1" href="#" target="_blank">
-                <img src="public/assets/images/icons/social/linkedin.svg" />
+                <img src="/assets/images/icons/social/linkedin.svg" />
               </a>
               <a className="d-inline-block px-1" href="#" target="_blank">
-                <img src="public/assets/images/icons/social/Twitter.svg" />
+                <img src="/assets/images/icons/social/twitter.svg" />
               </a>
               <a className="d-inline-block px-1" href="#" target="_blank">
-                <img src="public/assets/images/icons/social/Instagram.svg" />
+                <img src="/assets/images/icons/social/instagram.svg" />
               </a>
               <a className="d-inline-block px-1" href="#" target="_blank">
-                <img src="public/assets/images/icons/social/Youtube.svg" />
+                <img src="/assets/images/icons/social/youtube.svg" />
               </a>
             </div>
             <div className="dvLinks col-lg-9 text-center text-lg-end order-lg-1 mb-3 mb-lg-0">
@@ -58,7 +58,7 @@ const Footer = () => {
             <div className="col-sm-12 col-lg-2 text-center text-lg-end order-lg-4 mb-3">
               <img
                 className="img-fluid footer-logo"
-                src="public/assets/images/logos/footer-logo.svg"
+                src="/assets/images/logos/footer-logo.svg"
                 alt="Siddhartha Bank Logo"
               />
             </div>
@@ -71,7 +71,11 @@ const Footer = () => {
             <div className="col-sm-12 col-lg-5 d-flex align-items-center justify-content-center justify-content-lg-start order-lg-2">
               <p className="me-2">Powered By:</p>
               <div>
-                <img className="img-fluid" src="public/assets/images/logos/giift-logo.svg" alt="Giift Logo" />
+                <img
+                  className="img-fluid"
+                  src="/assets/images/logos/giift-logo.svg"
+                  alt="Giift Logo"
+                />
               </div>
             </div>
           </div>

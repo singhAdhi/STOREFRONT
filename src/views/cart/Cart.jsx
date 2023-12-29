@@ -100,7 +100,7 @@ const Cart = () => {
           <nav>
             <ul className="breadcrumb py-3 px-0 align-items-center">
               <li className="me-2">
-                <FaArrowLeft onClick={() => history(-1)} />
+                <FaArrowLeft onClick={() => navigate(-1)} />
               </li>
               <li className="breadcrumb-item">
                 <Link to="/">Home</Link>
@@ -118,7 +118,9 @@ const Cart = () => {
         <div className="container-lg">
           {cartItems === null ? (
             <>
-              {!isLoading && <div>Cart is Empty</div>}
+              {!isLoading && (
+                <div className="fs-1 text-center">Cart is Empty</div>
+              )}
               {isLoading && <Loading />}
             </>
           ) : (

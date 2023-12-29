@@ -15,10 +15,11 @@ const Products = ({ products }) => {
         <div className="dvProducts row">
           {products &&
             products.map((item) => {
-              const { id } = item;
+              const { Id } = item;
+              console.log(item.Id);
               return (
-                <div key={id} className="col-md-4 mb-3">
-                  <Card {...item} img={item.PrimaryImage.Url} />
+                <div key={item.Id} className="col-md-4 mb-3">
+                  <Card id={item.Id} {...item} img={item.PrimaryImage.Url} />
                 </div>
               );
             })}

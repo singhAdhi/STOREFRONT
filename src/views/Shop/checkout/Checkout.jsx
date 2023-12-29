@@ -3,12 +3,13 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { fetchcartDetails } from "../../../redux/common/cartDetails/cartDetailsSlice";
 import { CustomerId, CustomerName, STORE_ID } from "../../../config";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [cartItems, setcartItems] = useState(null);
   const [cartData, setCartData] = useState(null);
   let dispatch = useDispatch();
+  const history = useNavigate();
 
   useEffect(() => {
     getCartDetails();
@@ -90,7 +91,7 @@ const Checkout = () => {
       </div>
       <div className="container my-5">
         <div className="row">
-          <div className="bg-body-secondary col-md-8 order-1 order-md-0">
+          <div className="bg-body-secondary col-md-8 order-1 order-md-0 p-4 rounded">
             <h4 className="mb-4 fw-semibold">Billing address</h4>
             <form className="row g-3">
               <div className="col-md-6">
@@ -178,7 +179,7 @@ const Checkout = () => {
             </form>
           </div>
           <div className="col-md-4 mb-3 mb-md-0 px-0 px-md-3">
-            <div className="bg-body-secondary p-2">
+            <div className="bg-body-secondary p-4 rounded">
               <div className="d-flex justify-content-between">
                 <h5 className="fw-semibold">Your Cart</h5>
                 <p
