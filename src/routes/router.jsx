@@ -9,6 +9,7 @@ import ProductDetails from "../views/shoplist/product-details/ProductDetails";
 import Cart from "../views/cart/Cart";
 import PageNotFound from "../components/other/pagenotfound/PageNotFound";
 import Checkout from "../views/Shop/checkout/Checkout";
+import OrderStatus from "../components/orderStatus/OrderStatus";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: "/ProductDetails/:id", element: <ProductDetails /> },
       { path: "/Cart", element: <Cart /> },
       { path: "/Checkout", element: <Checkout /> },
+      { path: "/OrderStatus", element: <OrderStatus /> },
       { path: "*", element: <PageNotFound /> },
     ],
   },

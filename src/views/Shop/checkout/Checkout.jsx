@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { fetchcartDetails } from "../../../redux/common/cartDetails/cartDetailsSlice";
 import { CustomerId, CustomerName, STORE_ID } from "../../../config";
 import { Link, useNavigate } from "react-router-dom";
+import OrderStatus from "../../../components/orderStatus/OrderStatus";
 
 const Checkout = () => {
   const [cartItems, setcartItems] = useState(null);
@@ -167,14 +168,11 @@ const Checkout = () => {
               </div>
               <hr />
               <div className="col-12 mb-3">
-                <button
-                  className="btn btn-primary w-100"
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  CONTINUE TO CHECKOUT
-                </button>
+                <Link to="/OrderStatus">
+                  <button className="btn btn-primary w-100">
+                    CONTINUE TO CHECKOUT
+                  </button>
+                </Link>
               </div>
             </form>
           </div>

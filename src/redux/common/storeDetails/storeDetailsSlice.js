@@ -2,8 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { baseUrl } from "../../../api/baseUrl";
 import { makeGetRequest } from "../../../api/services";
 
-const url = "GetStoreDetails_DATA";
-
 const initialState = {
   storeDetailsData: [],
   isLoading: null,

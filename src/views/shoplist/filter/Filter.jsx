@@ -16,8 +16,6 @@ const Filter = ({ Category, onFilterChange }) => {
       [val]: !prevState[val],
     }));
   }
-  console.log(ischecked);
-
   return (
     <>
       <div

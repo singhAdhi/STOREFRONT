@@ -38,7 +38,6 @@ const Sort = () => {
     makeGetRequest({ url, body })
       .then(({ data }) => {
         setSortProduct(data);
-        // console.log(data);
       })
       .catch((err) => {
         console.log(err);

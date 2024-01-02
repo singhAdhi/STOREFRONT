@@ -7,17 +7,19 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import ShopNavbar from "../../Shop/shop-nav/ShopNavbar";
 import { useSelector } from "react-redux";
-import { head } from "lodash";
-import axios from "axios";
 import { STORE_ID } from "../../../config";
 import { makeGetRequest } from "../../../api/services";
-import Loading from "../../../components/other/loading/Loading";
+import Shimmer from "../../../components/shimmer/Shimmer";
 
 const ShopList = ({}) => {
   let [originalProduct, setOriginalProduct] = useState([]);
   let [products, setProducts] = useState([]);
   let [Category, setCategory] = useState([]);
+  const [fil, setFil] = useState("");
+  const [loading, setLoading] = useState(true);
+
   const filterData = useSelector((store) => store.filteredDataReducer.value);
+  const history = useNavigate();
   const searchValue = useSelector(
     (store) => store.filteredDataReducer.searchItem
   );
@@ -25,10 +27,8 @@ const ShopList = ({}) => {
     (store) => store.filteredDataReducer.categoryFilter
   );
   const { CATALOG_ID } = useSelector((state) => state.commonReducer);
-  const [fil, setFil] = useState("");
-  const [loading, setLoading] = useState(true);
+
   let cur = filterData.split(" ")[0];
-  // const filterData = useSelector((store) => store.filteredDataReducer.value);
 
   const { id } = useParams();
   const parts = id.split(/[_\s]+/);
@@ -38,8 +38,9 @@ const ShopList = ({}) => {
     parts[0].slice(1).toLowerCase();
 
   useEffect(() => {
-    fetchCategory(cur);
-    fetchProductData(cur);
+    fetchData(cur);
+    // fetchCategory(cur);
+    // fetchProductData(cur);
   }, [cur]);
 
   useEffect(() => {
@@ -82,8 +83,9 @@ const ShopList = ({}) => {
   }, [categoryFilter]);
 
   useEffect(() => {
-    fetchCategory();
-    fetchProductData();
+    fetchData();
+    // fetchCategory();
+    // fetchProductData();
   }, [urlText]);
 
   useEffect(() => {
@@ -91,41 +93,19 @@ const ShopList = ({}) => {
       let filteredProducts = products.filter((item) =>
         item.Name.toLowerCase().includes(searchValue.toLowerCase())
       );
-      console.log(filteredProducts);
       setProducts(filteredProducts);
     } else {
       setProducts(originalProduct);
     }
-    console.log(originalProduct);
   }, [searchValue, originalProduct]);
 
-  let fetchCategory = async (filter) => {
-    const url = `http://localhost:8000/SearchProducts${
-      filter ? filter : urlText
-    }_DATA`;
-
-    axios
-      .get(url)
-      .then((response) => {
-        const data = response.data;
-
-        setCategory(data.Aggregations);
-      })
-      .catch((error) => {
-        // Handle errors here
-        console.error("Error fetching category:", error);
-      });
-  };
-
-  let fetchProductData = async (filter) => {
-    const url = `http://localhost:8000/SearchProducts${
-      filter ? filter : urlText
-    }_DATA`;
-    axios
-      .get(url)
+  let fetchData = async (filter) => {
+    const url = `SearchProducts${filter ? filter : urlText}_DATA`;
+    makeGetRequest({ url })
       .then((response) => {
         const data = response.data;
         setLoading(false);
+        setCategory(data.Aggregations);
         setProducts(data.Products);
         setOriginalProduct(data.Products);
       })
@@ -135,7 +115,35 @@ const ShopList = ({}) => {
       });
   };
 
-  const history = useNavigate();
+  // let fetchCategory = async (filter) => {
+  //   const url = `SearchProducts${filter ? filter : urlText}_DATA`;
+
+  //   makeGetRequest({ url })
+  //     .then((response) => {
+  //       const data = response.data;
+  //       setCategory(data.Aggregations);
+  //     })
+  //     .catch((error) => {
+  //       // Handle errors here
+  //       console.error("Error fetching category:", error);
+  //     });
+  // };
+
+  // let fetchProductData = async (filter) => {
+  //   const url = `SearchProducts${filter ? filter : urlText}_DATA`;
+  //   makeGetRequest({ url })
+  //     .then((response) => {
+  //       const data = response.data;
+  //       setLoading(false);
+  //       setProducts(data.Products);
+  //       setOriginalProduct(data.Products);
+  //     })
+  //     .catch((error) => {
+  //       // Handle errors here
+  //       console.error("Error fetching category:", error);
+  //     });
+  // };
+
   const handleFilterChange = (newFilterData) => {
     setFil(newFilterData);
   };
@@ -174,7 +182,7 @@ const ShopList = ({}) => {
               </button>
             </div>
             <Filter Category={Category} onFilterChange={handleFilterChange} />
-            {loading ? <Loading /> : <Products products={products} />}
+            {loading ? <Shimmer /> : <Products products={products} />}
           </div>
         </div>
       </div>
