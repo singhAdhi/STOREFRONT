@@ -49,55 +49,53 @@ const Filter = ({ Category, onFilterChange }) => {
                   let { Field, Items } = item;
 
                   return (
-                    <>
-                      <div key={i} className="dvCategory accordion-item">
-                        <h2 className="accordion-header">
-                          <button
-                            className="accordion-button heading-sm-semibold"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target={`#collapse${i}`}
-                            aria-expanded="true"
-                            aria-controls={`collapse${i}`}
-                          >
-                            {Field}
-                          </button>
-                        </h2>
-                        <div
-                          id={`collapse${i}`}
-                          className="accordion-collapse collapse"
-                          data-bs-parent="#filterAccordion"
+                    <div key={i} className="dvCategory accordion-item">
+                      <h2 className="accordion-header">
+                        <button
+                          className="accordion-button heading-sm-semibold"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target={`#collapse${i}`}
+                          aria-expanded="true"
+                          aria-controls={`collapse${i}`}
                         >
-                          <div className="accordion-body">
-                            {Items.map((subcategory, i) => {
-                              let { Value } = subcategory;
-                              return (
-                                <div
-                                  key={i}
-                                  className="dvLabel d-flex justify-content-between mb-2"
-                                >
-                                  <label className="checkbox-container d-flex">
-                                    <span className="d-inline-block input">
-                                      <input
-                                        type="checkbox"
-                                        checked={ischecked[Value]}
-                                        onClick={() =>
-                                          handleCheckboxChange(Value)
-                                        }
-                                      />
-                                      <span className="checkmark"></span>
-                                    </span>
-                                    <span className="d-inline-block ms-2 name">
-                                      {Value}
-                                    </span>
-                                  </label>
-                                </div>
-                              );
-                            })}
-                          </div>
+                          {Field}
+                        </button>
+                      </h2>
+                      <div
+                        id={`collapse${i}`}
+                        className="accordion-collapse collapse"
+                        data-bs-parent="#filterAccordion"
+                      >
+                        <div className="accordion-body">
+                          {Items.map((subcategory, i) => {
+                            let { Value } = subcategory;
+                            return (
+                              <div
+                                key={i}
+                                className="dvLabel d-flex justify-content-between mb-2"
+                              >
+                                <label className="checkbox-container d-flex">
+                                  <span className="d-inline-block input">
+                                    <input
+                                      type="checkbox"
+                                      checked={ischecked[Value]}
+                                      onClick={() =>
+                                        handleCheckboxChange(Value)
+                                      }
+                                    />
+                                    <span className="checkmark"></span>
+                                  </span>
+                                  <span className="d-inline-block ms-2 name">
+                                    {Value}
+                                  </span>
+                                </label>
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
-                    </>
+                    </div>
                   );
                 })}
               </div>

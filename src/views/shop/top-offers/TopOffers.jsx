@@ -5,14 +5,16 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Card from "../../../components/card/Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addProducts } from "../../../redux/shop/topoffers/TopOffersSlice";
 import Loading from "../../../components/other/loading/Loading";
 import Error from "../../../components/other/error/Error";
 import { makeGetRequest } from "../../../api/services";
+import { setCategoryFilter } from "../../../redux/shop/filteredData/filteredDataSlice";
 
 const TopOffers = ({ top }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // const { isError, isLoading, isLoadingText, topOffers } = useSelector(
@@ -46,7 +48,10 @@ const TopOffers = ({ top }) => {
   // Extract the second part (index 1) from the array
   const secondPart = parts[1].trim();
   const firstPart = parts[0].trim();
-
+  const handleClick = () => {
+    dispatch(setCategoryFilter(""));
+    navigate(`/shoplist/${firstPart}`);
+  };
   return (
     <>
       <div className="dvTopOffers py-5">
@@ -67,12 +72,9 @@ const TopOffers = ({ top }) => {
               <div className="row">
                 <div className="dvTopOffersSlider px-3">
                   <div className="d-flex justify-content-between align-items-center mb-3">
-                    <Link
-                      to={`/shoplist/${firstPart}`}
-                      className="btn btn-primary"
-                    >
+                    <button onClick={handleClick} className="btn btn-primary">
                       View All
-                    </Link>
+                    </button>
                     <div className="swiper-buttons">
                       <div className="d-flex justify-content-center">
                         <div className="swiper-button-prev-topoffers pe-3">

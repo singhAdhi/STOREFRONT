@@ -5,15 +5,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { newProducts } from "../../../redux/shop/featuredoffers/FeaturedOffersSlice";
 import Loading from "../../../components/other/loading/Loading";
 import Error from "../../../components/other/error/Error";
 import { makeGetRequest } from "../../../api/services";
+import { setCategoryFilter } from "../../../redux/shop/filteredData/filteredDataSlice";
 
 const FeaturedOffers = ({ feature }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // const { featuredOffers, isLoading, isError, isLoadingText } = useSelector(
   //   (state) => state.featuredOffersReducer
   // );
@@ -46,6 +48,10 @@ const FeaturedOffers = ({ feature }) => {
   const secondPart = parts[1].trim();
   const firstPart = parts[0].trim();
 
+  const handleClick = () => {
+    dispatch(setCategoryFilter(""));
+    navigate(`/shoplist/${firstPart}`);
+  };
   return (
     <>
       <div className="dvFeaturedOffers py-5">
@@ -67,12 +73,9 @@ const FeaturedOffers = ({ feature }) => {
               <div className="row">
                 <div className="dvFeaturedOffersSlider px-3">
                   <div className="d-flex justify-content-between align-items-center mb-3">
-                    <Link
-                      to={`/shoplist/${firstPart}`}
-                      className="btn btn-primary"
-                    >
+                    <button onClick={handleClick} className="btn btn-primary">
                       View All
-                    </Link>
+                    </button>
                     <div className="swiper-buttons">
                       <div className="d-flex justify-content-center">
                         <div className="swiper-button-prev-featured pe-3">

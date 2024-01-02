@@ -12,7 +12,6 @@ const Products = ({ products }) => {
           {products.length > 0 ? (
             products.map((item) => {
               const { Id } = item;
-              console.log(item.Id);
               return (
                 <div key={item.Id} className="col-md-4 mb-3">
                   <Card id={item.Id} {...item} img={item.PrimaryImage.Url} />

@@ -5,21 +5,20 @@ const Shimmer = () => {
   const numberOfCards = 6;
 
   const cardArray = Array.from({ length: numberOfCards });
-  console.log(cardArray);
   return (
     <div className="d-flex flex-wrap">
-      {cardArray.map((index) => {
+      {cardArray.map((index, i) => {
         return (
-          <div class="card" key={index}>
-            <div class="shimmerBG media"></div>
-            <div class="p-32">
-              <div class="shimmerBG title-line"></div>
-              <div class="shimmerBG title-line end"></div>
-              <div class="shimmerBG content-line m-t-24"></div>
-              <div class="shimmerBG content-line"></div>
-              <div class="shimmerBG content-line"></div>
-              <div class="shimmerBG content-line"></div>
-              <div class="shimmerBG content-line end"></div>
+          <div className="card" key={i}>
+            <div className="shimmerBG media"></div>
+            <div className="p-32">
+              <div className="shimmerBG title-line"></div>
+              <div className="shimmerBG title-line end"></div>
+              <div className="shimmerBG content-line m-t-24"></div>
+              <div className="shimmerBG content-line"></div>
+              <div className="shimmerBG content-line"></div>
+              <div className="shimmerBG content-line"></div>
+              <div className="shimmerBG content-line end"></div>
             </div>
           </div>
         );

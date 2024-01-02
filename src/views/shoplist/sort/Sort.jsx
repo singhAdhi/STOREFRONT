@@ -8,7 +8,6 @@ const Sort = () => {
   const [sortOption, setSortOption] = useState("");
   const [sortProduct, setSortProduct] = useState([]);
   const dispatch = useDispatch();
-  console.log(sortOption);
 
   useEffect(() => {
     let body = {
@@ -58,14 +57,14 @@ const Sort = () => {
             aria-label="Default select example"
             onChange={(e) => handleChange(e.target.value)}
           >
-            <option defaultValue>Sort By</option>
-            <option Value="Best">Best Selling</option>
-            <option Value="Ascending">Ascending</option>
-            <option Value="Descending">Descending</option>
-            <option Value="PriceLowToHigh">Price Low to High</option>
-            <option Value="PriceHighToLow">Price High to Low</option>
-            <option Value="DateNewtoOld">Date New to Old</option>
-            <option Value="DateOldtoNew">Date Old to New</option>
+            <option defaultValue={""}>Sort By</option>
+            <option value="Best">Best Selling</option>
+            <option value="Ascending">Ascending</option>
+            <option value="Descending">Descending</option>
+            <option value="PriceLowToHigh">Price Low to High</option>
+            <option value="PriceHighToLow">Price High to Low</option>
+            <option value="DateNewtoOld">Date New to Old</option>
+            <option value="DateOldtoNew">Date Old to New</option>
           </select>
         </div>
       </div>

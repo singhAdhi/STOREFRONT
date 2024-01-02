@@ -44,6 +44,9 @@ const ShopList = ({}) => {
   }, [cur]);
 
   useEffect(() => {
+    setLoading(true);
+    if (categoryFilter == "") return;
+    console.log("categoryFilter=> ", categoryFilter);
     let body = {
       StoreId: STORE_ID,
       CatalogId: CATALOG_ID,
@@ -68,7 +71,7 @@ const ShopList = ({}) => {
       GeoLocationPropertyName: null,
     };
     // let url = `/api/StoreFront/SearchProducts`;
-    let url = `CategoryMenu_DATA`;
+    let url = "src/dummyApiData/shop/SearchProductsBaby_DATA.json";
     makeGetRequest({ url, body })
       .then(({ data }) => {
         if (data.totalCount > 0) {
@@ -79,7 +82,8 @@ const ShopList = ({}) => {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [categoryFilter]);
 
   useEffect(() => {
@@ -100,49 +104,20 @@ const ShopList = ({}) => {
   }, [searchValue, originalProduct]);
 
   let fetchData = async (filter) => {
-    const url = `SearchProducts${filter ? filter : urlText}_DATA`;
+    let filterName = `SearchProducts${filter ? filter : urlText}_DATA`;
+    const url = `src/dummyApiData/shop/${filterName}.json`;
     makeGetRequest({ url })
-      .then((response) => {
-        const data = response.data;
+      .then(({ data }) => {
         setLoading(false);
-        setCategory(data.Aggregations);
-        setProducts(data.Products);
-        setOriginalProduct(data.Products);
+        setCategory(data[filterName].Aggregations);
+        setProducts(data[filterName].Products);
+        setOriginalProduct(data[filterName].Products);
       })
       .catch((error) => {
         // Handle errors here
         console.error("Error fetching category:", error);
       });
   };
-
-  // let fetchCategory = async (filter) => {
-  //   const url = `SearchProducts${filter ? filter : urlText}_DATA`;
-
-  //   makeGetRequest({ url })
-  //     .then((response) => {
-  //       const data = response.data;
-  //       setCategory(data.Aggregations);
-  //     })
-  //     .catch((error) => {
-  //       // Handle errors here
-  //       console.error("Error fetching category:", error);
-  //     });
-  // };
-
-  // let fetchProductData = async (filter) => {
-  //   const url = `SearchProducts${filter ? filter : urlText}_DATA`;
-  //   makeGetRequest({ url })
-  //     .then((response) => {
-  //       const data = response.data;
-  //       setLoading(false);
-  //       setProducts(data.Products);
-  //       setOriginalProduct(data.Products);
-  //     })
-  //     .catch((error) => {
-  //       // Handle errors here
-  //       console.error("Error fetching category:", error);
-  //     });
-  // };
 
   const handleFilterChange = (newFilterData) => {
     setFil(newFilterData);
@@ -161,6 +136,9 @@ const ShopList = ({}) => {
               </li>
               <li className="breadcrumb-item">
                 <Link to="/">Home</Link>
+              </li>
+              <li className="breadcrumb-item">
+                <Link to="/shop">Shop</Link>
               </li>
               <li className="breadcrumb-item active">Shoplist</li>
             </ul>

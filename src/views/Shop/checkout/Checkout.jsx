@@ -5,22 +5,24 @@ import { fetchcartDetails } from "../../../redux/common/cartDetails/cartDetailsS
 import { CustomerId, CustomerName, STORE_ID } from "../../../config";
 import { Link, useNavigate } from "react-router-dom";
 import OrderStatus from "../../../components/orderStatus/OrderStatus";
+import { makeGetRequest } from "../../../api/services";
+import Loading from "../../../components/other/loading/Loading";
 
 const Checkout = () => {
   const [cartItems, setcartItems] = useState(null);
   const [cartData, setCartData] = useState(null);
   let dispatch = useDispatch();
   const history = useNavigate();
+  const [isloading, setisloading] = useState(false);
 
   useEffect(() => {
     getCartDetails();
   }, []);
 
   const getCartDetails = () => {
+    setisloading(true);
     // // Below is API impl
-    // return;
     // let url = `/api/StoreFront/SearchCart`;
-    let url = `SearchCart_DATA`;
     let body = {
       StoreId: STORE_ID,
       Name: "default",
@@ -30,14 +32,16 @@ const Checkout = () => {
       CurrencyCode: "AED",
       LanguageCode: "en-US",
     };
-    dispatch(fetchcartDetails({ url, body }))
-      .then(({ payload }) => {
-        // dispatch(addCartId(payload.Id));
-        // setItems(payload.Items);
-        setCartData(payload);
+    let url = `src/dummyApiData/shop/SearchCart_DATA.json`;
+    makeGetRequest({ url, body })
+      .then(({ data }) => {
+        setCartData(data.SearchCart_DATA);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setisloading(false);
       });
 
     //this is temp impl
@@ -187,31 +191,35 @@ const Checkout = () => {
                   {cartItems && cartItems.length}
                 </p>
               </div>
-              <div className="bg-body-secondary p-2">
-                {cartItems &&
-                  cartItems.map((item) => (
-                    <div
-                      className="d-flex justify-content-between border-bottom border-secondary-subtle my-3"
-                      key={item.Id}
-                    >
-                      <p>{item.Name}</p>
-                      <p
-                        className="rounded-circle px-2"
-                        style={{ whiteSpace: "nowrap" }}
+              {isloading && <Loading />}
+              {!isloading && (
+                <div className="bg-body-secondary p-2">
+                  {cartItems &&
+                    cartItems.map((item) => (
+                      <div
+                        className="d-flex justify-content-between border-bottom border-secondary-subtle my-3"
+                        key={item.Id}
                       >
-                        {"Qty: "}
-                        {item.Price && item.Price.ActualPrice.Amount}{" "}
-                        {" Giift-Points"}
-                      </p>
-                    </div>
-                  ))}
-                <div className="d-flex justify-content-between">
-                  <h5 className="fw-semibold">Total</h5>
-                  <p className="rounded-circle px-2">
-                    {cartData && cartData.Price.Total.Amount} {" Giift-Points"}
-                  </p>
+                        <p>{item.Name}</p>
+                        <p
+                          className="rounded-circle px-2"
+                          style={{ whiteSpace: "nowrap" }}
+                        >
+                          {"Qty: "}
+                          {item.Price && item.Price.ActualPrice.Amount}{" "}
+                          {" Giift-Points"}
+                        </p>
+                      </div>
+                    ))}
+                  <div className="d-flex justify-content-between">
+                    <h5 className="fw-semibold">Total</h5>
+                    <p className="rounded-circle px-2">
+                      {cartData && cartData.Price.Total.Amount}{" "}
+                      {" Giift-Points"}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
