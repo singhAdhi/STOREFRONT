@@ -40,7 +40,7 @@ export const cartDetailsSlice = createSlice({
         (state.isLoading = false),
           (state.isError = null),
           (state.cartDetails = payload),
-          (state.cartCount = payload.Items.length),
+          // (state.cartCount = payload.Items.length),
           (state.isLoadingText = "Cart Details");
       })
       .addCase(fetchcartDetails.rejected, (state) => {

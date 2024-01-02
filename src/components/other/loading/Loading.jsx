@@ -8,9 +8,12 @@ const Loading = ({ isLoadingText }) => {
         <div className="container-lg">
           <div className="row">
             <div className="col-12 text-center">
-              <h2 className="heading-xl">
+              {/* <h2 className="heading-xl">
                 Please wait {isLoadingText} is Loading...
-              </h2>
+              </h2> */}
+              <div className="heading-xl spinner-grow" role="status">
+                <span className="sr-only"></span>
+              </div>
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ const Error = ({ isError, isLoadingText }) => {
           <div className="row">
             <div className="col-12 text-center">
               <h2 className="alert alert-danger">
-                Error fetching {isError ? isLoadingText : null}.
+                {isError ? isLoadingText : null}.
               </h2>
             </div>
           </div>

@@ -13,14 +13,19 @@ import { fetchRedemptionMenu } from "../../redux/home/RedemptionMenuSlice";
 import { CustomerId, CustomerName, STORE_ID } from "../../config";
 import { makeGetRequest } from "../../api/services";
 import { fetchcartDetails } from "../../redux/common/cartDetails/cartDetailsSlice";
+import axios from "axios";
+import Loading from "../../components/other/loading/Loading";
 
 const Index = () => {
   const dispatch = useDispatch();
+  const [isloading, setisloading] = useState(false);
+  const [redemptionMenus, setredemptionMenus] = useState(null);
   const { isLoading, isError, isLoadingText, redemptionMenuLinks } =
     useSelector((state) => state.redemptionMenuReducer);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // GetAuthToken();
     GetStoreDetails();
     GetCartDetails();
   }, []);
@@ -36,7 +41,6 @@ const Index = () => {
 
   const GetCartDetails = () => {
     // let url = `/api/StoreFront/SearchCart`;
-    let url = `SearchCart_DATA`;
     let body = {
       StoreId: STORE_ID,
       Name: "default",
@@ -46,9 +50,10 @@ const Index = () => {
       CurrencyCode: "AED",
       LanguageCode: "en-US",
     };
-    dispatch(fetchcartDetails({ url, body }))
+    let url = "src/dummyApiData/shop/SearchCart_DATA.json";
+    makeGetRequest({ url, body })
       .then(({ data }) => {
-        dispatch(addCartId(data.Id));
+        dispatch(addCartId(data.SearchCart_DATA.Id));
       })
       .catch((err) => {
         console.log(err);
@@ -56,12 +61,13 @@ const Index = () => {
   };
 
   const GetStoreDetails = () => {
-    let url = `/api/StoreFront/GetStoreDetails?StoreId=${STORE_ID}`;
-
-    dispatch(storeDetails({ url }))
-      .then(({ payload }) => {
-        dispatch(addCatalogId(payload.Catalog));
-        FetchSearchCategories(payload.Catalog);
+    setisloading(true);
+    // let url = `/api/StoreFront/GetStoreDetails?StoreId=${STORE_ID}`;
+    let url = "src/dummyApiData/shop/GetStoreDetails_DATA.json";
+    makeGetRequest({ url })
+      .then(({ data }) => {
+        dispatch(addCatalogId(data.GetStoreDetails_DATA.Catalog));
+        FetchSearchCategories(data.GetStoreDetails_DATA.Catalog);
       })
       .catch((err) => {
         console.log(err);
@@ -76,19 +82,26 @@ const Index = () => {
       ResponseGroup: "Full",
       Terms: [],
     };
-    let url = `/api/StoreFront/SearchCategories`;
+    // let url = `/api/StoreFront/SearchCategories`;
 
-    dispatch(fetchRedemptionMenu({ url, body }));
+    let url = "src/dummyApiData/shop/SearchCategories_DATA.json";
+    makeGetRequest({ url, body })
+      .then(({ data }) => {
+        setredemptionMenus(data.SearchCategories_DATA);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setisloading(false);
+      });
   };
 
   return (
     <>
       <HeroSlider />
-      {redemptionMenuLinks && (
-        <RedemptionMenu
-          {...{ isLoading, isError, isLoadingText, redemptionMenuLinks }}
-        />
-      )}
+      {redemptionMenus && <RedemptionMenu redemptionMenus={redemptionMenus} />}
+      {isloading && <Loading />}
       <Welcome />
       {/* <Vouchers />
       <ShopDeals /> */}

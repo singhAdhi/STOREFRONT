@@ -5,29 +5,8 @@ import RedempMenu from "../../../components/redempmenu/RedempMenu";
 import { useDispatch } from "react-redux";
 import { addOutline } from "../../../redux/common";
 
-const RedemptionMenu = ({
-  isLoading,
-  isError,
-  isLoadingText,
-  redemptionMenuLinks,
-}) => {
+const RedemptionMenu = ({ redemptionMenus }) => {
   const dispatch = useDispatch();
-
-  if (isLoading) {
-    return (
-      <>
-        <Loading isLoadingText={isLoadingText} />
-      </>
-    );
-  }
-
-  if (isError) {
-    return (
-      <>
-        <Error isError={isError} isLoadingText={isLoadingText} />
-      </>
-    );
-  }
 
   const handleClick = (item) => {
     dispatch(addOutline(item.Id));
@@ -42,19 +21,27 @@ const RedemptionMenu = ({
               <h2 className="heading-xl">Redemption Options</h2>
               <p>Lorem ipsum dolor sit amet.</p>
             </div>
-            {redemptionMenuLinks &&
-              redemptionMenuLinks
-                .filter((item) => item.ParentId === null)
-                .map((item) => {
-                  const { Id } = item;
-                  return (
-                    <RedempMenu
-                      key={Id}
-                      {...item}
-                      handleClick={() => handleClick(item)}
-                    />
-                  );
-                })}
+            {redemptionMenus.length > 0 ? (
+              <>
+                {redemptionMenus
+                  .filter((item) => item.ParentId === null)
+                  .map((item) => {
+                    const { Id } = item;
+                    return (
+                      <RedempMenu
+                        key={Id}
+                        {...item}
+                        handleClick={() => handleClick(item)}
+                      />
+                    );
+                  })}
+              </>
+            ) : (
+              <Error
+                isError={true}
+                isLoadingText={"Redemption menu not found"}
+              />
+            )}
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from "./axios";
 import { BASE_URL } from "../config";
 
 const makeGetRequest = async ({ url, body }) => {
   return await axios
-    .get(`${BASE_URL}/${url}`, body ? body : null)
+    .get(`${url}`, body ? body : null)
     .then((result) => {
       return result;
     })

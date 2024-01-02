@@ -9,6 +9,7 @@ import {
   setCategoryFilter,
 } from "../../../redux/shop/filteredData/filteredDataSlice";
 import { CiShoppingCart } from "react-icons/ci";
+import { makeGetRequest } from "../../../api/services";
 
 const ShopNavbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,7 +25,6 @@ const ShopNavbar = () => {
   useEffect(() => {
     FetchSearchCategories(CATALOG_ID);
     let timer = setTimeout(() => {
-      console.log(searchQuery);
       dispatch(searchItem(searchQuery));
     }, 1000);
     return () => {
@@ -40,16 +40,18 @@ const ShopNavbar = () => {
       ResponseGroup: "Full",
       Terms: [],
     };
-    let url = `/api/StoreFront/SearchCategories`;
-
-    dispatch(fetchRedemptionMenu({ url, body }))
-      .then(({ payload }) => {
-        let shopcatlog = payload.find(
-          (x) => x.Id == localStorage.getItem("OUTLINE")
+    // let url = `/api/StoreFront/SearchCategories`;
+    let url = "src/dummyApiData/shop/SearchCategories_DATA.json";
+    makeGetRequest({ url })
+      .then(({ data }) => {
+        let shopcatlog = data.SearchCategories_DATA.find(
+          (x) => x.Id == OUTLINE
         );
-        bindMenu(shopcatlog.Id, payload);
+        bindMenu(shopcatlog.Id, data.SearchCategories_DATA);
       })
-      .catch(() => {});
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   function bindMenu(categoryId, categories) {
