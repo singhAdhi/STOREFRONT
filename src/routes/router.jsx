@@ -10,6 +10,7 @@ import Cart from "../views/cart/Cart";
 import PageNotFound from "../components/other/pagenotfound/PageNotFound";
 import Checkout from "../views/Shop/checkout/Checkout";
 import OrderStatus from "../components/orderStatus/OrderStatus";
+import HotelList from "../views/hotel/hotelList/HotelList";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,6 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/FlightSearch", element: <FlightSearch /> },
-      { path: "/HotelSearch", element: <HotelSearch /> },
       { path: "/Shop", element: <Shop /> },
       { path: "/ShopList", element: <ShopList /> },
       { path: "/ShopList/:id", element: <ShopList /> },
@@ -27,6 +27,20 @@ const router = createBrowserRouter([
       { path: "/Checkout", element: <Checkout /> },
       { path: "/OrderStatus", element: <OrderStatus /> },
       { path: "*", element: <PageNotFound /> },
+    ],
+  },
+  {
+    path: "/Hotel",
+    element: <RootLayout />,
+    children: [
+      {
+        path: "/Hotel",
+        element: <HotelSearch />,
+      },
+      {
+        path: "/HotelList",
+        element: <HotelList />,
+      },
     ],
   },
 ]);

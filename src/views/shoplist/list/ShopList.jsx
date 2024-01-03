@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import "./shop-list.css";
 import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 import Filter from "../filter/Filter";
@@ -28,21 +28,53 @@ const ShopList = ({}) => {
   );
   const { CATALOG_ID } = useSelector((state) => state.commonReducer);
 
-  let cur = filterData.split(" ")[0];
-
   const { id } = useParams();
-  const parts = id.split(/[_\s]+/);
 
-  const urlText =
-    parts[0].toLowerCase().charAt(0).toUpperCase() +
-    parts[0].slice(1).toLowerCase();
+  const parts = useMemo(() => id.split(/[_\s]+/), [id]);
+
+  const urlText = useMemo(
+    () =>
+      parts[0].toLowerCase().charAt(0).toUpperCase() +
+      parts[0].slice(1).toLowerCase(),
+    [parts]
+  );
+
+  const cur = useMemo(() => filterData.split(" ")[0], [filterData]);
 
   useEffect(() => {
     fetchData(cur);
-    // fetchCategory(cur);
-    // fetchProductData(cur);
   }, [cur]);
 
+  useEffect(() => {
+    fetchData();
+  }, [urlText]);
+
+  useEffect(() => {
+    if (searchValue) {
+      let filteredProducts = products.filter((item) =>
+        item.Name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      setProducts(filteredProducts);
+    } else {
+      setProducts(originalProduct);
+    }
+  }, [searchValue, originalProduct]);
+
+  let fetchData = async (filter) => {
+    let filterName = `SearchProducts${filter ? filter : urlText}_DATA`;
+    const url = `src/dummyApiData/shop/${filterName}.json`;
+    makeGetRequest({ url })
+      .then(({ data }) => {
+        setLoading(false);
+        setCategory(data[filterName].Aggregations);
+        setProducts(data[filterName].Products);
+        setOriginalProduct(data[filterName].Products);
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.error("Error fetching category:", error);
+      });
+  };
   useEffect(() => {
     setLoading(true);
     if (categoryFilter == "") return;
@@ -85,40 +117,6 @@ const ShopList = ({}) => {
       })
       .finally(() => setLoading(false));
   }, [categoryFilter]);
-
-  useEffect(() => {
-    fetchData();
-    // fetchCategory();
-    // fetchProductData();
-  }, [urlText]);
-
-  useEffect(() => {
-    if (searchValue) {
-      let filteredProducts = products.filter((item) =>
-        item.Name.toLowerCase().includes(searchValue.toLowerCase())
-      );
-      setProducts(filteredProducts);
-    } else {
-      setProducts(originalProduct);
-    }
-  }, [searchValue, originalProduct]);
-
-  let fetchData = async (filter) => {
-    let filterName = `SearchProducts${filter ? filter : urlText}_DATA`;
-    const url = `src/dummyApiData/shop/${filterName}.json`;
-    makeGetRequest({ url })
-      .then(({ data }) => {
-        setLoading(false);
-        setCategory(data[filterName].Aggregations);
-        setProducts(data[filterName].Products);
-        setOriginalProduct(data[filterName].Products);
-      })
-      .catch((error) => {
-        // Handle errors here
-        console.error("Error fetching category:", error);
-      });
-  };
-
   const handleFilterChange = (newFilterData) => {
     setFil(newFilterData);
   };

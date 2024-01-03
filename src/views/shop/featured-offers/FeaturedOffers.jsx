@@ -126,6 +126,7 @@ const FeaturedOffers = ({ feature }) => {
                                 id={Id}
                                 Name={item.Name}
                                 img={item.PrimaryImage.Url}
+                                {...item}
                               />
                             </SwiperSlide>
                           );

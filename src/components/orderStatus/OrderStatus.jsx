@@ -17,7 +17,7 @@ const OrderStatus = () => {
                   classNameName="mb-4"
                 />
 
-                <h2>
+                <h2 className="fs-4">
                   Your order is placed successfully, an email confirmation will
                   be sent to your Email address.
                 </h2>

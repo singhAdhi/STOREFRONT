@@ -125,6 +125,7 @@ const TopOffers = ({ top }) => {
                                 id={Id}
                                 Name={item.Name}
                                 img={item.PrimaryImage.Url}
+                                {...item}
                               />
                             </SwiperSlide>
                           );
