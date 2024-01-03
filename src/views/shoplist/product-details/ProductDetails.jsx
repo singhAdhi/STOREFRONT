@@ -24,7 +24,7 @@ import {
 } from "../../../redux/common/cartDetails/cartDetailsSlice";
 import { addCartId } from "../../../redux/common";
 import Loading from "../../../components/other/loading/Loading";
-
+import { enqueueSnackbar } from "notistack";
 const ProductDetails = () => {
   const { CATALOG_ID, CART_ID } = useSelector((state) => state.commonReducer);
   const [productData, setproductData] = useState(null);
@@ -120,6 +120,7 @@ const ProductDetails = () => {
     //this is temp impl
     SettempCart(cartItems);
     dispatch(addCartCount(cartItems.length));
+    enqueueSnackbar("Item added to cart", { variant: "success" });
     return;
     // Below is API impl
     let url = `/api/StoreFront/AddOrUpdateItemInCart`;

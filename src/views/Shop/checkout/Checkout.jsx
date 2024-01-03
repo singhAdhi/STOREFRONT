@@ -52,20 +52,27 @@ const Checkout = () => {
     let cart = localStorage.getItem("cart");
     if (cart) {
       let items = JSON.parse(cart);
-      import("../../../../storefront.json")
-        .then(({ SearchProductsFeatured_DATA: { Products } }) => {
-          setcartItems(
-            items
-              .map(({ ProductId, Quantity }) => {
-                let prod = Products.find((x) => x.Id === ProductId);
-                if (prod) {
-                  prod.Quantity = Quantity;
-                  return prod;
-                }
-              })
-              .filter((prod) => prod != undefined)
-          );
-        })
+      let url = "src/dummyApiData/shop/SearchProductsFeatured_DATA.json";
+      makeGetRequest({ url })
+        .then(
+          ({
+            data: {
+              SearchProductsFeatured_DATA: { Products },
+            },
+          }) => {
+            setcartItems(
+              items
+                .map(({ ProductId, Quantity }) => {
+                  let prod = Products.find((x) => x.Id === ProductId);
+                  if (prod) {
+                    prod.Quantity = Quantity;
+                    return prod;
+                  }
+                })
+                .filter((prod) => prod != undefined)
+            );
+          }
+        )
         .catch((err) => {
           console.log(err);
         });
