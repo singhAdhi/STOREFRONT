@@ -1,0 +1,754 @@
+{
+  "GetHotelInformation_DATA": {
+    "results": {
+      "HotelInformation": {
+        "hotelid": "1197379",
+        "otherinfo": {
+          "Description": "<p>HeadLine : Near Juhu Beach</p><p>Location : Ramada Plaza by Wyndham Palm Grove is centrally located in Mumbai, a 3-minute walk from Juhu Beach and a 4-minute drive from Kokilaben Dhirubhai Ambani Hospital & Medical Research Institute.  This 5-star hotel is 6.2 mi (9.9 km) from MMRDA Grounds and 6.3 mi (10.1 km) from U.S. Consulate General.</p><p>Rooms : Make yourself at home in one of the 115 air-conditioned rooms featuring minibars and plasma televisions. Your memory foam bed comes with premium bedding. Wired and wireless Internet access is complimentary, while 40-inch LED televisions with satellite programming provide entertainment. Private bathrooms with shower/tub combinations feature designer toiletries and hair dryers.</p><p>Dining : Grab a bite at The Oriental Bowl, one of the hotel s 2 restaurants, or stay in and take advantage of the 24-hour room service. Snacks are also available at the coffee shop/cafe. Unwind at the end of the day with a drink at the bar/lounge or the poolside bar. Buffet breakfasts are available daily from 7:30 AM to 10:30 AM for a fee.</p><p>CheckIn Instructions : <ul>  <li>Extra-person charges may apply and vary depending on property policy</li><li>Government-issued photo identification and a credit card, debit card, or cash deposit may be required at check-in for incidental charges</li><li>Special requests are subject to availability upon check-in and may incur additional charges; special requests cannot be guaranteed</li><li>This property accepts credit cards; cash is not accepted</li><li>This property uses a grey water recycling system and eco-friendly cleaning products</li><li>Please note that cultural norms and guest policies may differ by country and by property; the policies listed are provided by the property</li>  </ul></p><p>Special Instructions : This property offers transfers from the airport (surcharges may apply). To arrange pick-up, guests must contact the property 24 hours prior to arrival, using the contact information on the booking confirmation. Front desk staff will greet guests on arrival.</p>&nbsp;<br/><b>Disclaimer notification: Amenities are subject to availability and may be chargeable as per the hotel policy.</b>",
+          "numofrooms": "",
+          "numoffloors": "",
+          "locationinfo": {
+            "destinationid": "",
+            "latitude": "19.098228",
+            "longitude": "72.82687"
+          },
+          "policyinfo": {
+            "checkintime": "",
+            "checkouttime": ""
+          },
+          "imageinfo": [
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOcv0gVavACN7XOmFsGOzxu",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOcv0gVavACN7XOmFsGOzxu",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMOfXZjwS1a/GZ8ZO8T7vQB",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMOfXZjwS1a/GZ8ZO8T7vQB",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOufwmmqtjxo9KZ02R1akm5",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOufwmmqtjxo9KZ02R1akm5",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVONNw0UHQG8NbwezUd05ft4L",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVONNw0UHQG8NbwezUd05ft4L",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOyOw+Ec04/+AvESZHKZF+9",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOyOw+Ec04/+AvESZHKZF+9",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOf0ntfoj+KuBltjjx6A+VG",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOf0ntfoj+KuBltjjx6A+VG",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOoXLhHl9M6ngpjFt9MYnyA",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOoXLhHl9M6ngpjFt9MYnyA",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOA0BIymfMsmPwdeyYOh6qk",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOA0BIymfMsmPwdeyYOh6qk",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOP+rqJiKrsudWADPu6NgvIF",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOP+rqJiKrsudWADPu6NgvIF",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOBMCEkAhYIvbxshbJYOKj6",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOBMCEkAhYIvbxshbJYOKj6",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOP4krwyqr3Q6xQaPgRFMeaE",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOP4krwyqr3Q6xQaPgRFMeaE",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVONhsgSm6nxu6e6QSl2k/Rwd",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVONhsgSm6nxu6e6QSl2k/Rwd",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOORP5c3vsRnhX8EtIMIeH4C",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOORP5c3vsRnhX8EtIMIeH4C",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOALnOQmPUYeMCfdboDMhUY",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOALnOQmPUYeMCfdboDMhUY",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMzwd+jtT9uMFHEHDcQP3aX",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMzwd+jtT9uMFHEHDcQP3aX",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOP+IoAbnR33uR8DMwi0de++",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOP+IoAbnR33uR8DMwi0de++",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOrXrc66DVaSZoeO3E76zXe",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOrXrc66DVaSZoeO3E76zXe",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPfyb/HUOQB/eYEvQXkodJx",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPfyb/HUOQB/eYEvQXkodJx",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVON8W5pN1xiWsKAS7ixkt8Qk",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVON8W5pN1xiWsKAS7ixkt8Qk",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOZwYkdUJMe5Ts872ehItPL",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOZwYkdUJMe5Ts872ehItPL",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVONZpR1ZZ7BgRiqBPHhCAmLS",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVONZpR1ZZ7BgRiqBPHhCAmLS",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVONclA7Gvdbnjpd1A89SHiXe",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVONclA7Gvdbnjpd1A89SHiXe",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMx/tPDuLtj0HMYZ7rUHuLz",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMx/tPDuLtj0HMYZ7rUHuLz",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOq53ZuggetbJeUbwSMJ4jE",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOq53ZuggetbJeUbwSMJ4jE",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPqNkxglg5aXRKqLLuty8PE",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPqNkxglg5aXRKqLLuty8PE",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPeCeEcaO2qletDrKVd60ID",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPeCeEcaO2qletDrKVd60ID",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPZeXFbjToBGpy2wmP2VgBQ",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPZeXFbjToBGpy2wmP2VgBQ",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMktUSA3QECPe/3raABcbAY",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMktUSA3QECPe/3raABcbAY",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPei0D00geXk8EtbKuh5adW",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPei0D00geXk8EtbKuh5adW",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMko/i/VvwSrfJ0iZJHEOfS",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMko/i/VvwSrfJ0iZJHEOfS",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMTGov2au2Ampo4iNofuLf3",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMTGov2au2Ampo4iNofuLf3",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOM8whIw1CsSXsWzaoB5E1r1",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOM8whIw1CsSXsWzaoB5E1r1",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOOiomTLA20IIIR6VklqPiA",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOOiomTLA20IIIR6VklqPiA",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPvKgy2qYk+0uLN6wnG+aEq",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPvKgy2qYk+0uLN6wnG+aEq",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMW/GskEtqsuU6Uvov+y2go",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMW/GskEtqsuU6Uvov+y2go",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOP4nC/h87CcGOD/7+0N+3DT",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOP4nC/h87CcGOD/7+0N+3DT",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPC108TPJ8DBUHZsuFPt51T",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPC108TPJ8DBUHZsuFPt51T",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOORR2oJ+0HKHACH3cOIFlXo",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOORR2oJ+0HKHACH3cOIFlXo",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMZ5mbrjUzboPD5uCngGpva",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMZ5mbrjUzboPD5uCngGpva",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMAxU8qkX7NunDHsIcQX0gM",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOMAxU8qkX7NunDHsIcQX0gM",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPUqKKRQ8PpA/NJYhajCdXjLXPEl5N6WDw0PmTWLqqucw==",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPUqKKRQ8PpA/NJYhajCdXjLXPEl5N6WDw0PmTWLqqucw==",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPvYFMw5NEQd3KcCdljG7zq",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOPvYFMw5NEQd3KcCdljG7zq",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOYpijY5ssXVaweXIX77H7n",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVOOYpijY5ssXVaweXIX77H7n",
+              "imagecategory": "",
+              "imagecaption": ""
+            },
+            {
+              "wideangleimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVONNr66hS+LwhavN01QJhLif",
+              "thumbnailimageurl": "https://www.tboholidays.com//imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLVm2rNwwerpVSYVL+Bl+tzv844KRwhRVONNr66hS+LwhavN01QJhLif",
+              "imagecategory": "",
+              "imagecaption": ""
+            }
+          ]
+        },
+        "basicinfo": [
+          {
+            "hotelname": "Ramada Plaza Palm Grove",
+            "minhotelprice": {
+              "TotalPrice": 0.0,
+              "Currency": null
+            },
+            "address": "Juhu Beach; Juhu, Juhu400049 Mumbai, Mumbai, 400049, India",
+            "locality": "",
+            "city": "Mumbai",
+            "state": "",
+            "country": "India",
+            "countrycode": "India",
+            "zip": "400049",
+            "chain": "",
+            "overview": "",
+            "thumbnailimage": "Ramada Plaza Palm Grove",
+            "isveg": "",
+            "starrating": "5",
+            "rateinfo": {
+              "highrate": "",
+              "lowrate": "",
+              "currency": "",
+              "ratedisclaimer": ""
+            },
+            "communicationinfo": {
+              "phone": "91-22-26112323",
+              "fax": "91-22-26113682",
+              "email": "",
+              "website": ""
+            },
+            "hotelamenities": {
+              "Amenities": [
+                {
+                  "category": "General",
+                  "Amenities": {
+                    "hotelamenity": [
+                      {
+                        "Value": "Reusable coffee/tea filters"
+                      },
+                      {
+                        "Value": "Wheelchair-accessible on-site restaurant"
+                      },
+                      {
+                        "Value": "Grey water recycling system"
+                      },
+                      {
+                        "Value": "Vegetarian menu options available"
+                      },
+                      {
+                        "Value": "Sign language-capable staff"
+                      },
+                      {
+                        "Value": "Horse riding nearby"
+                      },
+                      {
+                        "Value": "Visual alarms in hallways"
+                      },
+                      {
+                        "Value": "Handrails in stairways"
+                      },
+                      {
+                        "Value": "Handrails in hallways"
+                      },
+                      {
+                        "Value": "Conference center"
+                      },
+                      {
+                        "Value": "Wheelchairs available on site"
+                      },
+                      {
+                        "Value": "Breakfast available (surcharge)"
+                      },
+                      {
+                        "Value": "Secured bicycle storage"
+                      },
+                      {
+                        "Value": "Wheelchair-accessible meeting spaces/business center"
+                      },
+                      {
+                        "Value": "Number of coffee shops/cafes - 1"
+                      },
+                      {
+                        "Value": "Laundry facilities"
+                      },
+                      {
+                        "Value": "elevator"
+                      },
+                      {
+                        "Value": "Fitness facilities"
+                      },
+                      {
+                        "Value": "Double-glazing on all windows"
+                      },
+                      {
+                        "Value": "Locally-sourced food on site (80% or more)"
+                      },
+                      {
+                        "Value": "Bicycle rentals on site"
+                      },
+                      {
+                        "Value": "Sustainability/community reinvestment (10% revenue or more)"
+                      },
+                      {
+                        "Value": "Guest education on local ecosystems and culture"
+                      },
+                      {
+                        "Value": "Organic food"
+                      },
+                      {
+                        "Value": "Showcase for local artists"
+                      },
+                      {
+                        "Value": "Wheelchair-accessible concierge desk"
+                      },
+                      {
+                        "Value": "Locally-owned & organized tours & activities"
+                      },
+                      {
+                        "Value": "Express check-in"
+                      },
+                      {
+                        "Value": "Wheelchair-accessible van parking"
+                      },
+                      {
+                        "Value": "Wheelchair-accessible path to elevator"
+                      },
+                      {
+                        "Value": "Valet for wheelchair-equipped vehicle"
+                      },
+                      {
+                        "Value": "Babysitting or childcare (surcharge)"
+                      },
+                      {
+                        "Value": "Eco-friendly cleaning products used"
+                      },
+                      {
+                        "Value": "Bicycle cleaning area"
+                      },
+                      {
+                        "Value": "Free wired Internet"
+                      },
+                      {
+                        "Value": "Electric bicycle charging station"
+                      },
+                      {
+                        "Value": "Free WiFi"
+                      },
+                      {
+                        "Value": "Number of bars/lounges - 1"
+                      },
+                      {
+                        "Value": "Bicycle parking available"
+                      },
+                      {
+                        "Value": "Number of spa tubs - 1"
+                      },
+                      {
+                        "Value": "Number of poolside bars - 1"
+                      },
+                      {
+                        "Value": "Number of outdoor pools - 1"
+                      },
+                      {
+                        "Value": "Bicycle tour information"
+                      },
+                      {
+                        "Value": "Assistive listening devices available"
+                      },
+                      {
+                        "Value": "In-room accessibility (in select rooms)"
+                      },
+                      {
+                        "Value": "Bicycle repair station"
+                      },
+                      {
+                        "Value": "Bicycle rentals nearby"
+                      },
+                      {
+                        "Value": "Wheelchair accessible parking"
+                      },
+                      {
+                        "Value": "Shuttle for bicycles available"
+                      },
+                      {
+                        "Value": "Roll-in shower (in select rooms)"
+                      },
+                      {
+                        "Value": "Tours/ticket assistance"
+                      },
+                      {
+                        "Value": "Accessible bathroom (in select rooms)"
+                      },
+                      {
+                        "Value": "Comprehensive food waste policy"
+                      },
+                      {
+                        "Value": "Eco-friendly toiletries"
+                      },
+                      {
+                        "Value": "Energy-saving switches"
+                      },
+                      {
+                        "Value": "Farming classes"
+                      },
+                      {
+                        "Value": "Eco-friendly cleaning products provided"
+                      },
+                      {
+                        "Value": "At least 80% of all lighting comes from LEDs"
+                      },
+                      {
+                        "Value": "Recycling"
+                      },
+                      {
+                        "Value": "LED light bulbs"
+                      },
+                      {
+                        "Value": "Living plant wall"
+                      },
+                      {
+                        "Value": "Wheelchair-accessible lounge"
+                      },
+                      {
+                        "Value": "Vegan menu options available"
+                      },
+                      {
+                        "Value": "Conference space"
+                      },
+                      {
+                        "Value": "Free pool cabanas"
+                      },
+                      {
+                        "Value": "Wheelchair accessible path of travel"
+                      },
+                      {
+                        "Value": "Pool sun loungers"
+                      },
+                      {
+                        "Value": "Conference space size (feet) - 3700"
+                      },
+                      {
+                        "Value": "24-hour business center"
+                      },
+                      {
+                        "Value": "Fence around pool"
+                      },
+                      {
+                        "Value": "Full-service spa"
+                      },
+                      {
+                        "Value": "Area shuttle (surcharge)"
+                      },
+                      {
+                        "Value": "Rock climbing nearby"
+                      },
+                      {
+                        "Value": "Coin laundry on site"
+                      },
+                      {
+                        "Value": "Lifeguard on site"
+                      },
+                      {
+                        "Value": "Spa services on site"
+                      },
+                      {
+                        "Value": "Safe-deposit box at front desk"
+                      },
+                      {
+                        "Value": "Smoke-free property"
+                      },
+                      {
+                        "Value": "Snack bar/deli"
+                      },
+                      {
+                        "Value": "Sauna"
+                      },
+                      {
+                        "Value": "Steam room"
+                      },
+                      {
+                        "Value": "Free self parking"
+                      },
+                      {
+                        "Value": "Wheelchair-accessible spa"
+                      },
+                      {
+                        "Value": "Pool access ramp on site"
+                      },
+                      {
+                        "Value": "Composting"
+                      },
+                      {
+                        "Value": "Wheelchair-accessible registration desk"
+                      },
+                      {
+                        "Value": "Television in common areas"
+                      },
+                      {
+                        "Value": "Wheelchair-accessible fitness center"
+                      },
+                      {
+                        "Value": "Wheelchair-accessible pool"
+                      },
+                      {
+                        "Value": "Wheelchair-accessible public washroom"
+                      },
+                      {
+                        "Value": "Well-lit path to entrance"
+                      },
+                      {
+                        "Value": "Stair-free path to entrance"
+                      },
+                      {
+                        "Value": "Free newspapers in lobby"
+                      },
+                      {
+                        "Value": "Water-efficient toilets only"
+                      },
+                      {
+                        "Value": "Water dispenser use by guests actively encouraged"
+                      },
+                      {
+                        "Value": "Luggage storage"
+                      },
+                      {
+                        "Value": "Water-efficient showers only"
+                      },
+                      {
+                        "Value": "Porter/bellhop"
+                      },
+                      {
+                        "Value": "Pool toys"
+                      },
+                      {
+                        "Value": "24-hour front desk"
+                      },
+                      {
+                        "Value": "Scooter/moped rentals nearby"
+                      },
+                      {
+                        "Value": "Housekeeping on request"
+                      },
+                      {
+                        "Value": "Hair salon"
+                      },
+                      {
+                        "Value": "Terrace"
+                      },
+                      {
+                        "Value": "Concierge services"
+                      },
+                      {
+                        "Value": "Dry cleaning/laundry service"
+                      },
+                      {
+                        "Value": "Shopping on site"
+                      },
+                      {
+                        "Value": "Comprehensive recycling policy"
+                      },
+                      {
+                        "Value": "Vegetarian breakfast available"
+                      },
+                      {
+                        "Value": "Ziplining nearby"
+                      },
+                      {
+                        "Value": "Airport transportation"
+                      },
+                      {
+                        "Value": "Biodegradable/compostable stirrers"
+                      },
+                      {
+                        "Value": "Pool umbrellas"
+                      },
+                      {
+                        "Value": "No single-use plastic straws"
+                      },
+                      {
+                        "Value": "Number of meeting rooms - 3"
+                      },
+                      {
+                        "Value": "No single-use plastic soda bottles"
+                      },
+                      {
+                        "Value": "Conference space size (meters) - 344"
+                      },
+                      {
+                        "Value": "No single-use plastic stirrers"
+                      },
+                      {
+                        "Value": "Reusable cups only"
+                      },
+                      {
+                        "Value": "Reusable tableware only"
+                      },
+                      {
+                        "Value": "Limo or Town Car service available"
+                      },
+                      {
+                        "Value": "Biodegradable/compostable straws"
+                      },
+                      {
+                        "Value": "No single-use plastic water bottles"
+                      },
+                      {
+                        "Value": "Internet access - wireless"
+                      },
+                      {
+                        "Value": "Airport transportation (surcharge)"
+                      },
+                      {
+                        "Value": "Water dispenser"
+                      },
+                      {
+                        "Value": "Barbecue grill(s)"
+                      },
+                      {
+                        "Value": "Wheelchair accessible (may have limitations)"
+                      },
+                      {
+                        "Value": "Health or beauty spa nearby"
+                      },
+                      {
+                        "Value": "Change of bed sheets (on request)"
+                      },
+                      {
+                        "Value": "Skydiving Nearby"
+                      },
+                      {
+                        "Value": "Spa treatment room(s)"
+                      },
+                      {
+                        "Value": "Internet access in public areas - surcharge"
+                      },
+                      {
+                        "Value": "Change of towels (on request)"
+                      },
+                      {
+                        "Value": "Internet access in public areas - high speed"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "hotelratings": {
+              "HotelRating": [
+                {
+                  "ratingtype": "Star",
+                  "ratingagency": "",
+                  "rating": "5",
+                  "totalratings": "",
+                  "ratingagencyhotelid": "",
+                  "ratingimageurl": ""
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Status": {
+        "StatusCode": null,
+        "Description": null
+      }
+    }
+  }
+}
