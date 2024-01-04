@@ -19,6 +19,14 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/FlightSearch", element: <FlightSearch /> },
+      {
+        path: "/Hotel",
+        element: <HotelSearch />,
+      },
+      {
+        path: "/Hotellist",
+        element: <HotelList />,
+      },
       { path: "/Shop", element: <Shop /> },
       { path: "/ShopList", element: <ShopList /> },
       { path: "/ShopList/:id", element: <ShopList /> },
@@ -27,20 +35,6 @@ const router = createBrowserRouter([
       { path: "/Checkout", element: <Checkout /> },
       { path: "/OrderStatus", element: <OrderStatus /> },
       { path: "*", element: <PageNotFound /> },
-    ],
-  },
-  {
-    path: "/Hotel",
-    element: <RootLayout />,
-    children: [
-      {
-        path: "/Hotel",
-        element: <HotelSearch />,
-      },
-      {
-        path: "/HotelList",
-        element: <HotelList />,
-      },
     ],
   },
 ]);
