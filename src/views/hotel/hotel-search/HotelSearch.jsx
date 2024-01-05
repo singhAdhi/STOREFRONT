@@ -12,6 +12,7 @@ const HotelSearch = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [loading, setLoading] = useState(false);
+  const [dropdownClicked, setDropdownClicked] = useState(false);
 
   let handlechange = (rooms) => {
     console.log(rooms);
@@ -21,8 +22,11 @@ const HotelSearch = () => {
   useEffect(() => {
     setLoading(true);
     let timer = setTimeout(() => {
-      console.log("api call");
-      cityNameApiCall();
+      if (!dropdownClicked) {
+        console.log("api call");
+        cityNameApiCall();
+      }
+      setDropdownClicked(false);
     }, 500);
 
     document.addEventListener("click", handleDocumentClick);
@@ -33,12 +37,6 @@ const HotelSearch = () => {
     };
   }, [cityName]);
 
-  let inputData = (value) => {
-    setCityName(value);
-    setApiCity([]);
-
-    document.removeEventListener("click", handleDocumentClick);
-  };
   let cityNameApiCall = async () => {
     const url = `src/dummyApiData/hotel/GetAllHotelCities_DATA.json`;
     makeGetRequest({ url })
@@ -65,6 +63,13 @@ const HotelSearch = () => {
     }
   };
 
+  const inputData = (value) => {
+    console.log(value);
+    setCityName(value);
+    setApiCity([]);
+    setDropdownClicked(true);
+  };
+
   return (
     <div>
       <HeroSlider />
@@ -77,16 +82,19 @@ const HotelSearch = () => {
             <input
               type="text"
               class="form-control "
+              placeholder="Enter city Name"
               onChange={(e) => {
                 setCityName(e.target.value);
               }}
               value={cityName}
             />
             {apiCity.length > 0 && (
-              <div className="position-absolute bg-white rounded-3 dropdown">
+              <div className="position-absolute bg-white rounded-3 dropdown w-100">
                 {loading ? (
-                  <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                  <div className="p-3 w-100 text-center">
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
                   </div>
                 ) : (
                   apiCity.length > 0 && (
@@ -94,10 +102,10 @@ const HotelSearch = () => {
                       {apiCity.slice(0, 10).map((city) => (
                         <div
                           key={city}
+                          className="cityName p-2 text-truncate"
                           onClick={() => {
                             inputData(city);
                           }}
-                          className="cityName p-2 text-truncate"
                         >
                           {city}
                         </div>
@@ -153,7 +161,7 @@ const HotelSearch = () => {
           </div>
           <div className="row">
             {[...Array(Number(showRooms))].map((_, index) => (
-              <div className="mb-3 col-md-6" key={index}>
+              <div className="mt-3 col-md-6" key={index}>
                 <p className="fw-bold mb-1">Room {index + 1}</p>
                 <div className="row">
                   <div className="col-md-6">
@@ -192,7 +200,7 @@ const HotelSearch = () => {
               </div>
             ))}
           </div>
-          <div class="col-12">
+          <div class="col-12 my-3 text-end">
             <button type="submit" class="btn btn-primary">
               Search Hotel
             </button>
