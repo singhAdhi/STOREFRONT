@@ -78,6 +78,10 @@ const Header = () => {
                   Logout
                 </button>
               </div>
+              <select name="" id="" className="form-select w-auto">
+                <option value="">EN</option>
+                <option value="">FR</option>
+              </select>
             </div>
           </div>
         </nav>

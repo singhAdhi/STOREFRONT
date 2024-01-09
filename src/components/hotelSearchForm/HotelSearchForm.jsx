@@ -41,7 +41,6 @@ const HotelSearchForm = ({ handleSearch }) => {
     setLoading(true);
     let timer = setTimeout(() => {
       if (!dropdownClicked) {
-        console.log("api call");
         cityNameApiCall();
       }
       setDropdownClicked(false);
@@ -59,7 +58,6 @@ const HotelSearchForm = ({ handleSearch }) => {
     const url = `src/dummyApiData/hotel/GetAllHotelCities_DATA.json`;
     makeGetRequest({ url })
       .then(({ data }) => {
-        console.log(data.GetAllHotelCities_DATA.results);
         const filteredCities = data.GetAllHotelCities_DATA.results.filter(
           (item) =>
             cityName && item.toLowerCase().includes(cityName.toLowerCase())
@@ -82,7 +80,6 @@ const HotelSearchForm = ({ handleSearch }) => {
   };
 
   const inputData = (value) => {
-    console.log(value);
     handleChange({
       target: {
         name: "city",
@@ -186,13 +183,14 @@ const HotelSearchForm = ({ handleSearch }) => {
             Room(s)
           </label>
           <select
-            id="inputState"
+            name="NoOfRooms"
+            id="NoOfRooms"
             class="form-select"
             onChange={(e) => {
               handlechange(e.target.value);
             }}
           >
-            <option defaultValue="1">1</option>
+            <option value={"1"}>1</option>
             <option value="2">2</option>
             <option value="3">3</option>
           </select>

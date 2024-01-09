@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         element: <HotelSearch />,
       },
       {
-        path: "/Hotellist",
+        path: "/Hotellist/:Country/:CheckInDate/:CheckOutDate/:AdultPerRoom/:ChildrenPerRoom",
         element: <HotelList />,
       },
       { path: "/Shop", element: <Shop /> },

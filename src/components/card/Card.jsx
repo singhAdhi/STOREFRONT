@@ -2,7 +2,7 @@ import React from "react";
 import "./card.css";
 import { Link } from "react-router-dom";
 
-const Card = ({ id, title, type, Name, img, Price }) => {
+const Card = ({ id, title, type, Name, img, Price, points }) => {
   return (
     <>
       {/* <div className="swiper-slide shadow"> */}
@@ -14,7 +14,8 @@ const Card = ({ id, title, type, Name, img, Price }) => {
           <h2 className="heading-sm-regular text-truncate mb-2">{Name}</h2>
           <div className="d-flex justify-content-between">
             <p className="heading-xxs-regular">
-              {Price?.ActualPrice?.Amount} Points
+              {Price && Price?.ActualPrice?.Amount + " Points"}
+              {points && `${points} Points`}
             </p>
             <p className="heading-xxs">{type}</p>
           </div>
