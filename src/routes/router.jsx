@@ -11,6 +11,7 @@ import PageNotFound from "../components/other/pagenotfound/PageNotFound";
 import Checkout from "../views/Shop/checkout/Checkout";
 import OrderStatus from "../components/orderStatus/OrderStatus";
 import HotelList from "../views/hotel/hotelList/HotelList";
+import HotelDetail from "../views/hotel/hotelDetail/HotelDetail";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/Hotellist/:Country/:CheckInDate/:CheckOutDate/:AdultPerRoom/:ChildrenPerRoom",
         element: <HotelList />,
+      },
+      {
+        path: "/HotelDetail/:id",
+        element: <HotelDetail />,
       },
       { path: "/Shop", element: <Shop /> },
       { path: "/ShopList", element: <ShopList /> },

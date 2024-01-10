@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Index = () => {
-  return <div>index</div>;
+  return <div></div>;
 };
 
 export default Index;
