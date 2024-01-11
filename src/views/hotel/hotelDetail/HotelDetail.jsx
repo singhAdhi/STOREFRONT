@@ -30,26 +30,26 @@ const HotelDetail = () => {
         console.log(data.GetHotelInformation_DATA.results.HotelInformation);
         let hotelId =
           data.GetHotelInformation_DATA.results.HotelInformation.hotelid;
+          // setApiData(data.GetHotelInformation_DATA.results.HotelInformation);
+          //  setOtherData(
+          //    data.GetHotelInformation_DATA.results.HotelInformation.otherinfo
+          //  );
+          //  setHotelId(apiData.hotelid);
+          //  setHotelData(
+          //    data.GetHotelInformation_DATA.results.HotelInformation.basicinfo
+          //  );
+          //  setLoading(false);
+        if (hotelId === id) {
           setApiData(data.GetHotelInformation_DATA.results.HotelInformation);
-           setOtherData(
-             data.GetHotelInformation_DATA.results.HotelInformation.otherinfo
-           );
-           setHotelId(apiData.hotelid);
-           setHotelData(
-             data.GetHotelInformation_DATA.results.HotelInformation.basicinfo
-           );
-           setLoading(false);
-        // if (hotelId === id) {
-        //   setApiData(data.GetHotelInformation_DATA.results.HotelInformation);
-        //   setOtherData(
-        //     data.GetHotelInformation_DATA.results.HotelInformation.otherinfo
-        //   );
-        //   setHotelId(apiData.hotelid);
-        //   setHotelData(
-        //     data.GetHotelInformation_DATA.results.HotelInformation.basicinfo
-        //   );
-        //   setLoading(false);
-        // }
+          setOtherData(
+            data.GetHotelInformation_DATA.results.HotelInformation.otherinfo
+          );
+          setHotelId(apiData.hotelid);
+          setHotelData(
+            data.GetHotelInformation_DATA.results.HotelInformation.basicinfo
+          );
+          setLoading(false);
+        }
       })
       .catch((error) => {
         // Handle errors here
@@ -162,10 +162,10 @@ const HotelDetail = () => {
                             </span>
                           </div>
                         ) : null}
-                        <div class="col-6 d-flex align-items-center">
+                        {communicationinfo.fax? <div class="col-6 d-flex align-items-center">
                           <FaFax />
                           <span class="ml-2"> {communicationinfo.fax}</span>
-                        </div>
+                        </div>:null}
                       </div>
                       <div class="row">
                         <div class="col-12">
@@ -214,12 +214,12 @@ const HotelDetail = () => {
                             </div>
                           </div>
 
-                          <p>
+                          {/* <p>
                             <span class="heading-md-medium">65,520 Points</span>
                             <span class="heading-xs-regular">
                               (for 1 night(s))
                             </span>
-                          </p>
+                          </p> */}
                         </div>
                       </div>
                     </div>
@@ -235,10 +235,10 @@ const HotelDetail = () => {
                     </div>
                   </div>
                     {hotelRoom?.roomrates?.RoomRate&&
-                      hotelRoom?.roomrates?.RoomRate.map((room) => { 
-                        return      <div class="row align-items-center">
+                      hotelRoom?.roomrates?.RoomRate.map((room,i) => { 
+                        return <div class="row align-items-center mb-3" key={i}>
                         <div class="col-12 col-md-6 mb-2 mb-md-0">
-                          { <p class="heading-xs-regular">{room.RateType}</p> }
+                           <p class="heading-xs-regular">{room.RateType}</p> 
                         </div>
                         <div class="col-6 col-sm-4 col-md-2 mb-3 mb-sm-0">
                           <p class="heading-md-medium">{room.TotalBaseAmount}points</p>
