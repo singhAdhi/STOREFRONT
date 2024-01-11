@@ -4,7 +4,13 @@ const initialValues = {
   city: "",
   checkIn: "",
   checkOut: "",
-  NoOfRooms: "",
+  NoOfRooms: "1",
+  AdultRoom1: "1",
+  ChildRoom1: "0",
+  AdultRoom2: "1",
+  ChildRoom2: "0",
+  AdultRoom3: "1",
+  ChildRoom3: "0",
 };
 const validationSchema = Yup.object({
   // Add your validation rules if needed

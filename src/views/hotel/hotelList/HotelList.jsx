@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeGetRequest } from "../../../api/services";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { FaArrowLeft, FaStar } from "react-icons/fa6";
+import { FaArrowLeft } from "react-icons/fa6";
 import Card from "../../../components/card/Card";
 import Shimmer from "../../../components/shimmer/Shimmer";
 import { enqueueSnackbar } from "notistack";
@@ -16,40 +16,36 @@ const STARRATINGS = [
 ];
 
 const HotelList = () => {
-  const datas = useParams();
+  const navigate = useNavigate();
+  const paramsData = useParams();
   const history = useNavigate();
   const [hotelResultTemp, sethotelResultTemp] = useState(null);
   const [hotelResult, sethotelResult] = useState(null);
   const [isloading, setisloading] = useState(false);
   const [isBookingForm, setisBookingForm] = useState(false);
   useEffect(() => {
-    makeGetRequest({
-      url: "https://ibeapi.giift.com/IBENEW/api/Hotel/GetAllHotelCities",
-    })
-      .then((result) => {})
-      .catch((err) => {});
     getHotelList();
   }, []);
 
-  const getHotelList = () => {
+  const getHotelList = (data = paramsData) => {
+    let location = data.Country.split(",");
     setisloading(true);
     let body = {
-      CheckInDate: "2024-01-19", //Mandatory
-      CheckOutDate: "2024-01-21", //Mandatory
+      CheckInDate: data.CheckInDate, //Mandatory
+      CheckOutDate: data.CheckOutDate, //Mandatory
       IpAddress: "1", //Mandatory, but can be left as empty
-      CountryISOCode: "AE", //Mandatory
-      Country: "United Arab Emirates", //Mandatory
-      CityName: "Al Agah", //Mandatory
-      AdultPerRoom: "1", //Mandatory, For multiple rooms, put adult per room separated by comma e.g for 2 rooms - "1,1" or "1,2" for 3 rooms - 2,2,2 etc depending on requirements
-      ChildrenPerRoom: "1", //Mandatory, For multiple rooms, put child per room separated by comma e.g for 2 rooms - "1,1" or "1,2" etc depending on requirements
+      CountryISOCode: location[0], //Mandatory
+      Country: location[1], //Mandatory
+      CityName: location[2], //Mandatory
+      AdultPerRoom: data.AdultPerRoom, //Mandatory, For multiple rooms, put adult per room separated by comma e.g for 2 rooms - "1,1" or "1,2" for 3 rooms - 2,2,2 etc depending on requirements
+      ChildrenPerRoom: data.ChildrenPerRoom, //Mandatory, For multiple rooms, put child per room separated by comma e.g for 2 rooms - "1,1" or "1,2" etc depending on requirements
       MembershipReference: "30303", //Put a unique identifier
-      NoOfRooms: 1, //Mandatory
-      StarRating: "ThreeStarOrMore", //Optional, to filter hotels by star rating(e.g -3 star or more), Possible values - "All", "OneStarOrLess", "TwoStarOrLess", "ThreeStarOrLess", "FourStarOrLess", "FiveStarOrLess", "OneStarOrMore", "TwoStarOrMore", "ThreeStarOrMore", "FourStarOrMore", "FiveStarOrMore"
-      OrderBy: "PriceAsc", //Optional, to filter hotels by price, star (low to high, high to low,Possible values -  "PriceAsc", "PriceDesc", "StarRatingAsc", "StarRatingDesc"
+      NoOfRooms: parseInt(data.NoOfRooms), //Mandatory
+      StarRating: "", //Optional, to filter hotels by star rating(e.g -3 star or more), Possible values - "All", "OneStarOrLess", "TwoStarOrLess", "ThreeStarOrLess", "FourStarOrLess", "FiveStarOrLess", "OneStarOrMore", "TwoStarOrMore", "ThreeStarOrMore", "FourStarOrMore", "FiveStarOrMore"
+      OrderBy: "", //Optional, to filter hotels by price, star (low to high, high to low,Possible values -  "PriceAsc", "PriceDesc", "StarRatingAsc", "StarRatingDesc"
       ResultCount: 10, //Optional, No. Of hotels required in the response
       RedemptionRate: 0.006, //To be provided by Giift
     };
-
     // let url = `https://ibeapi.giift.com/IBENEW/api/Hotel/GetHotelSearchResponse`;
 
     let url = "src/dummyApiData/hotel/GetHotelSearchResponse_DATA.json";
@@ -143,8 +139,21 @@ const HotelList = () => {
     }
   };
 
-  const handleSearch = () => {
+  const handleSearch = (value) => {
+    getHotelList(value);
     setisBookingForm(false);
+  };
+
+  const handleLoad = () => {
+    return;
+    let newList = hotelResultTemp.hotels.hotel;
+    sethotelResult((prev) => ({
+      ...prev,
+      hotels: {
+        ...prev.hotels,
+        hotel: [...prev.hotels.hotel, ...newList],
+      },
+    }));
   };
 
   return (
@@ -162,7 +171,7 @@ const HotelList = () => {
               <li className="breadcrumb-item">
                 <Link to="/Hotel">Hotel</Link>
               </li>
-              <li className="breadcrumb-item active">Hotellist</li>
+              <li className="breadcrumb-item active">Hotel List</li>
             </ul>
           </nav>
         </div>
@@ -302,6 +311,7 @@ const HotelList = () => {
                               name={item.basicinfo.hotelname}
                               img={item.basicinfo.thumbnailimage}
                               points={item.basicinfo.minhotelprice.TotalPrice}
+                              route={`/HotelDetail/${hotelid}`}
                             />
                           </div>
                         );
@@ -313,6 +323,12 @@ const HotelList = () => {
                     )}
                   </div>
                 </div>
+                <button
+                  className="bg-warning border-0 fw-semibold mx-auto p-2 rounded-2 text-white w-auto"
+                  onClick={handleLoad}
+                >
+                  Load More
+                </button>
               </div>
             </div>
           </div>
