@@ -30,17 +30,26 @@ const HotelDetail = () => {
         console.log(data.GetHotelInformation_DATA.results.HotelInformation);
         let hotelId =
           data.GetHotelInformation_DATA.results.HotelInformation.hotelid;
-        if (hotelId === id) {
           setApiData(data.GetHotelInformation_DATA.results.HotelInformation);
-          setOtherData(
-            data.GetHotelInformation_DATA.results.HotelInformation.otherinfo
-          );
-          setHotelId(apiData.hotelid);
-          setHotelData(
-            data.GetHotelInformation_DATA.results.HotelInformation.basicinfo
-          );
-          setLoading(false);
-        }
+           setOtherData(
+             data.GetHotelInformation_DATA.results.HotelInformation.otherinfo
+           );
+           setHotelId(apiData.hotelid);
+           setHotelData(
+             data.GetHotelInformation_DATA.results.HotelInformation.basicinfo
+           );
+           setLoading(false);
+        // if (hotelId === id) {
+        //   setApiData(data.GetHotelInformation_DATA.results.HotelInformation);
+        //   setOtherData(
+        //     data.GetHotelInformation_DATA.results.HotelInformation.otherinfo
+        //   );
+        //   setHotelId(apiData.hotelid);
+        //   setHotelData(
+        //     data.GetHotelInformation_DATA.results.HotelInformation.basicinfo
+        //   );
+        //   setLoading(false);
+        // }
       })
       .catch((error) => {
         // Handle errors here
@@ -225,23 +234,27 @@ const HotelDetail = () => {
                       </h2>
                     </div>
                   </div>
-
-                  <div class="row align-items-center">
-                    <div class="col-12 col-md-6 mb-2 mb-md-0">
-                      {/* <p class="heading-xs-regular">{hotelRoom.hotelid}</p> */}
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2 mb-3 mb-sm-0">
-                      <p class="heading-md-medium">65,520 points</p>
-                      <p class="heading-xs-light">(per room per night)</p>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2 mb-3 mb-sm-0">
-                      <p class="heading-md-medium">65,520 points</p>
-                      <p class="heading-xs-light">(per room per night)</p>
-                    </div>
-                    <div class="col-12 col-sm-4 col-md-2 text-md-right">
-                      <button class="btn btn-primary">Book Now</button>
-                    </div>
-                  </div>
+                    {hotelRoom?.roomrates?.RoomRate&&
+                      hotelRoom?.roomrates?.RoomRate.map((room) => { 
+                        return      <div class="row align-items-center">
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                          { <p class="heading-xs-regular">{room.RateType}</p> }
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-2 mb-3 mb-sm-0">
+                          <p class="heading-md-medium">{room.TotalBaseAmount}points</p>
+                          <p class="heading-xs-light">(per room per night)</p>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-2 mb-3 mb-sm-0">
+                          <p class="heading-md-medium">{room.TotalPoints} points</p>
+                          <p class="heading-xs-light">(per room per night)</p>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-2 text-md-right">
+                          <button class="btn btn-primary">Book Now</button>
+                        </div>
+                      </div>
+                      })
+                    }
+               
 
                   <div class="border my-3"></div>
                   <div class="dvAboutHotel row">
