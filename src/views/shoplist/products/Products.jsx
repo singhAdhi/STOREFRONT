@@ -14,7 +14,12 @@ const Products = ({ products }) => {
               const { Id } = item;
               return (
                 <div key={item.Id} className="col-md-4 mb-3">
-                  <Card id={item.Id} {...item} img={item.PrimaryImage.Url} />
+                  <Card
+                    route={`/ProductDetails/${item.Id}`}
+                    id={item.Id}
+                    {...item}
+                    img={item.PrimaryImage.Url}
+                  />
                 </div>
               );
             })

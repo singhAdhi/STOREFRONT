@@ -9,6 +9,7 @@ import {
   validationSchema,
   initialValues,
 } from "../formInfo/validationSchema.jsx";
+import { useNavigate } from "react-router-dom";
 
 const HotelSearchForm = ({ handleSearch }) => {
   const [showRooms, setShowRooms] = useState("1");
@@ -29,12 +30,57 @@ const HotelSearchForm = ({ handleSearch }) => {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      handleSearch(values);
+      handleClickSearch(values);
     },
   });
+
+  const navigate = useNavigate();
+  let handleClickSearch = (value) => {
+    let CheckInDate = convertDate(value.checkIn);
+    let CheckOutDate = convertDate(value.checkOut);
+    let Country = value.city;
+    let NoOfRooms = value.NoOfRooms;
+    let AdultPerRoom = convertRoomsValue(
+      parseInt(value.NoOfRooms),
+      "AdultRoom",
+      value
+    );
+    let ChildrenPerRoom = convertRoomsValue(
+      parseInt(value.NoOfRooms),
+      "ChildRoom",
+      value
+    );
+    navigate(
+      `/Hotellist/${Country}/${CheckInDate}/${CheckOutDate}/${NoOfRooms}/${AdultPerRoom}/${ChildrenPerRoom}`
+    );
+    handleSearch({
+      CheckInDate,
+      CheckOutDate,
+      NoOfRooms,
+      AdultPerRoom,
+      ChildrenPerRoom,
+      Country,
+    });
+  };
+  function convertDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  }
+  function convertRoomsValue(n, prop, value) {
+    let str = "";
+    Array.from({ length: n }, (_, index) => {
+      let curr = index + 1;
+      str += value[`${prop + curr}`] + (curr == n ? "" : ",");
+    });
+    return str;
+  }
+
   let handlechange = (rooms) => {
-    console.log(rooms);
     setShowRooms(rooms);
+    setFieldValue("NoOfRooms", rooms);
   };
 
   useEffect(() => {
@@ -89,16 +135,20 @@ const HotelSearchForm = ({ handleSearch }) => {
     setApiCity([]);
     setDropdownClicked(true);
   };
+
+  const handleChangeRooms = (e) => {
+    const { name, value } = e.target;
+    setFieldValue(name, value);
+  };
+
   return (
     <div>
-      <form class="row g-3 innerBox my-5 p-3" onSubmit={handleSubmit}>
-        <div class="col-md-3 position-relative">
-          <label for="city" class="form-label fw-bold">
-            City
-          </label>
+      <form className="row g-3 innerBox my-3 p-3" onSubmit={handleSubmit}>
+        <div className="col-md-3 position-relative">
+          <label className="form-label fw-bold">City</label>
           <input
             type="text"
-            class="form-control "
+            className="form-control "
             placeholder="Enter city Name"
             name="city"
             onChange={(e) => {
@@ -115,8 +165,8 @@ const HotelSearchForm = ({ handleSearch }) => {
             <div className="position-absolute bg-white rounded-3 dropdown-hotel w-100">
               {loading ? (
                 <div className="p-3 w-100 text-center">
-                  <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                  <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
                   </div>
                 </div>
               ) : (
@@ -139,12 +189,10 @@ const HotelSearchForm = ({ handleSearch }) => {
             </div>
           )}
         </div>
-        <div class="col-md-3">
-          <label for="checkIn" class="form-label fw-bold">
-            Check-In
-          </label>
+        <div className="col-md-3">
+          <label className="form-label fw-bold">Check-In</label>
           <DatePicker
-            class="form-control"
+            className="form-control"
             placeholderText="Enter Date"
             name="checkIn"
             selected={values.checkIn}
@@ -158,10 +206,8 @@ const HotelSearchForm = ({ handleSearch }) => {
             <p className="text-danger">{errors.checkIn}</p>
           ) : null}
         </div>
-        <div class="col-md-3">
-          <label for="checkOut" class="form-label fw-bold">
-            Check-Out
-          </label>
+        <div className="col-md-3">
+          <label className="form-label fw-bold">Check-Out</label>
 
           <DatePicker
             name="checkOut"
@@ -178,14 +224,13 @@ const HotelSearchForm = ({ handleSearch }) => {
             <p className="text-danger">{errors.checkOut}</p>
           ) : null}
         </div>
-        <div class="col-md-3">
-          <label for="inputAddress2" class="form-label fw-bold">
-            Room(s)
-          </label>
+        <div className="col-md-3">
+          <label className="form-label fw-bold">Room(s)</label>
           <select
+            value={values.NoOfRooms}
             name="NoOfRooms"
             id="NoOfRooms"
-            class="form-select"
+            className="form-select"
             onChange={(e) => {
               handlechange(e.target.value);
             }}
@@ -201,30 +246,33 @@ const HotelSearchForm = ({ handleSearch }) => {
               <p className="fw-bold mb-1">Room {index + 1}</p>
               <div className="row">
                 <div className="col-md-6">
-                  <label
-                    htmlFor={`adultsRoom${index + 1}`}
-                    className="form-label"
+                  <label className="form-label">Adult(s) 12+ Yrs</label>
+                  <select
+                    value={`${values[`AdultRoom${index + 1}`]}`}
+                    name={`AdultRoom${index + 1}`}
+                    id={`${index}`}
+                    className="form-select"
+                    onChange={(e) => {
+                      handleChangeRooms(e);
+                    }}
                   >
-                    Adult(s) 12+ Yrs
-                  </label>
-                  <select id={`adultsRoom${index + 1}`} className="form-select">
-                    <option selected>1</option>
+                    <option>1</option>
                     <option>2</option>
                     <option>3</option>
                   </select>
                 </div>
                 <div className="col-md-6">
-                  <label
-                    htmlFor={`childrenRoom${index + 1}`}
-                    className="form-label"
-                  >
-                    Child(ren) 2 - 11 Yrs
-                  </label>
+                  <label className="form-label">Child(ren) 2 - 11 Yrs</label>
                   <select
-                    id={`childrenRoom${index + 1}`}
+                    value={`${values[`ChildRoom${index + 1}`]}`}
+                    name={`ChildRoom${index + 1}`}
+                    id={`${index}`}
                     className="form-select"
+                    onChange={(e) => {
+                      handleChangeRooms(e);
+                    }}
                   >
-                    <option selected>0</option>
+                    <option>0</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -234,8 +282,8 @@ const HotelSearchForm = ({ handleSearch }) => {
             </div>
           ))}
         </div>
-        <div class="col-12 my-3 text-end">
-          <button type="submit" class="btn btn-primary">
+        <div className="col-12 my-3 text-end">
+          <button type="submit" className="btn btn-primary">
             Search Hotel
           </button>
         </div>

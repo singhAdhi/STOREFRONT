@@ -17,7 +17,7 @@ const HotelDetail = () => {
   const [loading, setLoading] = useState(true);
   const [hotelRoom, setHotelRoom] = useState({});
 
-  const id = useParams();
+  const { id } = useParams();
   useEffect(() => {
     hotelInfo();
     hotelRoomInfo();
