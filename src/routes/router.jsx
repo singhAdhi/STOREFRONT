@@ -12,6 +12,7 @@ import Checkout from "../views/Shop/checkout/Checkout";
 import OrderStatus from "../components/orderStatus/OrderStatus";
 import HotelList from "../views/hotel/hotelList/HotelList";
 import HotelDetail from "../views/hotel/hotelDetail/HotelDetail";
+import HotelBookingDetail from "../views/hotel/hotelBookingDetail/HotelBookingDetail";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/HotelDetail/:id",
         element: <HotelDetail />,
+      },
+      {
+        path: "/HotelBookingDetail/:id",
+        element: <HotelBookingDetail />,
       },
       { path: "/Shop", element: <Shop /> },
       { path: "/ShopList", element: <ShopList /> },
