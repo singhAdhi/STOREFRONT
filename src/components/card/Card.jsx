@@ -2,11 +2,21 @@ import React from "react";
 import "./card.css";
 import { Link } from "react-router-dom";
 
-const Card = ({ id, title, type, name, img, Price, points, route }) => {
+const Card = ({
+  id,
+  title,
+  type,
+  name,
+  img,
+  Price,
+  points,
+  route,
+  handleClick,
+}) => {
   return (
     <>
       {/* <div className="swiper-slide shadow"> */}
-      <Link to={route}>
+      <Link to={route} onClick={handleClick}>
         <div className="img-container">
           <img className="w-100" src={img} alt="" />
         </div>

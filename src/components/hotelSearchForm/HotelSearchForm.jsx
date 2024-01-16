@@ -11,12 +11,13 @@ import {
 } from "../formInfo/validationSchema.jsx";
 import { useNavigate } from "react-router-dom";
 
-const HotelSearchForm = ({ handleSearch }) => {
+const HotelSearchForm = ({ handleSearch, defaultValues = initialValues }) => {
   const [showRooms, setShowRooms] = useState("1");
   const [cityName, setCityName] = useState("");
   const [apiCity, setApiCity] = useState([]);
   const [loading, setLoading] = useState(false);
   const [dropdownClicked, setDropdownClicked] = useState(false);
+  const navigate = useNavigate();
 
   let {
     values,
@@ -27,40 +28,47 @@ const HotelSearchForm = ({ handleSearch }) => {
     handleChange,
     setFieldValue,
   } = useFormik({
-    initialValues: initialValues,
+    initialValues: defaultValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
       handleClickSearch(values);
     },
   });
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    setShowRooms(defaultValues.NoOfRooms);
+  }, [defaultValues]);
+
   let handleClickSearch = (value) => {
-    let CheckInDate = convertDate(value.checkIn);
-    let CheckOutDate = convertDate(value.checkOut);
-    let Country = value.city;
-    let NoOfRooms = value.NoOfRooms;
-    let AdultPerRoom = convertRoomsValue(
-      parseInt(value.NoOfRooms),
-      "AdultRoom",
-      value
-    );
-    let ChildrenPerRoom = convertRoomsValue(
-      parseInt(value.NoOfRooms),
-      "ChildRoom",
-      value
-    );
-    navigate(
-      `/Hotellist/${Country}/${CheckInDate}/${CheckOutDate}/${NoOfRooms}/${AdultPerRoom}/${ChildrenPerRoom}`
-    );
-    handleSearch({
-      CheckInDate,
-      CheckOutDate,
-      NoOfRooms,
-      AdultPerRoom,
-      ChildrenPerRoom,
-      Country,
-    });
+    try {
+      let CheckInDate = convertDate(value.CheckInDate);
+      let CheckOutDate = convertDate(value.CheckOutDate);
+      let Country = value.Country;
+      let NoOfRooms = value.NoOfRooms;
+      let AdultPerRoom = convertRoomsValue(
+        parseInt(value.NoOfRooms),
+        "AdultRoom",
+        value
+      );
+      let ChildrenPerRoom = convertRoomsValue(
+        parseInt(value.NoOfRooms),
+        "ChildRoom",
+        value
+      );
+      navigate(
+        `/Hotellist/${Country}/${CheckInDate}/${CheckOutDate}/${NoOfRooms}/${AdultPerRoom}/${ChildrenPerRoom}`
+      );
+      handleSearch({
+        CheckInDate,
+        CheckOutDate,
+        NoOfRooms,
+        AdultPerRoom,
+        ChildrenPerRoom,
+        Country,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   function convertDate(date) {
     const year = date.getFullYear();
@@ -98,7 +106,7 @@ const HotelSearchForm = ({ handleSearch }) => {
       clearInterval(timer);
       document.removeEventListener("click", handleDocumentClick);
     };
-  }, [values.city]);
+  }, [values.Country]);
 
   let cityNameApiCall = async () => {
     const url = `src/dummyApiData/hotel/GetAllHotelCities_DATA.json`;
@@ -128,7 +136,7 @@ const HotelSearchForm = ({ handleSearch }) => {
   const inputData = (value) => {
     handleChange({
       target: {
-        name: "city",
+        name: "Country",
         value: value,
       },
     });
@@ -150,16 +158,16 @@ const HotelSearchForm = ({ handleSearch }) => {
             type="text"
             className="form-control "
             placeholder="Enter city Name"
-            name="city"
+            name="Country"
             onChange={(e) => {
               handleChange(e);
               setCityName(e.target.value);
             }}
-            value={values.city}
+            value={values.Country}
             onBlur={handleBlur}
           />
-          {errors.city && touched.city ? (
-            <p className="text-danger">{errors.city}</p>
+          {errors.Country && touched.Country ? (
+            <p className="text-danger">{errors.Country}</p>
           ) : null}
           {apiCity.length > 0 && (
             <div className="position-absolute bg-white rounded-3 dropdown-hotel w-100">
@@ -194,34 +202,34 @@ const HotelSearchForm = ({ handleSearch }) => {
           <DatePicker
             className="form-control"
             placeholderText="Enter Date"
-            name="checkIn"
-            selected={values.checkIn}
-            onChange={(date) => setFieldValue("checkIn", date)}
+            name="CheckInDate"
+            selected={values.CheckInDate}
+            onChange={(date) => setFieldValue("CheckInDate", date)}
             selectsStart
-            startDate={values.checkIn}
-            endDate={values.checkOut}
+            startDate={values.CheckInDate}
+            endDate={values.CheckOutDate}
             onBlur={handleBlur}
           />
-          {errors.checkIn && touched.checkIn ? (
-            <p className="text-danger">{errors.checkIn}</p>
+          {errors.CheckInDate && touched.CheckInDate ? (
+            <p className="text-danger">{errors.CheckInDate}</p>
           ) : null}
         </div>
         <div className="col-md-3">
           <label className="form-label fw-bold">Check-Out</label>
 
           <DatePicker
-            name="checkOut"
+            name="CheckOutDate"
             placeholderText="Enter Date"
-            selected={values.checkOut}
-            onChange={(date) => setFieldValue("checkOut", date)}
+            selected={values.CheckOutDate}
+            onChange={(date) => setFieldValue("CheckOutDate", date)}
             selectsEnd
-            startDate={values.checkIn}
-            endDate={values.checkOut}
-            minDate={values.checkIn}
+            startDate={values.CheckInDate}
+            endDate={values.CheckOutDate}
+            minDate={values.CheckInDate}
             onBlur={handleBlur}
           />
-          {errors.checkOut && touched.checkOut ? (
-            <p className="text-danger">{errors.checkOut}</p>
+          {errors.CheckOutDate && touched.CheckOutDate ? (
+            <p className="text-danger">{errors.CheckOutDate}</p>
           ) : null}
         </div>
         <div className="col-md-3">

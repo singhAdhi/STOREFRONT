@@ -10,9 +10,9 @@ const ImgSlider = ({ images }) => {
     <div>
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         {images &&
-          images.map((image) => {
+          images.map((image, i) => {
             return (
-              <SwiperSlide>
+              <SwiperSlide key={i}>
                 <img className="slider-img" src={image.wideangleimageurl} />
               </SwiperSlide>
             );

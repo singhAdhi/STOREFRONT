@@ -11,6 +11,7 @@ import {
 } from "../redux/common/cartDetails/cartDetailsSlice";
 import DataContext from "../config/DataContext";
 import { makeGetRequest } from "../api/services";
+import { addRoomRates } from "../redux/hotel";
 
 const Root = () => {
   const [hotelData, setHotelData] = useState([]);
@@ -21,22 +22,22 @@ const Root = () => {
   const { cartCount } = useSelector((state) => state.cartDetailsSlice);
   const dispatch = useDispatch();
   console.log(hotelData);
- 
+
+  const { RoomRates } = useSelector((store) => store.hotelReducer);
 
   let hotelInfo = async () => {
     const url = `src/dummyApiData/hotel/GetHotelInformation_DATA.json`;
     makeGetRequest({ url })
       .then(({ data }) => {
-          setHotelData(
-            data.GetHotelInformation_DATA.results.HotelInformation.basicinfo
+        setHotelData(
+          data.GetHotelInformation_DATA.results.HotelInformation.basicinfo
         );
         setLoading(false);
       })
       .catch((error) => {
         // Handle errors here
         console.error("Error fetching category:", error);
-        
-      })
+      });
   };
   useEffect(() => {
     hotelInfo();
@@ -78,15 +79,18 @@ const Root = () => {
     if (CART_ID == null) {
       dispatch(addCartId(localStorage.getItem("CART_ID")));
     }
+    if (RoomRates == null) {
+      dispatch(addRoomRates(JSON.parse(localStorage.getItem("RoomRates"))));
+    }
   });
 
   return (
     <>
-      <DataContext.Provider value={{ hotelData,loading }}>
-      <div className="dvMain">
-        <Header />
-        {CATALOG_ID && <Outlet />}
-      </div>
+      <DataContext.Provider value={{ hotelData, loading }}>
+        <div className="dvMain">
+          <Header />
+          {CATALOG_ID && <Outlet />}
+        </div>
         <Footer />
       </DataContext.Provider>
     </>

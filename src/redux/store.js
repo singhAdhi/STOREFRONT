@@ -7,8 +7,9 @@ import commonReducer from "./common/index";
 import productDetailReducer from "./product-details/ProductDetailsSlice";
 import CartReducer from "./shop/cart/CartSlice";
 import cartDetailsSlice from "./common/cartDetails/cartDetailsSlice";
-
 import filteredDataReducer from "./shop/filteredData/filteredDataSlice";
+import hotelReducer from "./hotel/index";
+
 export const store = configureStore({
   reducer: {
     redemptionMenuReducer,
@@ -20,5 +21,6 @@ export const store = configureStore({
     filteredDataReducer,
     CartReducer,
     cartDetailsSlice,
+    hotelReducer,
   },
 });
