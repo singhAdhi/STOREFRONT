@@ -211,7 +211,7 @@ const HotelDetail = () => {
                     </div>
                   </div>
                   {hotelRoom &&
-                    hotelRoom.map((room, i) => {
+                      hotelRoom.map((room, i) => {
                       return (
                         <div className="row align-items-center mb-3" key={i}>
                           <div className="col-12 col-md-6 mb-2 mb-md-0">
@@ -236,9 +236,11 @@ const HotelDetail = () => {
                             </p>
                           </div>
                           <div className="col-12 col-sm-4 col-md-2 text-md-right">
+                            <Link to={`/HotelBookingDetail/${id}/${room.bookingcode}`}>
                             <button className="btn btn-primary">
                               Book Now
-                            </button>
+                              </button>
+                              </Link>
                           </div>
                         </div>
                       );
