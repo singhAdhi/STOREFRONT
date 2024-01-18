@@ -27,7 +27,10 @@ const validationSchema = yup.object({
     .string()
     .required("Mobile is required")
     .matches(/^\d{10}$/, "Mobile must be a 10-digit number"),
-  inputEmail: yup.string().email("Invalid email address"),
+  inputEmail: yup
+    .string()
+    .required("Email is required")
+    .email("Invalid email address"),
 });
 
 const HotelBookingDetail = () => {
@@ -113,8 +116,9 @@ const HotelBookingDetail = () => {
                     Title*
                   </label>
                   <select id="inputState" className="form-select">
-                    <option selected>Choose...</option>
-                    <option>...</option>
+                    <option selected>Mr.</option>
+                    <option>Ms.</option>
+                    <option>Mrs.</option>
                   </select>
                 </div>
                 <div class="col-md-4">
@@ -256,9 +260,11 @@ const HotelBookingDetail = () => {
                   </div>
                 </div>
                 <div className="col-12">
-                  <button type="submit" className="btn btn-primary">
-                    Sign in
-                  </button>
+                  <Link to="/OrderStatus">
+                    <button type="submit" className="btn btn-primary">
+                      Sign in
+                    </button>
+                  </Link>
                 </div>
               </form>
             </div>
@@ -271,11 +277,7 @@ const HotelBookingDetail = () => {
                   <Link
                     to={`/Hotellist/${linkdata[0].Country}/${linkdata[0].CheckInDate}/${linkdata[0].CheckOutDate}/${linkdata[0].NoOfRooms}/${linkdata[0].AdultPerRoom}/${linkdata[0].ChildrenPerRoom}`}
                   >
-                    <button
-                      onClick={openForm}
-                      type="button"
-                      className="btn btn-secondary mr-2"
-                    >
+                    <button type="button" className="btn btn-secondary mr-2">
                       Edit
                     </button>
                   </Link>

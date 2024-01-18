@@ -14,7 +14,7 @@ const hotelDetails = createSlice({
       localStorage.setItem("RoomRates", JSON.stringify(action.payload));
     },
     addUrlValues: (state, action) => {
-      state.UrlValues.push(action.payload);
+      state.UrlValues = [action.payload];
       localStorage.setItem("UrlValues", JSON.stringify(action.payload));
     },
   },
