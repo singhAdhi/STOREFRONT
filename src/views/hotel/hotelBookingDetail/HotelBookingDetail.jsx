@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../../../components/other/loading/Loading";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { makeGetRequest } from "../../../api/services";
+import { makeGetRequest, makePostRequest } from "../../../api/services";
 import { useDispatch, useSelector } from "react-redux";
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -34,7 +34,7 @@ const validationSchema = yup.object({
 });
 
 const HotelBookingDetail = () => {
-  const { id, bookingcode } = useParams();
+  const { id, bookingcode, SearchId } = useParams();
   const dispatch = useDispatch();
   const hoteldata = useSelector((store) => store.hotelReducer.RoomRates);
   const linkdata = useSelector((store) => store.hotelReducer.UrlValues);
@@ -58,6 +58,68 @@ const HotelBookingDetail = () => {
       console.log(values);
     },
   });
+
+  const fetchHotelReprice = (data) => {
+    let body = {
+      Hotel: {
+        SearchId: SearchId,
+        tnc: "",
+        SupplierId: "",
+        Supplier: "",
+        IsReprice: true,
+        hotelid: "1241542",
+        basicinfo: hotelData.basicinfo,
+        otherinfo: hotelData.otherinfo,
+        roomrates: hoteldata,
+      },
+      RedemptionRate: 1,
+    };
+    let url = `https://ibeuat.giift.com/api/Hotel/HotelReprice`;
+    makePostRequest({ url, body })
+      .then(({ data }) => {
+        let hotelRepriceData = data.results.Hotel;
+        fetchHotelBookingResponse(hotelRepriceData, data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const fetchHotelBookingResponse = (hotelRepriceData, data) => {
+    let body = {
+      CheckInDate: "2024-01-25",
+      CheckOutDate: "2024-01-26",
+      AdultPerRoom: "1",
+      ChildrenPerRoom: "1",
+      Customer: {
+        city: data.city,
+        country: data.country,
+        email: data.inputEmail,
+        firstname: data.FirstName,
+        landline: "",
+        lastname: data.LastName,
+        middlename: "",
+        mobile: data.mobile,
+        postalcode: data.postalcode,
+        state: "",
+        streetaddress1: "",
+        streetaddress2: "",
+        title: "Mr",
+      },
+      Hotel: hotelRepriceData,
+      IpAddress: "127.0.0.1",
+      MembershipReference: "30303",
+      NoOfRooms: 1,
+      RedemptionRate: 0.006,
+      ReferenceId: "Test@123690",
+      SearchId: SearchId,
+    };
+    let url = `https://ibeuat.giift.com/api/Hotel/GetHotelBookingResponse`;
+    makePostRequest({ url, body })
+      .then(({ data }) => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   let hotelInfo = async () => {
     const url = `src/dummyApiData/hotel/GetHotelInformation_DATA.json`;

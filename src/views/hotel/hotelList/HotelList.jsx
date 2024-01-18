@@ -25,6 +25,7 @@ const HotelList = () => {
   const history = useNavigate();
   const [hotelResultTemp, sethotelResultTemp] = useState(null);
   const [hotelResult, sethotelResult] = useState(null);
+  const [searchID, setsearchID] = useState(null);
   const [isloading, setisloading] = useState(false);
   const [isBookingForm, setisBookingForm] = useState(false);
   const [bookingFormDefaultValues, setbookingFormDefaultValues] =
@@ -91,6 +92,7 @@ const HotelList = () => {
       let url = "src/dummyApiData/hotel/GetHotelSearchResponse_DATA.json";
       makeGetRequest({ url })
         .then(({ data: { GetHotelSearchResponse_DATA } }) => {
+          setsearchID(GetHotelSearchResponse_DATA.results.SearchId);
           sethotelResult(GetHotelSearchResponse_DATA.results.SearchResponse);
           sethotelResultTemp(
             GetHotelSearchResponse_DATA.results.SearchResponse
@@ -380,6 +382,7 @@ const HotelList = () => {
                         hotelResult.hotels.hotel.length > 0 ? (
                           hotelResult.hotels.hotel.map((item) => {
                             const { hotelid } = item;
+                            console.log(item);
                             return (
                               <div key={hotelid} className="col-md-4 mb-3">
                                 <Card
@@ -389,7 +392,7 @@ const HotelList = () => {
                                   points={
                                     item.basicinfo.minhotelprice.TotalPrice
                                   }
-                                  route={`/HotelDetail/${hotelid}`}
+                                  route={`/HotelDetail/${hotelid}/${searchID}`}
                                   handleClick={() => onCardClick(item)}
                                 />
                               </div>

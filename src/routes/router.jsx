@@ -30,11 +30,11 @@ const router = createBrowserRouter([
         element: <HotelList />,
       },
       {
-        path: "/HotelDetail/:id",
+        path: "/HotelDetail/:id/:SearchId",
         element: <HotelDetail />,
       },
       {
-        path: "/HotelBookingDetail/:id/:bookingcode",
+        path: "/HotelBookingDetail/:id/:SearchId/:bookingcode",
         element: <HotelBookingDetail />,
       },
       { path: "/Shop", element: <Shop /> },
