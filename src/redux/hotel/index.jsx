@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let INITIAL_STATE = {
   RoomRates: null,
+  UrlValues: [],
 };
 
 const hotelDetails = createSlice({
@@ -12,8 +13,12 @@ const hotelDetails = createSlice({
       state.RoomRates = action.payload;
       localStorage.setItem("RoomRates", JSON.stringify(action.payload));
     },
+    addUrlValues: (state, action) => {
+      state.UrlValues.push(action.payload);
+      localStorage.setItem("UrlValues", JSON.stringify(action.payload));
+    },
   },
 });
 
 export default hotelDetails.reducer;
-export const { addRoomRates } = hotelDetails.actions;
+export const { addRoomRates, addUrlValues } = hotelDetails.actions;

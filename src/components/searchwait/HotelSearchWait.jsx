@@ -13,7 +13,10 @@ const HotelSearchWait = ({ data }) => {
             <Link to="/">
               <img src="/assets/images/logos/siddhartha-logo.svg" alt="" />
             </Link>
-          </div>
+      </div>
+      <div>
+        <p>Please wait while we search for best available rates...</p>
+      </div>
           <div className='d-flex my-3'>
               <span className='mx-2 fw-bolder fs-5'>{Country},</span>
               <span className='fw-bolder fs-5'>{CheckInDate} <span className='mx-1'> to</span></span>

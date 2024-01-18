@@ -4,12 +4,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { makeGetRequest } from "../../api/services";
 import { useFormik } from "formik";
-
+import { addUrlValues } from "../../redux/hotel/index.jsx";
 import {
   validationSchema,
   initialValues,
 } from "../formInfo/validationSchema.jsx";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const HotelSearchForm = ({ handleSearch, defaultValues = initialValues }) => {
   const [showRooms, setShowRooms] = useState("1");
@@ -18,6 +19,7 @@ const HotelSearchForm = ({ handleSearch, defaultValues = initialValues }) => {
   const [loading, setLoading] = useState(false);
   const [dropdownClicked, setDropdownClicked] = useState(false);
   const navigate = useNavigate();
+  const dispatch=useDispatch();
 
   let {
     values,
@@ -55,6 +57,14 @@ const HotelSearchForm = ({ handleSearch, defaultValues = initialValues }) => {
         "ChildRoom",
         value
       );
+      console.log(CheckInDate, Country, CheckOutDate, NoOfRooms, AdultPerRoom)
+     dispatch(addUrlValues({ CheckInDate, Country, CheckOutDate, NoOfRooms, AdultPerRoom,ChildrenPerRoom}))
+      // const urlValues = addUrlValues({ CheckInDate, Country, CheckOutDate, NoOfRooms, AdultPerRoom,ChildrenPerRoom});
+      // const urlValuesString = JSON.stringify(urlValues);
+      // console.log(urlValuesString);
+      // localStorage.setItem('urlValues', urlValuesString);
+      
+
       navigate(
         `/Hotellist/${Country}/${CheckInDate}/${CheckOutDate}/${NoOfRooms}/${AdultPerRoom}/${ChildrenPerRoom}`
       );

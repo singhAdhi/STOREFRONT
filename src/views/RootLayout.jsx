@@ -9,7 +9,7 @@ import {
   addCartCount,
   fetchcartDetails,
 } from "../redux/common/cartDetails/cartDetailsSlice";
-import { addRoomRates } from "../redux/hotel";
+import { addRoomRates,addUrlValues } from "../redux/hotel";
 
 const Root = () => {
   
@@ -19,7 +19,7 @@ const Root = () => {
   const { cartCount } = useSelector((state) => state.cartDetailsSlice);
   const dispatch = useDispatch();
 
-  const { RoomRates } = useSelector((store) => store.hotelReducer);
+  const { RoomRates,UrlValues } = useSelector((store) => store.hotelReducer);
 
   useEffect(() => {
     let cart = localStorage.getItem("cart");
@@ -36,7 +36,10 @@ const Root = () => {
     if (RoomRates == null) {
       dispatch(addRoomRates(JSON.parse(localStorage.getItem("RoomRates"))));
     }
-  });
+    if (UrlValues.length === 0) {
+      dispatch(addUrlValues(JSON.parse(localStorage.getItem("UrlValues"))));
+    }
+  },[RoomRates, UrlValues]);
 
   return (
     <>
