@@ -9,7 +9,7 @@ import {
   setCategoryFilter,
 } from "../../../redux/shop/filteredData/filteredDataSlice";
 import { CiShoppingCart } from "react-icons/ci";
-import { makeGetRequest } from "../../../api/services";
+import { shopApi } from "../../../api/services";
 
 const ShopNavbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -42,7 +42,8 @@ const ShopNavbar = () => {
     };
     // let url = `/api/StoreFront/SearchCategories`;
     let url = "src/dummyApiData/shop/SearchCategories_DATA.json";
-    makeGetRequest({ url })
+    shopApi
+      .get(url)
       .then(({ data }) => {
         let shopcatlog = data.SearchCategories_DATA.find(
           (x) => x.Id == OUTLINE

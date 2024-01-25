@@ -6,22 +6,16 @@ import ShopDeals from "./shop-deals/ShopDeals";
 import Travel from "./travel/Travel";
 import Earn from "./earn/Earn";
 import RedemptionMenu from "./redemption-menu/RedemptionMenu";
-import { storeDetails } from "../../redux/common/storeDetails/storeDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { addCartId, addCatalogId } from "../../redux/common";
-import { fetchRedemptionMenu } from "../../redux/home/RedemptionMenuSlice";
 import { CustomerId, CustomerName, STORE_ID } from "../../config";
-import { makeGetRequest } from "../../api/services";
-import { fetchcartDetails } from "../../redux/common/cartDetails/cartDetailsSlice";
-import axios from "axios";
+import { shopApi } from "../../api/services";
 import Loading from "../../components/other/loading/Loading";
 
 const Index = () => {
   const dispatch = useDispatch();
   const [isloading, setisloading] = useState(false);
   const [redemptionMenus, setredemptionMenus] = useState(null);
-  const { isLoading, isError, isLoadingText, redemptionMenuLinks } =
-    useSelector((state) => state.redemptionMenuReducer);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -51,7 +45,8 @@ const Index = () => {
       LanguageCode: "en-US",
     };
     let url = "src/dummyApiData/shop/SearchCart_DATA.json";
-    makeGetRequest({ url, body })
+    shopApi
+      .get(url, body)
       .then(({ data }) => {
         dispatch(addCartId(data.SearchCart_DATA.Id));
       })
@@ -64,7 +59,8 @@ const Index = () => {
     setisloading(true);
     // let url = `/api/StoreFront/GetStoreDetails?StoreId=${STORE_ID}`;
     let url = "src/dummyApiData/shop/GetStoreDetails_DATA.json";
-    makeGetRequest({ url })
+    shopApi
+      .get(url)
       .then(({ data }) => {
         dispatch(addCatalogId(data.GetStoreDetails_DATA.Catalog));
         FetchSearchCategories(data.GetStoreDetails_DATA.Catalog);
@@ -85,7 +81,8 @@ const Index = () => {
     // let url = `/api/StoreFront/SearchCategories`;
 
     let url = "src/dummyApiData/shop/SearchCategories_DATA.json";
-    makeGetRequest({ url, body })
+    shopApi
+      .post(url, body)
       .then(({ data }) => {
         setredemptionMenus(data.SearchCategories_DATA);
       })

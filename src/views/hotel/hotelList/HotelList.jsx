@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { makeGetRequest } from "../../../api/services";
+import { hotelApi } from "../../../api/services";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import Card from "../../../components/card/Card";
@@ -7,7 +7,7 @@ import Shimmer from "../../../components/shimmer/Shimmer";
 import { enqueueSnackbar } from "notistack";
 import HotelSearchForm from "../../../components/hotelSearchForm/HotelSearchForm";
 import { useDispatch } from "react-redux";
-import { addRoomRates } from "../../../redux/hotel";
+import hotel, { addRoomRates } from "../../../redux/hotel";
 import HotelSearchWait from "../../../components/searchwait/HotelSearchWait";
 
 const STARRATINGS = [
@@ -90,7 +90,8 @@ const HotelList = () => {
       // let url = `https://ibeapi.giift.com/IBENEW/api/Hotel/GetHotelSearchResponse`;
 
       let url = "src/dummyApiData/hotel/GetHotelSearchResponse_DATA.json";
-      makeGetRequest({ url })
+      hotelApi
+        .get(url)
         .then(({ data: { GetHotelSearchResponse_DATA } }) => {
           setsearchID(GetHotelSearchResponse_DATA.results.SearchId);
           sethotelResult(GetHotelSearchResponse_DATA.results.SearchResponse);
@@ -266,7 +267,8 @@ const HotelList = () => {
                           <input
                             id="all"
                             value={"All"}
-                            type="checkbox"
+                            type="radio"
+                            name="sort_rating"
                             onClick={handleCheckRating}
                           />
                           <span className="checkmark"></span>
@@ -286,7 +288,8 @@ const HotelList = () => {
                             <input
                               id={idx + 1}
                               value={val}
-                              type="checkbox"
+                              type="radio"
+                              name="sort_rating"
                               onClick={handleCheckRating}
                             />
                             <span className="checkmark"></span>

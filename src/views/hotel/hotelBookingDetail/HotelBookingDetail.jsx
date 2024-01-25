@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../../../components/other/loading/Loading";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { makeGetRequest, makePostRequest } from "../../../api/services";
+import { hotelApi } from "../../../api/services";
 import { useDispatch, useSelector } from "react-redux";
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -75,7 +75,8 @@ const HotelBookingDetail = () => {
       RedemptionRate: 1,
     };
     let url = `https://ibeuat.giift.com/api/Hotel/HotelReprice`;
-    makePostRequest({ url, body })
+    hotelApi
+      .post(url, body)
       .then(({ data }) => {
         let hotelRepriceData = data.results.Hotel;
         fetchHotelBookingResponse(hotelRepriceData, data);
@@ -114,7 +115,8 @@ const HotelBookingDetail = () => {
       SearchId: SearchId,
     };
     let url = `https://ibeuat.giift.com/api/Hotel/GetHotelBookingResponse`;
-    makePostRequest({ url, body })
+    hotelApi
+      .post(url, body)
       .then(({ data }) => {})
       .catch((err) => {
         console.log(err);
@@ -123,7 +125,8 @@ const HotelBookingDetail = () => {
 
   let hotelInfo = async () => {
     const url = `src/dummyApiData/hotel/GetHotelInformation_DATA.json`;
-    makeGetRequest({ url })
+    hotelApi
+      .get(url)
       .then(({ data }) => {
         setHotelData(
           data.GetHotelInformation_DATA.results.HotelInformation.basicinfo

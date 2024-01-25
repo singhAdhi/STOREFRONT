@@ -8,7 +8,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import ShopNavbar from "../../Shop/shop-nav/ShopNavbar";
 import { useSelector } from "react-redux";
 import { STORE_ID } from "../../../config";
-import { makeGetRequest } from "../../../api/services";
+import { shopApi } from "../../../api/services";
 import Shimmer from "../../../components/shimmer/Shimmer";
 
 const ShopList = ({}) => {
@@ -63,7 +63,8 @@ const ShopList = ({}) => {
   let fetchData = async (filter) => {
     let filterName = `SearchProducts${filter ? filter : urlText}_DATA`;
     const url = `src/dummyApiData/shop/${filterName}.json`;
-    makeGetRequest({ url })
+    shopApi
+      .get(url)
       .then(({ data }) => {
         setLoading(false);
         setCategory(data[filterName].Aggregations);
@@ -104,7 +105,8 @@ const ShopList = ({}) => {
     };
     // let url = `/api/StoreFront/SearchProducts`;
     let url = "src/dummyApiData/shop/SearchProductsBaby_DATA.json";
-    makeGetRequest({ url, body })
+    shopApi
+      .get(url, body)
       .then(({ data }) => {
         if (data.totalCount > 0) {
           setOriginalProduct(data.Products);

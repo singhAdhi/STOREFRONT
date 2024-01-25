@@ -5,7 +5,7 @@ import { fetchcartDetails } from "../../../redux/common/cartDetails/cartDetailsS
 import { CustomerId, CustomerName, STORE_ID } from "../../../config";
 import { Link, useNavigate } from "react-router-dom";
 import OrderStatus from "../../../components/orderStatus/OrderStatus";
-import { makeGetRequest } from "../../../api/services";
+import { shopApi } from "../../../api/services";
 import Loading from "../../../components/other/loading/Loading";
 
 const Checkout = () => {
@@ -33,7 +33,8 @@ const Checkout = () => {
       LanguageCode: "en-US",
     };
     let url = `src/dummyApiData/shop/SearchCart_DATA.json`;
-    makeGetRequest({ url, body })
+    shopApi
+      .get(url, body)
       .then(({ data }) => {
         setCartData(data.SearchCart_DATA);
       })
@@ -53,7 +54,8 @@ const Checkout = () => {
     if (cart) {
       let items = JSON.parse(cart);
       let url = "src/dummyApiData/shop/SearchProductsFeatured_DATA.json";
-      makeGetRequest({ url })
+      shopApi
+        .get(url)
         .then(
           ({
             data: {

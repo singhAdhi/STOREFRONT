@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./hotelDetail.css";
-import { makeGetRequest } from "../../../api/services";
+import { hotelApi } from "../../../api/services";
 import { useParams } from "react-router";
 import ImgSlider from "../../../components/imgSlider/ImgSlider";
 import { BsFillTelephoneFill } from "react-icons/bs";
@@ -30,7 +30,8 @@ const HotelDetail = () => {
 
   let hotelInfo = async () => {
     const url = `src/dummyApiData/hotel/GetHotelInformation_DATA.json`;
-    makeGetRequest({ url })
+    hotelApi
+      .get(url)
       .then(({ data }) => {
         let hotelId =
           data.GetHotelInformation_DATA.results.HotelInformation.hotelid;

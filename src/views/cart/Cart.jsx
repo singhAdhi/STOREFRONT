@@ -10,7 +10,7 @@ import {
 import { CustomerId, CustomerName, STORE_ID } from "../../config";
 import { MdDelete } from "react-icons/md";
 import Loading from "../../components/other/loading/Loading";
-import { makeGetRequest } from "../../api/services";
+import { shopApi } from "../../api/services";
 import { enqueueSnackbar } from "notistack";
 
 const Cart = () => {
@@ -40,7 +40,8 @@ const Cart = () => {
     };
 
     let url = `src/dummyApiData/shop/SearchCart_DATA.json`;
-    makeGetRequest({ url, body })
+    shopApi
+      .get(url, body)
       .then(({ data }) => {
         setCartData(data.SearchCart_DATA);
       })
@@ -60,7 +61,8 @@ const Cart = () => {
     if (cart) {
       let items = JSON.parse(cart);
       let url = "src/dummyApiData/shop/SearchProductsFeatured_DATA.json";
-      makeGetRequest({ url })
+      shopApi
+        .get(url)
         .then(
           ({
             data: {

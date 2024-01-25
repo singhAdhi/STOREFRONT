@@ -17,7 +17,7 @@ import { fetchProductDetails } from "../../../redux/product-details/ProductDetai
 import axios from "axios";
 import ShopNavbar from "../../Shop/shop-nav/ShopNavbar";
 import { CustomerId, CustomerName, STORE_ID } from "../../../config";
-import { makeGetRequest } from "../../../api/services";
+import { shopApi } from "../../../api/services";
 import {
   addCartCount,
   fetchcartDetails,
@@ -52,7 +52,8 @@ const ProductDetails = () => {
     setisloading(true);
     // let url = `/api/StoreFront/GetProductById/${productid}?StoreId=${STORE_ID}&CatalogId=${CATALOG_ID}&LanguageCode=en-US&CurrencyCode=AED`;
     let url = `src/dummyApiData/shop/${productid}.json`;
-    makeGetRequest({ url })
+    shopApi
+      .get(url)
       .then(({ data }) => {
         if (data[productid]) {
           setproductData(data[productid]);
@@ -63,7 +64,7 @@ const ProductDetails = () => {
       })
       .catch((err) => {
         console.log(err);
-        // makeGetRequest({ url: "ER-iPhone-15-512GB-Black" })
+        // shopApi.get( url: "ER-iPhone-15-512GB-Black" )
         //   .then(({ data }) => {
         //     setproductData(data);
         //   })
@@ -129,7 +130,8 @@ const ProductDetails = () => {
       CartId: CART_ID,
       Items: [...cartItems],
     };
-    makeGetRequest({ url, body })
+    shopApi
+      .get(url, body)
       .then((result) => {
         result.data.Items.map(({ ProductId, Quantity }) => ({
           ProductId,

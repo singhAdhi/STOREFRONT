@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProducts } from "../../../redux/shop/topoffers/TopOffersSlice";
 import Loading from "../../../components/other/loading/Loading";
 import Error from "../../../components/other/error/Error";
-import { makeGetRequest } from "../../../api/services";
+import { shopApi } from "../../../api/services";
 import { setCategoryFilter } from "../../../redux/shop/filteredData/filteredDataSlice";
 
 const TopOffers = ({ top }) => {
@@ -31,7 +31,8 @@ const TopOffers = ({ top }) => {
   function getTopOffers() {
     setisloading(true);
     let url = "src/dummyApiData/shop/SearchProductsTop_DATA.json";
-    makeGetRequest({ url })
+    shopApi
+      .get(url)
       .then(({ data }) => {
         settopOffers(data.SearchProductsTop_DATA.Products);
       })

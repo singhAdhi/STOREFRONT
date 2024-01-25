@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { baseUrl } from "../../../api/baseUrl";
-import { makeGetRequest } from "../../../api/services";
+import { shopApi } from "../../../api/services";
 
 const initialState = {
   storeDetailsData: [],
@@ -14,7 +13,7 @@ export const storeDetails = createAsyncThunk(
   "common/storeDetailsSlice",
   async ({ url, body }) => {
     try {
-      const response = await makeGetRequest({ url, body });
+      const response = await shopApi.get(url, body);
       return response.data;
     } catch (error) {
       throw new Error("An error occurred while fetching store detail.");

@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { addStoreDetails } from "../../redux/common/storeDetails/storeDetailsSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
-import { makeGetRequest } from "../../api/services";
+import { shopApi } from "../../api/services";
 
 const Index = () => {
   const history = useNavigate();
@@ -22,7 +22,8 @@ const Index = () => {
 
   const getStoreDetail = async () => {
     let url = "src/dummyApiData/shop/GetStoreDetails_DATA.json";
-    makeGetRequest({ url })
+    shopApi
+      .get(url)
       .then(({ data }) => {
         setFeatureHead(data.GetStoreDetails_DATA.DynamicProperties[1].Values);
         dispatch(

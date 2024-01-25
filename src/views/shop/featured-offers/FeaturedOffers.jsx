@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { newProducts } from "../../../redux/shop/featuredoffers/FeaturedOffersSlice";
 import Loading from "../../../components/other/loading/Loading";
 import Error from "../../../components/other/error/Error";
-import { makeGetRequest } from "../../../api/services";
+import { shopApi } from "../../../api/services";
 import { setCategoryFilter } from "../../../redux/shop/filteredData/filteredDataSlice";
 
 const FeaturedOffers = ({ feature }) => {
@@ -30,7 +30,8 @@ const FeaturedOffers = ({ feature }) => {
   function getFeaturedOffers() {
     setisloading(true);
     let url = "src/dummyApiData/shop/SearchProductsFeatured_DATA.json";
-    makeGetRequest({ url })
+    shopApi
+      .get(url)
       .then(({ data }) => {
         setfeaturedOffers(data.SearchProductsFeatured_DATA.Products);
       })

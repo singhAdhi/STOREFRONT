@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./sort.css";
-import { makeGetRequest } from "../../../api/services";
+import { shopApi } from "../../../api/services";
 import { useDispatch } from "react-redux";
 import { latestValue } from "../../../redux/shop/filteredData/filteredDataSlice";
 
@@ -34,7 +34,8 @@ const Sort = () => {
       GeoLocationPropertyName: null,
     };
     let url = `CategoryMenu_DATA`;
-    makeGetRequest({ url, body })
+    shopApi
+      .get(url, body)
       .then(({ data }) => {
         setSortProduct(data);
       })

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "../../views/hotel/hotel-search/hotelsearch.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { makeGetRequest } from "../../api/services";
+import { hotelApi } from "../../api/services";
 import { useFormik } from "formik";
 import { addUrlValues } from "../../redux/hotel/index.jsx";
 import {
@@ -19,7 +19,7 @@ const HotelSearchForm = ({ handleSearch, defaultValues = initialValues }) => {
   const [loading, setLoading] = useState(false);
   const [dropdownClicked, setDropdownClicked] = useState(false);
   const navigate = useNavigate();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
   let {
     values,
@@ -57,13 +57,21 @@ const HotelSearchForm = ({ handleSearch, defaultValues = initialValues }) => {
         "ChildRoom",
         value
       );
-      console.log(CheckInDate, Country, CheckOutDate, NoOfRooms, AdultPerRoom)
-     dispatch(addUrlValues({ CheckInDate, Country, CheckOutDate, NoOfRooms, AdultPerRoom,ChildrenPerRoom}))
+      console.log(CheckInDate, Country, CheckOutDate, NoOfRooms, AdultPerRoom);
+      dispatch(
+        addUrlValues({
+          CheckInDate,
+          Country,
+          CheckOutDate,
+          NoOfRooms,
+          AdultPerRoom,
+          ChildrenPerRoom,
+        })
+      );
       // const urlValues = addUrlValues({ CheckInDate, Country, CheckOutDate, NoOfRooms, AdultPerRoom,ChildrenPerRoom});
       // const urlValuesString = JSON.stringify(urlValues);
       // console.log(urlValuesString);
       // localStorage.setItem('urlValues', urlValuesString);
-      
 
       navigate(
         `/Hotellist/${Country}/${CheckInDate}/${CheckOutDate}/${NoOfRooms}/${AdultPerRoom}/${ChildrenPerRoom}`
@@ -120,7 +128,8 @@ const HotelSearchForm = ({ handleSearch, defaultValues = initialValues }) => {
 
   let cityNameApiCall = async () => {
     const url = `src/dummyApiData/hotel/GetAllHotelCities_DATA.json`;
-    makeGetRequest({ url })
+    hotelApi
+      .get(url)
       .then(({ data }) => {
         const filteredCities = data.GetAllHotelCities_DATA.results.filter(
           (item) =>
