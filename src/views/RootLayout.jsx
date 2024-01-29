@@ -9,17 +9,16 @@ import {
   addCartCount,
   fetchcartDetails,
 } from "../redux/common/cartDetails/cartDetailsSlice";
-import { addRoomRates,addUrlValues } from "../redux/hotel";
+import { addRoomRates, addUrlValues } from "../redux/hotel";
 
 const Root = () => {
-  
   const { CATALOG_ID, OUTLINE, CART_ID } = useSelector(
     (state) => state.commonReducer
   );
   const { cartCount } = useSelector((state) => state.cartDetailsSlice);
   const dispatch = useDispatch();
 
-  const { RoomRates,UrlValues } = useSelector((store) => store.hotelReducer);
+  const { RoomRates, UrlValues } = useSelector((store) => store.hotelReducer);
 
   useEffect(() => {
     let cart = localStorage.getItem("cart");
@@ -39,15 +38,15 @@ const Root = () => {
     if (UrlValues.length === 0) {
       dispatch(addUrlValues(JSON.parse(localStorage.getItem("UrlValues"))));
     }
-  },[RoomRates, UrlValues]);
+  }, [RoomRates, UrlValues]);
 
   return (
     <>
-        <div className="dvMain">
-          <Header />
-          {CATALOG_ID && <Outlet />}
-        </div>
-        <Footer />
+      <div className="dvMain">
+        <Header />
+        {CATALOG_ID && <Outlet />}
+      </div>
+      <Footer />
     </>
   );
 };

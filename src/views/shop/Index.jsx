@@ -41,6 +41,7 @@ const Index = () => {
 
       {/* <Breadcrumbs /> */}
       <ShopNavbar />
+
       <div className="dvBreadcrumbs">
         <div className="container-lg">
           <nav>

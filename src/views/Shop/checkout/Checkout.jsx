@@ -223,7 +223,7 @@ const Checkout = () => {
                   <div className="d-flex justify-content-between">
                     <h5 className="fw-semibold">Total</h5>
                     <p className="rounded-circle px-2">
-                      {cartData && cartData.Price.Total.Amount}{" "}
+                      {cartData && cartData.Price.Total.Amount}
                       {" Giift-Points"}
                     </p>
                   </div>

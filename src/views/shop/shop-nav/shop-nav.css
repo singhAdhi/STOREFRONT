@@ -2,19 +2,23 @@
 .dvMenu {
   background-color: var(--bg-section);
 }
+
 .dvMenu .navbar-light .navbar-nav .nav-link {
   color: var(--secondary-colour);
 }
+
 .dvMenu .dropdown-item:focus,
 .dvMenu .dropdown-item:hover {
   background-color: var(--primary-colour) !important;
   color: #fff;
 }
+
 .dvMenu .dropdown-item.active,
 .dvMenu .dropdown-item:active {
   background-color: var(--primary-colour) !important;
   color: #fff;
 }
+
 /*[[[ SHOP PAGE MENU ]]]*/
 /* 
 header {
@@ -60,20 +64,10 @@ li:hover {
 .bg-nav{
   background-color: #E6E6E6;
 } */
-
-@media screen and (max-width: 991px) {
-  .dvMenu .mobile {
-    display: block;
-  }
-  .dvMenu .desktop {
-    display: none;
-  }
+.list-custom {
+  list-style: none;
 }
-@media screen and (min-width: 992px) {
-  .dvMenu .mobile {
-    display: none;
-  }
-  .dvMenu .desktop {
-    display: block;
-  }
+
+.dropdown-item {
+  cursor: pointer;
 }

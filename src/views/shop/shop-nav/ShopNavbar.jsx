@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./shop-nav.css";
 import { STORE_ID } from "../../../config";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRedemptionMenu } from "../../../redux/home/RedemptionMenuSlice";
 import { Link, useNavigate } from "react-router-dom";
 import {
   searchItem,
@@ -10,6 +9,7 @@ import {
 } from "../../../redux/shop/filteredData/filteredDataSlice";
 import { CiShoppingCart } from "react-icons/ci";
 import { shopApi } from "../../../api/services";
+import Navbar from "../../../components/Navbar/Navbar";
 
 const ShopNavbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -183,13 +183,13 @@ const ShopNavbar = () => {
             </Link>
           </div>
           <div className="col-12 col-lg-9 order-lg-1">
-            <div className="collapse navbar-collapse" id="dvMenu">
-              <ul className="navbar-nav mr-auto">
+            <div className="d-md-block d-none">
+              <ul className="d-flex justify-content-between">
                 {filteredList &&
                   filteredList.map((item) => (
-                    <li className="nav-item dropdown" key={item.Id}>
+                    <li className="nav-item dropdown list-custom" key={item.Id}>
                       <a
-                        className="nav-link dropdown-toggle d-flex align-items-center justify-content-between text-uppercase"
+                        className="nav-link dropdown-toggle d-flex align-items-center justify-content-between text-uppercase cursor-pointer"
                         // href="#"
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
@@ -200,9 +200,9 @@ const ShopNavbar = () => {
                       </a>
                       {item.submenu.length > 0 ? (
                         <>
-                          <div className="mobile">
-                            <SubmenuMobile submenu={item.submenu} />
-                          </div>
+                          {/* <div className="mobile">
+                        <SubmenuMobile submenu={item.submenu} />
+                      </div> */}
                           <div className="desktop">
                             <SubmenuDesktop submenu={item.submenu} />
                           </div>
@@ -211,6 +211,13 @@ const ShopNavbar = () => {
                     </li>
                   ))}
               </ul>
+            </div>
+            <div className="d-md-none d-block">
+              <div className="collapse navbar-collapse" id="dvMenu">
+                <ul className="navbar-nav mr-auto">
+                  <Navbar />
+                </ul>
+              </div>
             </div>
           </div>
         </nav>
