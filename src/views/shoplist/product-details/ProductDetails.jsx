@@ -255,7 +255,15 @@ const ProductDetails = () => {
                             <div className="plus col-auto">
                               <button
                                 type="button"
-                                onClick={() => setCount((prev) => prev - 1)}
+                                onClick={() =>
+                                  setCount((prev) => {
+                                    console.log(prev);
+                                    if (prev < 1) {
+                                      return 0; // Return 0 if prev is less than 1
+                                    }
+                                    return prev - 1; // Decrement prev otherwise
+                                  })
+                                }
                                 className="btn-addtocart p-0"
                               >
                                 <FaMinus />

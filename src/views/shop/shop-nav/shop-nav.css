@@ -71,3 +71,7 @@ li:hover {
 .dropdown-item {
   cursor: pointer;
 }
+
+.nav-item:hover .dropdown-menu {
+  transition: 500ms ease-in-out;
+}

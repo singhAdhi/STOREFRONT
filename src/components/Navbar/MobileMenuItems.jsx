@@ -17,10 +17,11 @@ const MobileMenuItems = ({ items, depthLevel, onHandleClick }) => {
     e.stopPropagation();
     setDropdown((prev) => !prev);
   };
-  const handleItemClick = () => {
+
+  const handleOuterClick = (e) => {
     closeDropdown();
-    onHandleClick(items.Name);
   };
+
   const all = (val) => {
     closeDropdown();
     console.log(val);
@@ -30,16 +31,16 @@ const MobileMenuItems = ({ items, depthLevel, onHandleClick }) => {
   };
 
   return (
-    <li className="menu-items" onClick={closeDropdown}>
+    <li className="menu-items" onClick={handleOuterClick}>
       {items.submenu && items.submenu.length > 0 ? (
         <>
           <button
             type="button"
             aria-haspopup="menu"
             aria-expanded={dropdown ? "true" : "false"}
-            onClick={handleItemClick}
+            onClick={toggleDropdown}
           >
-            <h1 onClick={closeDropdown}>{items.Name}</h1>
+            <h1>{items.Name}</h1>
             <div onClick={(e) => toggleDropdown(e)}>
               {dropdown ? (
                 <span className="arrow-close" />
