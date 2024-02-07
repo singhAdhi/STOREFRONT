@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { flightApi } from "../../api/services";
 
-const InputBox = ({ title, url }) => {
-  const [inputFrom, setInputFrom] = useState("");
+const InputBox = ({ title, url, name, value, error, onBlur, onChange }) => {
+  const [inputFrom, setInputFrom] = useState(value || "");
   const [fromData, setfromData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [airline, setAirline] = useState(null);
@@ -13,6 +13,7 @@ const InputBox = ({ title, url }) => {
     setInputFrom(e.target.value);
     setIsFromItemClicked(false);
     setIsAirlineItemClicked(false);
+    onChange(e.target.value);
   };
   useEffect(() => {
     setLoading(true);
@@ -56,25 +57,29 @@ const InputBox = ({ title, url }) => {
         .slice(0, 10)
     : [];
 
-  const handleFromItemClick = (searchDetails) => {
+  const handleFromItemClick = (searchDetails, IATACode) => {
     setInputFrom(searchDetails);
     setIsFromItemClicked(true);
+    onChange(IATACode);
   };
   const handleAirlineItemClick = (searchDetails) => {
     setInputFrom(searchDetails);
     setIsAirlineItemClicked(true);
+    onChange(searchDetails);
   };
+
   return (
     <div>
       <label className="form-label fw-bold">{title}</label>
       <input
         type="text"
         className="form-control"
-        id="from"
+        id={name}
         placeholder="Enter City or Airport"
         value={inputFrom}
         onChange={(e) => handleChange(e)}
       />
+      {error && <div className="text-danger">{error}</div>}
       {inputFrom && filteredFromData.length > 0 && !isFromItemClicked && (
         <ul className="position-absolute bg-white rounded-3 dropdown-hotel w-100">
           {loading ? (
@@ -97,7 +102,9 @@ const InputBox = ({ title, url }) => {
                   <li
                     key={i}
                     className="cityName py-2 px-3"
-                    onClick={() => handleFromItemClick(SearchAirfieldDetails)}
+                    onClick={() =>
+                      handleFromItemClick(SearchAirfieldDetails, IATACode)
+                    }
                   >
                     <div>
                       <span className="fw-bolder">{City}</span>,

@@ -103,7 +103,6 @@ const HotelSearchForm = ({ handleSearch, defaultValues = initialValues }) => {
     });
     return str;
   }
-
   let handlechange = (rooms) => {
     setShowRooms(rooms);
     setFieldValue("NoOfRooms", rooms);

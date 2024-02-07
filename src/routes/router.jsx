@@ -13,6 +13,7 @@ import OrderStatus from "../components/orderStatus/OrderStatus";
 import HotelList from "../views/hotel/hotelList/HotelList";
 import HotelDetail from "../views/hotel/hotelDetail/HotelDetail";
 import HotelBookingDetail from "../views/hotel/hotelBookingDetail/HotelBookingDetail";
+import FlightList from "../views/flight/flight-list/FlightList";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/Flight", element: <FlightSearch /> },
+      { path: "/FlightList", element: <FlightList /> },
       {
         path: "/Hotel",
         element: <HotelSearch />,
