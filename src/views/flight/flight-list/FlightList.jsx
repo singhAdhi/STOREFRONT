@@ -4,6 +4,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { flightApi } from "../../../api/services";
 import FlightSearchForm from "../../../components/flightSearchForm/FlightSearchForm";
+import FlightListCard from "./FlightListCard";
 
 const FlightList = () => {
   const [flightResult, setflightResult] = useState(null);
@@ -25,12 +26,13 @@ const FlightList = () => {
           console.log(err);
         })
         .finally(() => {
-          setisloading(false);
+          // setisloading(false);
         });
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <div className="dvMain">
       <div className="dvBreadcrumbs">
@@ -51,7 +53,7 @@ const FlightList = () => {
           </nav>
         </div>
       </div>
-      <div className="dvProductList pb-5">
+      <div className="dvFlightList dvProductList pb-5">
         <div className="container-lg">
           <div className="row">
             <div className="col-lg-3">
@@ -108,6 +110,21 @@ const FlightList = () => {
                   </div>
                 </div>
                 {isBookingForm && <FlightSearchForm />}
+                <div className="dvProducts col-12">
+                  <div className="row equal-col">
+                    {flightResult &&
+                      flightResult.map((item) => (
+                        <div key={item.FareKey}>
+                          <FlightListCard {...item} />
+                        </div>
+                      ))}
+                    <div className="col-12 text-center">
+                      <button className="btn btn-primary">
+                        Show More Flights
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

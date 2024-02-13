@@ -22,7 +22,10 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/Flight", element: <FlightSearch /> },
-      { path: "/FlightList", element: <FlightList /> },
+      {
+        path: "/FlightList/:OriginLocation/:DestinationLocation/:DepartureDate/:ReturnDate/:Adults/:Childrens/:Infants/:AirlinePrefCode/:travelClass",
+        element: <FlightList />,
+      },
       {
         path: "/Hotel",
         element: <HotelSearch />,

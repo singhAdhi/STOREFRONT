@@ -385,7 +385,6 @@ const HotelList = () => {
                         hotelResult.hotels.hotel.length > 0 ? (
                           hotelResult.hotels.hotel.map((item) => {
                             const { hotelid } = item;
-                            console.log(item);
                             return (
                               <div key={hotelid} className="col-md-4 mb-3">
                                 <Card

@@ -53,17 +53,19 @@ const FlightSearchForm = () => {
     try {
       let DepartureDate = convertDate(value.DepartureDate);
       let ReturnDate = convertDate(value.ReturnDate);
-      let OriginLocation = value.OriginLocation;
-      let DestinationLocation = value.DestinationLocation;
+      let OriginLocation = value.OriginLocation.split(",")[0];
+      let DestinationLocation = value.DestinationLocation.split(",")[0];
       let travelClass = values.travelClass;
-      let AirlinePrefCode = values.AirlinePrefCode;
+      let AirlinePrefCode = values.AirlinePrefCode
+        ? values.AirlinePrefCode
+        : null;
       let Adults = values.Adults;
       let Childrens = values.Childrens;
       let Infants = values.Infants;
 
       if (inputValue === "Oneway") {
         navigate(
-          `/FlightList/${OriginLocation}/${DestinationLocation}/${DepartureDate}/${Adults}/${Childrens}/${Infants}/${AirlinePrefCode}/${travelClass}`
+          `/FlightList/${OriginLocation}/${DestinationLocation}/${DepartureDate}/${ReturnDate}/${Adults}/${Childrens}/${Infants}/${AirlinePrefCode}/${travelClass}`
         );
       } else if (inputValue === "Return") {
         navigate(
@@ -81,8 +83,6 @@ const FlightSearchForm = () => {
 
     return `${year}-${month}-${day}`;
   }
-
-  console.log(values);
   return (
     <>
       <div className="dvFlightSearch">
