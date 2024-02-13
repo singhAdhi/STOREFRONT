@@ -14,6 +14,7 @@ import HotelList from "../views/hotel/hotelList/HotelList";
 import HotelDetail from "../views/hotel/hotelDetail/HotelDetail";
 import HotelBookingDetail from "../views/hotel/hotelBookingDetail/HotelBookingDetail";
 import FlightList from "../views/flight/flight-list/FlightList";
+import FlightPassenger from "../views/flight/flight-passenger/FlightPassenger";
 
 const router = createBrowserRouter([
   {
@@ -23,8 +24,12 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/Flight", element: <FlightSearch /> },
       {
-        path: "/FlightList/:OriginLocation/:DestinationLocation/:DepartureDate/:ReturnDate/:Adults/:Childrens/:Infants/:AirlinePrefCode/:travelClass",
+        path: "/FlightList/:OriginLocation/:DestinationLocation/:DepartureDate/:ReturnDate?/:Adults/:Childrens/:Infants/:AirlinePrefCode/:travelClass",
         element: <FlightList />,
+      },
+      {
+        path: "/FlightPassenger",
+        element: <FlightPassenger />,
       },
       {
         path: "/Hotel",

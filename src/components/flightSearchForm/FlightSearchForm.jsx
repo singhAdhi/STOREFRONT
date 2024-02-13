@@ -33,11 +33,16 @@ const FlightSearchForm = () => {
 
   const handleRadioChange = (e) => {
     const newValue = e.target.value;
+
     setInputValue(newValue);
-    if (inputValue === "Return") {
-      setShowReturn(false);
-    } else {
+
+    // Use newValue instead of inputValue
+    if (newValue === "Return") {
       setShowReturn(true);
+      setFieldValue("ReturnDate", null);
+    } else {
+      setShowReturn(false);
+      setFieldValue("ReturnDate", new Date());
     }
   };
   const { values, errors, touched, handleSubmit, handleChange, setFieldValue } =
@@ -56,13 +61,11 @@ const FlightSearchForm = () => {
       let OriginLocation = value.OriginLocation.split(",")[0];
       let DestinationLocation = value.DestinationLocation.split(",")[0];
       let travelClass = values.travelClass;
-      let AirlinePrefCode = values.AirlinePrefCode
-        ? values.AirlinePrefCode
-        : null;
+      let AirlinePrefCode = values.AirlinePrefCode || "Any";
       let Adults = values.Adults;
       let Childrens = values.Childrens;
       let Infants = values.Infants;
-
+      console.log(ReturnDate);
       if (inputValue === "Oneway") {
         navigate(
           `/FlightList/${OriginLocation}/${DestinationLocation}/${DepartureDate}/${ReturnDate}/${Adults}/${Childrens}/${Infants}/${AirlinePrefCode}/${travelClass}`
@@ -83,6 +86,7 @@ const FlightSearchForm = () => {
 
     return `${year}-${month}-${day}`;
   }
+
   return (
     <>
       <div className="dvFlightSearch">
