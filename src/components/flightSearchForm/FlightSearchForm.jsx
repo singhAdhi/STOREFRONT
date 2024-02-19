@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 
-const FlightSearchForm = () => {
+const FlightSearchForm = ({ defaultValues }) => {
   const [inputValue, setInputValue] = useState("Return");
   const [showReturn, setShowReturn] = useState(true);
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ const FlightSearchForm = () => {
   };
   const { values, errors, touched, handleSubmit, handleChange, setFieldValue } =
     useFormik({
-      initialValues: initialValues,
+      initialValues: defaultValues ? defaultValues : initialValues,
       validationSchema: validationSchema,
       onSubmit: (value) => {
         console.log(value);

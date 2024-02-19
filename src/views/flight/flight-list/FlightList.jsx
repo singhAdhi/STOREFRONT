@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./flightlist.css";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { flightApi } from "../../../api/services";
 import FlightSearchForm from "../../../components/flightSearchForm/FlightSearchForm";
 import FlightListCard from "./FlightListCard";
@@ -9,8 +9,19 @@ import FlightListCard from "./FlightListCard";
 const FlightList = () => {
   const [flightResult, setflightResult] = useState(null);
   const [isBookingForm, setisBookingForm] = useState(false);
+  const paramsData = useParams();
+
+  const [bookingFormDefaultValues, setbookingFormDefaultValues] =
+    useState(null);
 
   useEffect(() => {
+    let defaultVal = paramsData;
+
+    setbookingFormDefaultValues({
+      ...defaultVal,
+      DepartureDate: new Date(defaultVal.DepartureDate),
+      ReturnDate: new Date(defaultVal.ReturnDate),
+    });
     getFlightList();
   }, []);
 
@@ -61,22 +72,205 @@ const FlightList = () => {
                 Total Hotels Found:{" "}
                 <span>{flightResult && flightResult.length}</span>
               </p>
-              <div className="p-3">
-                <p className="fw-bold">Flight Ratings</p>
+              <div class="card w-auto h-auto">
+                <div class="card-header p-0">
+                  <h2 class="mb-0">
+                    <button
+                      class="btn btn-block text-left heading-sm-medium"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapse2"
+                    >
+                      Stops
+                    </button>
+                  </h2>
+                </div>
+                <div
+                  id="collapse2"
+                  class="collapse show"
+                  data-parent="#filter-accordion"
+                >
+                  <div class="card-body scroll-ver p-3">
+                    <h2 class="heading-xs-regular mb-2">Stop</h2>
 
-                <div className="dvLabel d-flex justify-content-between">
-                  <label className="checkbox-container d-flex">
-                    <span className="d-inline-block">
-                      <input
-                        id="all"
-                        value={"All"}
-                        type="radio"
-                        name="sort_rating"
-                      />
-                      <span className="checkmark"></span>
-                    </span>
-                    <span className="ms-2 d-inline-block ml-2">Select All</span>
-                  </label>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">0 Stop</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">1 Stop</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">2 Stop</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">3 Stop</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card w-auto h-auto">
+                <div class="card-header p-0">
+                  <h2 class="mb-0">
+                    <button
+                      class="btn btn-block text-left collapsed heading-sm-medium"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapse3"
+                    >
+                      Airlines
+                    </button>
+                  </h2>
+                </div>
+                <div
+                  id="collapse3"
+                  class="collapse show"
+                  data-parent="#filter-accordion"
+                >
+                  <div class="card-body scroll-ver p-3">
+                    <h2 class="heading-xs-regular mb-2">Airlines</h2>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">Select All</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">Air India</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">Etihad Airways</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">
+                          Spicejet Limited
+                        </span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">Oman Av (SAOG)</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">Vistara</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">Indigo</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">Fly Dubai</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">Emirates</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">Gulf Air</span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                    <div class="dvLabel d-flex justify-content-between">
+                      <label class="checkbox-container d-flex">
+                        <span class="d-inline-block">
+                          <input type="checkbox" />
+                          <span class="checkmark"></span>
+                        </span>
+                        <span class="d-inline-block ml-2">
+                          Ethiopian Airlines Corporation
+                        </span>
+                      </label>
+                      <span class="d-inline-block ml-2">45</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -104,12 +298,14 @@ const FlightList = () => {
                     >
                       <span className="d-inline-block">Modify</span>
                       <span className="arrow-icon ml-2">
-                        <i className="fa fa-caret-up"></i>
+                        <i className="ms-1 fa fa-caret-up"></i>
                       </span>
                     </button>
                   </div>
                 </div>
-                {isBookingForm && <FlightSearchForm />}
+                {isBookingForm && (
+                  <FlightSearchForm defaultValues={bookingFormDefaultValues} />
+                )}
                 <div className="dvProducts col-12">
                   <div className="row equal-col">
                     {flightResult &&
