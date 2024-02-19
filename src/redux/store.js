@@ -9,6 +9,7 @@ import CartReducer from "./shop/cart/CartSlice";
 import cartDetailsSlice from "./common/cartDetails/cartDetailsSlice";
 import filteredDataReducer from "./shop/filteredData/filteredDataSlice";
 import hotelReducer from "./hotel/index";
+import flightReducer from "./flight/index";
 
 export const store = configureStore({
   reducer: {
@@ -22,5 +23,6 @@ export const store = configureStore({
     CartReducer,
     cartDetailsSlice,
     hotelReducer,
+    flightReducer,
   },
 });

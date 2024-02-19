@@ -1,9 +1,14 @@
 import { useState } from "react";
 import FlightCardTable from "./FlightCardTable";
 import FlightDetails from "./FlightDetails";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addFlightValues } from "../../../redux/flight";
 
 const FlightListCard = (props) => {
   const [isShow, setisShow] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   let TotalPoints = props.FareDetails.TotalPoints;
   let isReturn = props.Type == "Return" ? true : false;
   let depart = props.ListOfFlightDetails[0];
@@ -11,6 +16,11 @@ const FlightListCard = (props) => {
   let { CarrierName, CarrierLogoPath } =
     props.ListOfFlightDetails[0].ListOfFlightSegments[0].Carrier;
 
+  const passengerDetail = () => {
+    navigate("/flightpassenger");
+    dispatch(addFlightValues(props));
+  };
+  console.log(props);
   return (
     <div className="dvFlightInfo col-12 col-md-6 col-lg-12 mb-4">
       <div className="border rounded bg-light px-3">
@@ -59,7 +69,10 @@ const FlightListCard = (props) => {
                 ></i>
               </span>
             </button>
-            <button className="btn btn-primary">Redeem Now</button>
+
+            <button className="btn btn-primary" onClick={passengerDetail}>
+              Redeem Now
+            </button>
           </div>
           {isShow && (
             <div className="col-12">

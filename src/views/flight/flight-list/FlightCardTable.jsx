@@ -1,3 +1,7 @@
+import { useDispatch } from "react-redux";
+import { addFlightValues } from "../../../redux/flight";
+import { useEffect } from "react";
+
 const FlightCardTable = (props) => {
   let {
     DisplayDepartureDate,
@@ -9,6 +13,7 @@ const FlightCardTable = (props) => {
     DisplayArrivalTime,
     ArrivalAirField,
   } = props;
+
   return (
     <div className="row">
       <div className="col-6 col-lg d-lg-flex justify-content-lg-center align-items-lg-center text-lg-center border-right-lg">
@@ -22,7 +27,7 @@ const FlightCardTable = (props) => {
           <div className="col-4 d-flex justify-content-center align-items-center border-right text-center py-2">
             <div className="">
               <span className="country">
-                {City}{" "}
+                {City}
                 <span className="font-weight-bold abbreviation">
                   {IATACode}
                 </span>

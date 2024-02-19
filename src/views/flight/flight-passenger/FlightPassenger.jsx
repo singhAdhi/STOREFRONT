@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
+import { useSelector } from "react-redux";
+import FlightPassengerDetail from "./FlightPassengerDetail";
 
 const initialValues = {
   FirstName: "",
@@ -28,9 +29,13 @@ const validationSchema = Yup.object().shape({
 });
 
 const FlightPassenger = () => {
-  const [startDate, setStartDate] = useState();
-  const [startNewDate, setStartNewDate] = useState();
-  const [endDate, setEndDate] = useState();
+  const [startDate, setStartDate] = useState(null);
+  const [startNewDate, setStartNewDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [flightData, setFlightData] = useState(null);
+
+  const data = useSelector((state) => state.flightReducer.UrlValue);
+
   let {
     values,
     errors,
@@ -47,7 +52,7 @@ const FlightPassenger = () => {
       console.log(values);
     },
   });
-  console.log(values);
+
   return (
     <div>
       <div className="container">
@@ -125,7 +130,10 @@ const FlightPassenger = () => {
                   <DatePicker
                     id="DateOfBirth"
                     selected={startDate}
-                    onChange={(date) => setFieldValue("DateOfBirth", date)}
+                    onChange={(date) => {
+                      setStartDate(date);
+                      setFieldValue("DateOfBirth", date);
+                    }}
                   />
                   {errors.DateOfBirth && touched.DateOfBirth ? (
                     <p className="text-danger">{errors.DateOfBirth}</p>
@@ -201,7 +209,10 @@ const FlightPassenger = () => {
                   <DatePicker
                     id="PassportIssueDate"
                     selected={startNewDate}
-                    onChange={(date) => setStartNewDate(date)}
+                    onChange={(date) => {
+                      setStartNewDate(date);
+                      setFieldValue("PassportIssueDate", date); // Set formik field value
+                    }}
                     selectsStart
                     startDate={startNewDate}
                     endDate={endDate}
@@ -217,7 +228,10 @@ const FlightPassenger = () => {
                   <DatePicker
                     id="PassportExpiryDate"
                     selected={endDate}
-                    onChange={(date) => setEndDate(date)}
+                    onChange={(date) => {
+                      setEndDate(date);
+                      setFieldValue("PassportExpiryDate", date);
+                    }}
                     selectsEnd
                     startDate={startNewDate}
                     endDate={endDate}
@@ -259,68 +273,8 @@ const FlightPassenger = () => {
                       Itinerary
                     </h3>
                   </div>
-                  <div class="fDetails">
-                    <strong
-                      class="mb-2 txt-depart-flight"
-                      data-i18n="flightpassenger-departure"
-                    >
-                      Departure Flight
-                    </strong>
+                  {data && <FlightPassengerDetail flightData={data} />}
 
-                    <div class="row mb-3 mt-3">
-                      <div class="col-md-2 col-12">
-                        <img
-                          class="img-fluid"
-                          src="https://ibe.infiplanets.com/Images/AirlinesLogo/SG.gif"
-                        />
-                      </div>
-                      <div class="col-md-3 col-4">
-                        <p>Mumbai (BOM)</p>
-                        <p>20/02/2024</p>
-                        <p>08:40 PM</p>
-                      </div>
-                      <div class="col-md-3 col-4 text-blk">
-                        <i class="fa fa-clock-o"></i>2 hr 15 m
-                      </div>
-                      <div class="col-md-3 col-4">
-                        <p>New Delhi (DEL)</p>
-                        <p>20/02/2024</p>
-                        <p>10:55 PM</p>
-                      </div>
-                    </div>
-
-                    <strong class="mb-2">
-                      <span
-                        id="CP_lblarrival"
-                        class="arrivalTxt"
-                        data-i18n="flightpassenger-arrival"
-                      >
-                        Arrival Flight
-                      </span>
-                    </strong>
-
-                    <div class="row mb-3 mt-3">
-                      <div class="col-md-2 col-12">
-                        <img
-                          class="img-fluid"
-                          src="https://ibe.infiplanets.com/Images/AirlinesLogo/SG.gif"
-                        />
-                      </div>
-                      <div class="col-md-3 col-4">
-                        <p>New Delhi (DEL)</p>
-                        <p>21/02/2024</p>
-                        <p>10:55 PM</p>
-                      </div>
-                      <div class="col-md-3 col-4 text-blk">
-                        <i class="fa fa-clock-o"></i>2 hr 15 m
-                      </div>
-                      <div class="col-md-3 col-4">
-                        <p>Mumbai (BOM)</p>
-                        <p>22/02/2024</p>
-                        <p>01:10 AM</p>
-                      </div>
-                    </div>
-                  </div>
                   <div class="card-footer font-weight-bold">
                     <span data-i18n="flightpassenger-total-points">
                       Total Points:{" "}
