@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import FlightPassengerDetail from "./FlightPassengerDetail";
+import { useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
-import { useSelector } from "react-redux";
-import FlightPassengerDetail from "./FlightPassengerDetail";
 
 const initialValues = {
   FirstName: "",
@@ -32,10 +33,6 @@ const FlightPassenger = () => {
   const [startDate, setStartDate] = useState(null);
   const [startNewDate, setStartNewDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [flightData, setFlightData] = useState(null);
-
-  const data = useSelector((state) => state.flightReducer.UrlValue);
-
   let {
     values,
     errors,
@@ -48,10 +45,16 @@ const FlightPassenger = () => {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // handleClickSearch(values);
       console.log(values);
     },
   });
+  const { Adults, Childrens, Infants } = useParams();
+
+  const numberOfAdults = parseInt(Adults);
+  const numberOfChildren = parseInt(Childrens);
+  const numberOfInfants = parseInt(Infants);
+  console.log(numberOfAdults, numberOfChildren, numberOfInfants);
+  const data = useSelector((state) => state.flightReducer.UrlValue);
 
   return (
     <div>
@@ -81,178 +84,621 @@ const FlightPassenger = () => {
             <div className="bg-body-secondary order-1 order-md-0 p-4 rounded">
               <h4 className="mb-4 fw-semibold">Personal Details</h4>
               <form className="row g-3" onSubmit={handleSubmit}>
-                <div class="col-md-4">
-                  <label htmlFor="inputState" className="form-label">
-                    Title*
-                  </label>
-                  <select id="inputState" className="form-select">
-                    <option selected>Mr.</option>
-                    <option>Ms.</option>
-                    <option>Mrs.</option>
-                  </select>
-                </div>
-                <div class="col-md-4">
-                  <label htmlFor="FirstName" className="form-label">
-                    First Name*
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="FirstName"
-                    value={values.FirstName}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  {errors.FirstName && touched.FirstName ? (
-                    <p className="text-danger">{errors.FirstName}</p>
-                  ) : null}
-                </div>
-                <div className="col-md-4">
-                  <label htmlFor="LastName" className="form-label">
-                    Last Name*
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="LastName"
-                    value={values.LastName}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  {errors.LastName && touched.LastName ? (
-                    <p className="text-danger">{errors.LastName}</p>
-                  ) : null}
-                </div>
-                <div className="col-md-4">
-                  <label htmlFor="DateOfBirth" className="form-label">
-                    Date Of Birth*
-                  </label>
-                  <DatePicker
-                    id="DateOfBirth"
-                    selected={startDate}
-                    onChange={(date) => {
-                      setStartDate(date);
-                      setFieldValue("DateOfBirth", date);
-                    }}
-                  />
-                  {errors.DateOfBirth && touched.DateOfBirth ? (
-                    <p className="text-danger">{errors.DateOfBirth}</p>
-                  ) : null}
-                </div>
-                <div className="col-md-4">
-                  <label htmlFor="PassportNumber" className="form-label">
-                    Passport Number*
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="PassportNumber"
-                    value={values.PassportNumber}
-                    onChange={handleChange}
-                  />
-                  {errors.PassportNumber && touched.PassportNumber ? (
-                    <p className="text-danger">{errors.PassportNumber}</p>
-                  ) : null}
-                </div>
-                <div className="col-md-4">
-                  <label htmlFor="EmailID" className="form-label">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="EmailID"
-                    value={values.EmailID}
-                    onChange={handleChange}
-                  />
-                  {errors.EmailID && touched.EmailID ? (
-                    <p className="text-danger">{errors.EmailID}</p>
-                  ) : null}
-                </div>
-                <div className="col-md-4">
-                  <label htmlFor="mobile" className="form-label">
-                    Mobile No (without country code)*
-                  </label>
-                  <input
-                    type="tel"
-                    className="form-control"
-                    id="mobile"
-                    placeholder=""
-                    value={values.mobile}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  {errors.mobile && touched.mobile ? (
-                    <p className="text-danger">{errors.mobile}</p>
-                  ) : null}
-                </div>
-                <div className="col-md-4">
-                  <label htmlFor="PassportIssuePlace" className="form-label">
-                    Passport Issue Place*
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="PassportIssuePlace"
-                    value={values.PassportIssuePlace}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  {errors.PassportIssuePlace && touched.PassportIssuePlace ? (
-                    <p className="text-danger">{errors.PassportIssuePlace}</p>
-                  ) : null}
-                </div>
-                <div className="col-md-4">
-                  <label htmlFor="PassportIssueDate" className="form-label">
-                    Passport Issue Date*
-                  </label>
-                  <DatePicker
-                    id="PassportIssueDate"
-                    selected={startNewDate}
-                    onChange={(date) => {
-                      setStartNewDate(date);
-                      setFieldValue("PassportIssueDate", date); // Set formik field value
-                    }}
-                    selectsStart
-                    startDate={startNewDate}
-                    endDate={endDate}
-                  />
-                  {errors.PassportIssueDate && touched.PassportIssueDate ? (
-                    <p className="text-danger">{errors.PassportIssueDate}</p>
-                  ) : null}
-                </div>
-                <div className="col-md-4">
-                  <label htmlFor="PassportExpiryDate" className="form-label">
-                    Passport Expiry Date
-                  </label>
-                  <DatePicker
-                    id="PassportExpiryDate"
-                    selected={endDate}
-                    onChange={(date) => {
-                      setEndDate(date);
-                      setFieldValue("PassportExpiryDate", date);
-                    }}
-                    selectsEnd
-                    startDate={startNewDate}
-                    endDate={endDate}
-                    minDate={startNewDate}
-                  />
-                  {errors.PassportExpiryDate && touched.PassportExpiryDate ? (
-                    <p className="text-danger">{errors.PassportExpiryDate}</p>
-                  ) : null}
-                </div>
-                <div className="col-12">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      id="gridCheck"
-                    />
-                    <label className="form-check-label" htmlFor="gridCheck">
-                      Check me out
-                    </label>
-                  </div>
-                </div>
+                {[...Array(numberOfAdults)].map((_, index) => {
+                  return (
+                    <>
+                      <h1>Adult {index + 1}</h1>
+                      <div class="col-md-4">
+                        <label htmlFor="inputState" className="form-label">
+                          Title*
+                        </label>
+                        <select id="inputState" className="form-select">
+                          <option selected>Mr.</option>
+                          <option>Ms.</option>
+                          <option>Mrs.</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label htmlFor="FirstName" className="form-label">
+                          First Name*
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="FirstName"
+                          value={values.FirstName}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.FirstName && touched.FirstName ? (
+                          <p className="text-danger">{errors.FirstName}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="LastName" className="form-label">
+                          Last Name*
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="LastName"
+                          value={values.LastName}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.LastName && touched.LastName ? (
+                          <p className="text-danger">{errors.LastName}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="DateOfBirth" className="form-label">
+                          Date Of Birth*
+                        </label>
+                        <DatePicker
+                          id="DateOfBirth"
+                          selected={startDate}
+                          onChange={(date) => {
+                            setStartDate(date);
+                            setFieldValue("DateOfBirth", date);
+                          }}
+                        />
+                        {errors.DateOfBirth && touched.DateOfBirth ? (
+                          <p className="text-danger">{errors.DateOfBirth}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="PassportNumber" className="form-label">
+                          Passport Number*
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="PassportNumber"
+                          value={values.PassportNumber}
+                          onChange={handleChange}
+                        />
+                        {errors.PassportNumber && touched.PassportNumber ? (
+                          <p className="text-danger">{errors.PassportNumber}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="EmailID" className="form-label">
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="EmailID"
+                          value={values.EmailID}
+                          onChange={handleChange}
+                        />
+                        {errors.EmailID && touched.EmailID ? (
+                          <p className="text-danger">{errors.EmailID}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="mobile" className="form-label">
+                          Mobile No (without country code)*
+                        </label>
+                        <input
+                          type="tel"
+                          className="form-control"
+                          id="mobile"
+                          placeholder=""
+                          value={values.mobile}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.mobile && touched.mobile ? (
+                          <p className="text-danger">{errors.mobile}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label
+                          htmlFor="PassportIssuePlace"
+                          className="form-label"
+                        >
+                          Passport Issue Place*
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="PassportIssuePlace"
+                          value={values.PassportIssuePlace}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.PassportIssuePlace &&
+                        touched.PassportIssuePlace ? (
+                          <p className="text-danger">
+                            {errors.PassportIssuePlace}
+                          </p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label
+                          htmlFor="PassportIssueDate"
+                          className="form-label"
+                        >
+                          Passport Issue Date*
+                        </label>
+                        <DatePicker
+                          id="PassportIssueDate"
+                          selected={startNewDate}
+                          onChange={(date) => {
+                            setStartNewDate(date);
+                            setFieldValue("PassportIssueDate", date); // Set formik field value
+                          }}
+                          selectsStart
+                          startDate={startNewDate}
+                          endDate={endDate}
+                        />
+                        {errors.PassportIssueDate &&
+                        touched.PassportIssueDate ? (
+                          <p className="text-danger">
+                            {errors.PassportIssueDate}
+                          </p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label
+                          htmlFor="PassportExpiryDate"
+                          className="form-label"
+                        >
+                          Passport Expiry Date
+                        </label>
+                        <DatePicker
+                          id="PassportExpiryDate"
+                          selected={endDate}
+                          onChange={(date) => {
+                            setEndDate(date);
+                            setFieldValue("PassportExpiryDate", date);
+                          }}
+                          selectsEnd
+                          startDate={startNewDate}
+                          endDate={endDate}
+                          minDate={startNewDate}
+                        />
+                        {errors.PassportExpiryDate &&
+                        touched.PassportExpiryDate ? (
+                          <p className="text-danger">
+                            {errors.PassportExpiryDate}
+                          </p>
+                        ) : null}
+                      </div>
+                      <div className="col-12">
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="gridCheck"
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="gridCheck"
+                          >
+                            Check me out
+                          </label>
+                        </div>
+                      </div>
+                      {/* <div className="col-12">
+                  <button type="submit" className="btn btn-primary">
+                    Sign in
+                  </button>
+                </div> */}
+                    </>
+                  );
+                })}
+                {[...Array(numberOfChildren)].map((_, index) => {
+                  return (
+                    <>
+                      <h1>Children {index + 1}</h1>
+                      <div class="col-md-4">
+                        <label htmlFor="inputState" className="form-label">
+                          Title*
+                        </label>
+                        <select id="inputState" className="form-select">
+                          <option selected>Mr.</option>
+                          <option>Ms.</option>
+                          <option>Mrs.</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label htmlFor="FirstName" className="form-label">
+                          First Name*
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="FirstName"
+                          value={values.FirstName}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.FirstName && touched.FirstName ? (
+                          <p className="text-danger">{errors.FirstName}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="LastName" className="form-label">
+                          Last Name*
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="LastName"
+                          value={values.LastName}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.LastName && touched.LastName ? (
+                          <p className="text-danger">{errors.LastName}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="DateOfBirth" className="form-label">
+                          Date Of Birth*
+                        </label>
+                        <DatePicker
+                          id="DateOfBirth"
+                          selected={startDate}
+                          onChange={(date) => {
+                            setStartDate(date);
+                            setFieldValue("DateOfBirth", date);
+                          }}
+                        />
+                        {errors.DateOfBirth && touched.DateOfBirth ? (
+                          <p className="text-danger">{errors.DateOfBirth}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="PassportNumber" className="form-label">
+                          Passport Number*
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="PassportNumber"
+                          value={values.PassportNumber}
+                          onChange={handleChange}
+                        />
+                        {errors.PassportNumber && touched.PassportNumber ? (
+                          <p className="text-danger">{errors.PassportNumber}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="EmailID" className="form-label">
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="EmailID"
+                          value={values.EmailID}
+                          onChange={handleChange}
+                        />
+                        {errors.EmailID && touched.EmailID ? (
+                          <p className="text-danger">{errors.EmailID}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="mobile" className="form-label">
+                          Mobile No (without country code)*
+                        </label>
+                        <input
+                          type="tel"
+                          className="form-control"
+                          id="mobile"
+                          placeholder=""
+                          value={values.mobile}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.mobile && touched.mobile ? (
+                          <p className="text-danger">{errors.mobile}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label
+                          htmlFor="PassportIssuePlace"
+                          className="form-label"
+                        >
+                          Passport Issue Place*
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="PassportIssuePlace"
+                          value={values.PassportIssuePlace}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.PassportIssuePlace &&
+                        touched.PassportIssuePlace ? (
+                          <p className="text-danger">
+                            {errors.PassportIssuePlace}
+                          </p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label
+                          htmlFor="PassportIssueDate"
+                          className="form-label"
+                        >
+                          Passport Issue Date*
+                        </label>
+                        <DatePicker
+                          id="PassportIssueDate"
+                          selected={startNewDate}
+                          onChange={(date) => {
+                            setStartNewDate(date);
+                            setFieldValue("PassportIssueDate", date); // Set formik field value
+                          }}
+                          selectsStart
+                          startDate={startNewDate}
+                          endDate={endDate}
+                        />
+                        {errors.PassportIssueDate &&
+                        touched.PassportIssueDate ? (
+                          <p className="text-danger">
+                            {errors.PassportIssueDate}
+                          </p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label
+                          htmlFor="PassportExpiryDate"
+                          className="form-label"
+                        >
+                          Passport Expiry Date
+                        </label>
+                        <DatePicker
+                          id="PassportExpiryDate"
+                          selected={endDate}
+                          onChange={(date) => {
+                            setEndDate(date);
+                            setFieldValue("PassportExpiryDate", date);
+                          }}
+                          selectsEnd
+                          startDate={startNewDate}
+                          endDate={endDate}
+                          minDate={startNewDate}
+                        />
+                        {errors.PassportExpiryDate &&
+                        touched.PassportExpiryDate ? (
+                          <p className="text-danger">
+                            {errors.PassportExpiryDate}
+                          </p>
+                        ) : null}
+                      </div>
+                      <div className="col-12">
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="gridCheck"
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="gridCheck"
+                          >
+                            Check me out
+                          </label>
+                        </div>
+                      </div>
+                      {/* <div className="col-12">
+                  <button type="submit" className="btn btn-primary">
+                    Sign in
+                  </button>
+                </div> */}
+                    </>
+                  );
+                })}
+                {[...Array(numberOfInfants)].map((_, index) => {
+                  return (
+                    <>
+                      <h1>Infant {index + 1}</h1>
+                      <div class="col-md-4">
+                        <label htmlFor="inputState" className="form-label">
+                          Title*
+                        </label>
+                        <select id="inputState" className="form-select">
+                          <option selected>Mr.</option>
+                          <option>Ms.</option>
+                          <option>Mrs.</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label htmlFor="FirstName" className="form-label">
+                          First Name*
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="FirstName"
+                          value={values.FirstName}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.FirstName && touched.FirstName ? (
+                          <p className="text-danger">{errors.FirstName}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="LastName" className="form-label">
+                          Last Name*
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="LastName"
+                          value={values.LastName}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.LastName && touched.LastName ? (
+                          <p className="text-danger">{errors.LastName}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="DateOfBirth" className="form-label">
+                          Date Of Birth*
+                        </label>
+                        <DatePicker
+                          id="DateOfBirth"
+                          selected={startDate}
+                          onChange={(date) => {
+                            setStartDate(date);
+                            setFieldValue("DateOfBirth", date);
+                          }}
+                        />
+                        {errors.DateOfBirth && touched.DateOfBirth ? (
+                          <p className="text-danger">{errors.DateOfBirth}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="PassportNumber" className="form-label">
+                          Passport Number*
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="PassportNumber"
+                          value={values.PassportNumber}
+                          onChange={handleChange}
+                        />
+                        {errors.PassportNumber && touched.PassportNumber ? (
+                          <p className="text-danger">{errors.PassportNumber}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="EmailID" className="form-label">
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="EmailID"
+                          value={values.EmailID}
+                          onChange={handleChange}
+                        />
+                        {errors.EmailID && touched.EmailID ? (
+                          <p className="text-danger">{errors.EmailID}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label htmlFor="mobile" className="form-label">
+                          Mobile No (without country code)*
+                        </label>
+                        <input
+                          type="tel"
+                          className="form-control"
+                          id="mobile"
+                          placeholder=""
+                          value={values.mobile}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.mobile && touched.mobile ? (
+                          <p className="text-danger">{errors.mobile}</p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label
+                          htmlFor="PassportIssuePlace"
+                          className="form-label"
+                        >
+                          Passport Issue Place*
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="PassportIssuePlace"
+                          value={values.PassportIssuePlace}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.PassportIssuePlace &&
+                        touched.PassportIssuePlace ? (
+                          <p className="text-danger">
+                            {errors.PassportIssuePlace}
+                          </p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label
+                          htmlFor="PassportIssueDate"
+                          className="form-label"
+                        >
+                          Passport Issue Date*
+                        </label>
+                        <DatePicker
+                          id="PassportIssueDate"
+                          selected={startNewDate}
+                          onChange={(date) => {
+                            setStartNewDate(date);
+                            setFieldValue("PassportIssueDate", date); // Set formik field value
+                          }}
+                          selectsStart
+                          startDate={startNewDate}
+                          endDate={endDate}
+                        />
+                        {errors.PassportIssueDate &&
+                        touched.PassportIssueDate ? (
+                          <p className="text-danger">
+                            {errors.PassportIssueDate}
+                          </p>
+                        ) : null}
+                      </div>
+                      <div className="col-md-4">
+                        <label
+                          htmlFor="PassportExpiryDate"
+                          className="form-label"
+                        >
+                          Passport Expiry Date
+                        </label>
+                        <DatePicker
+                          id="PassportExpiryDate"
+                          selected={endDate}
+                          onChange={(date) => {
+                            setEndDate(date);
+                            setFieldValue("PassportExpiryDate", date);
+                          }}
+                          selectsEnd
+                          startDate={startNewDate}
+                          endDate={endDate}
+                          minDate={startNewDate}
+                        />
+                        {errors.PassportExpiryDate &&
+                        touched.PassportExpiryDate ? (
+                          <p className="text-danger">
+                            {errors.PassportExpiryDate}
+                          </p>
+                        ) : null}
+                      </div>
+                      <div className="col-12">
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="gridCheck"
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="gridCheck"
+                          >
+                            Check me out
+                          </label>
+                        </div>
+                      </div>
+                      {/* <div className="col-12">
+                  <button type="submit" className="btn btn-primary">
+                    Sign in
+                  </button>
+                </div> */}
+                    </>
+                  );
+                })}
                 <div className="col-12">
                   <button type="submit" className="btn btn-primary">
                     Sign in
