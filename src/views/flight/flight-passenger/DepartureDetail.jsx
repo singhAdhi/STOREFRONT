@@ -5,7 +5,7 @@ const DepartureDetail = (departure) => {
   console.log(ListOfFlightSegments);
   return (
     <div>
-      {ListOfFlightSegments?.map((item) => {
+      {ListOfFlightSegments?.map((item, i) => {
         let {
           DisplayDepartureDate,
           DisplayDepartureTime,
@@ -18,7 +18,7 @@ const DepartureDetail = (departure) => {
           OperatingCarrier,
         } = item;
         return (
-          <>
+          <div key={i}>
             <strong
               class="mb-2 txt-depart-flight"
               data-i18n="flightpassenger-departure"
@@ -51,7 +51,7 @@ const DepartureDetail = (departure) => {
                 <p>{DisplayArrivalDate}</p>
               </div>
             </div>
-          </>
+          </div>
         );
       })}
     </div>

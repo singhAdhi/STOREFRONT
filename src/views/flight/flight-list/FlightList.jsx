@@ -145,7 +145,10 @@ const FlightList = () => {
                         {flightResult &&
                           flightResult.map((item) => (
                             <div key={item.FareKey}>
-                              <FlightListCard {...item} />
+                              <FlightListCard
+                                {...item}
+                                travellerData={paramsData}
+                              />
                             </div>
                           ))}
                         <div className="col-12 text-center">

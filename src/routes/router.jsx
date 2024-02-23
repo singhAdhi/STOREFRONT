@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         element: <FlightList />,
       },
       {
-        path: "/FlightPassenger",
+        path: "/FlightPassenger/:Adults/:Childrens/:Infants",
         element: <FlightPassenger />,
       },
       {

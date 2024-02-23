@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addFlightValues } from "../../../redux/flight";
 
-const FlightListCard = (props) => {
+const FlightListCard = ({ travellerData, ...props }) => {
+  console.log(travellerData);
   const [isShow, setisShow] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -17,10 +18,13 @@ const FlightListCard = (props) => {
     props.ListOfFlightDetails[0].ListOfFlightSegments[0].Carrier;
 
   const passengerDetail = () => {
-    navigate("/flightpassenger");
+    const Adults = travellerData?.Adults;
+    const Childrens = travellerData?.Childrens;
+    const Infants = travellerData?.Infants;
+    navigate(`/flightpassenger/${Adults}/${Childrens}/${Infants}`);
     dispatch(addFlightValues(props));
   };
-  console.log(props);
+
   return (
     <div className="dvFlightInfo col-12 col-md-6 col-lg-12 mb-4">
       <div className="border rounded bg-light px-3">
