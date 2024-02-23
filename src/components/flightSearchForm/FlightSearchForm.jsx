@@ -67,11 +67,11 @@ const FlightSearchForm = ({ defaultValues, handleSearch }) => {
       let Infants = values.Infants;
       if (inputValue === "Oneway") {
         navigate(
-          `/FlightList/${OriginLocation}/${DestinationLocation}/${DepartureDate}/${ReturnDate}/${Adults}/${Childrens}/${Infants}/${AirlinePrefCode}/${travelClass}`
+          `/FlightList/${OriginLocation}/${DestinationLocation}/${DepartureDate}/${ReturnDate}/${Adults}/${Childrens}/${Infants}/${AirlinePrefCode}/${travelClass}/false`
         );
       } else if (inputValue === "Return") {
         navigate(
-          `/FlightList/${OriginLocation}/${DestinationLocation}/${DepartureDate}/${ReturnDate}/${Adults}/${Childrens}/${Infants}/${AirlinePrefCode}/${travelClass}`
+          `/FlightList/${OriginLocation}/${DestinationLocation}/${DepartureDate}/${ReturnDate}/${Adults}/${Childrens}/${Infants}/${AirlinePrefCode}/${travelClass}/true`
         );
       }
       handleSearch({
@@ -188,8 +188,10 @@ const FlightSearchForm = ({ defaultValues, handleSearch }) => {
     let timeout = setTimeout(() => {
       if (name == "OriginLocation") {
         setoriginData(
-          airFieldData.filter((city) =>
-            city.City.toLowerCase().includes(value.toLowerCase())
+          airFieldData.filter(
+            (city) =>
+              city.City.toLowerCase().includes(value.toLowerCase()) ||
+              city.IATACode.toLowerCase().includes(value.toLowerCase())
           )
         );
         setisoriginloading(false);

@@ -6,6 +6,7 @@ import { flightApi } from "../../../api/services";
 import FlightSearchForm from "../../../components/flightSearchForm/FlightSearchForm";
 import FlightListCard from "./FlightListCard";
 import FlightFilter from "./FlightFilter";
+import FlightSearchWait from "./FlightSearchWait";
 
 const FlightList = () => {
   const [flightResult, setflightResult] = useState(null);
@@ -14,10 +15,13 @@ const FlightList = () => {
 
   const [bookingFormDefaultValues, setbookingFormDefaultValues] =
     useState(null);
+  const [showSearch, setShowSearch] = useState(true);
 
   useEffect(() => {
     let defaultVal = paramsData;
-
+    setTimeout(() => {
+      setShowSearch(false);
+    }, 1000);
     setbookingFormDefaultValues({
       ...defaultVal,
       DepartureDate: new Date(defaultVal.DepartureDate),
@@ -74,76 +78,82 @@ const FlightList = () => {
   };
 
   return (
-    <div className="dvMain">
-      <div className="dvBreadcrumbs">
-        <div className="container-lg">
-          <nav>
-            <ul className="breadcrumb py-3 px-0 align-items-center">
-              <li className="me-2">
-                <FaArrowLeft onClick={() => history(-1)} />
-              </li>
-              <li className="breadcrumb-item">
-                <Link to="/">Home</Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link to="/Flight">Flight</Link>
-              </li>
-              <li className="breadcrumb-item active">Flight List</li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <div className="dvFlightList dvProductList pb-5">
-        <div className="container-lg">
-          <div className="row">
-            <FlightFilter />
-            <div className="col-lg-9">
+    <>
+      {showSearch ? (
+        <FlightSearchWait data={paramsData} />
+      ) : (
+        <div className="dvMain">
+          <div className="dvBreadcrumbs">
+            <div className="container-lg">
+              <nav>
+                <ul className="breadcrumb py-3 px-0 align-items-center">
+                  <li className="me-2">
+                    <FaArrowLeft onClick={() => history(-1)} />
+                  </li>
+                  <li className="breadcrumb-item">
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li className="breadcrumb-item">
+                    <Link to="/Flight">Flight</Link>
+                  </li>
+                  <li className="breadcrumb-item active">Flight List</li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div className="dvFlightList dvProductList pb-5">
+            <div className="container-lg">
               <div className="row">
-                <div className="dvModify col-12 mb-3">
-                  <div className="bg-dark-subtle d-flex flex-wrap justify-content-between align-items-center py-2 px-2 px-lg-3 mb-1">
-                    <button
-                      data-toggle="modal"
-                      data-target="#dvFilterModal"
-                      type="button"
-                      className="btn btn-primary col-12 d-lg-none mb-2"
-                    >
-                      Filter
-                    </button>
-                    <p className="heading-xs-regular col-8 px-0">
-                      Mumbai → Dubai, Economy, Wed 14 Feb | 1 Adult(s)
-                    </p>
-                    <button
-                      className="btn btn-primary modifyBtn col-auto d-flex"
-                      type="button"
-                      data-toggle="collapse"
-                      data-target="#dvForm"
-                      onClick={() => setisBookingForm(!isBookingForm)}
-                    >
-                      <span className="d-inline-block">Modify</span>
-                      <span className="arrow-icon ml-2">
-                        <i className="ms-1 fa fa-caret-up"></i>
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                {isBookingForm && (
-                  <FlightSearchForm
-                    defaultValues={bookingFormDefaultValues}
-                    handleSearch={handleSearch}
-                  />
-                )}
-                <div className="dvProducts col-12">
-                  <div className="row equal-col">
-                    {flightResult &&
-                      flightResult.map((item) => (
-                        <div key={item.FareKey}>
-                          <FlightListCard {...item} />
+                <FlightFilter />
+                <div className="col-lg-9">
+                  <div className="row">
+                    <div className="dvModify col-12 mb-3">
+                      <div className="bg-dark-subtle d-flex flex-wrap justify-content-between align-items-center py-2 px-2 px-lg-3 mb-1">
+                        <button
+                          data-toggle="modal"
+                          data-target="#dvFilterModal"
+                          type="button"
+                          className="btn btn-primary col-12 d-lg-none mb-2"
+                        >
+                          Filter
+                        </button>
+                        <p className="heading-xs-regular col-8 px-0">
+                          Mumbai → Dubai, Economy, Wed 14 Feb | 1 Adult(s)
+                        </p>
+                        <button
+                          className="btn btn-primary modifyBtn col-auto d-flex"
+                          type="button"
+                          data-toggle="collapse"
+                          data-target="#dvForm"
+                          onClick={() => setisBookingForm(!isBookingForm)}
+                        >
+                          <span className="d-inline-block">Modify</span>
+                          <span className="arrow-icon ml-2">
+                            <i className="ms-1 fa fa-caret-up"></i>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                    {isBookingForm && (
+                      <FlightSearchForm
+                        defaultValues={bookingFormDefaultValues}
+                        handleSearch={handleSearch}
+                      />
+                    )}
+                    <div className="dvProducts col-12">
+                      <div className="row equal-col">
+                        {flightResult &&
+                          flightResult.map((item) => (
+                            <div key={item.FareKey}>
+                              <FlightListCard {...item} />
+                            </div>
+                          ))}
+                        <div className="col-12 text-center">
+                          <button className="btn btn-primary">
+                            Show More Flights
+                          </button>
                         </div>
-                      ))}
-                    <div className="col-12 text-center">
-                      <button className="btn btn-primary">
-                        Show More Flights
-                      </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -151,8 +161,8 @@ const FlightList = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/Flight", element: <FlightSearch /> },
       {
-        path: "/FlightList/:OriginLocation/:DestinationLocation/:DepartureDate/:ReturnDate?/:Adults/:Childrens/:Infants/:AirlinePrefCode/:travelClass",
+        path: "/FlightList/:OriginLocation/:DestinationLocation/:DepartureDate/:ReturnDate?/:Adults/:Childrens/:Infants/:AirlinePrefCode/:travelClass/:IsReturn",
         element: <FlightList />,
       },
       {
