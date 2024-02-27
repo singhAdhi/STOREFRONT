@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { addFlightValues } from "../../../redux/flight";
 
 const FlightListCard = ({ travellerData, ...props }) => {
-  console.log(travellerData);
   const [isShow, setisShow] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();

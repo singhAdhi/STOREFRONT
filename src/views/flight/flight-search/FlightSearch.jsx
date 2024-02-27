@@ -5,7 +5,7 @@ import FlightSearchForm from "../../../components/flightSearchForm/FlightSearchF
 const Flight = () => {
   return (
     <div className="">
-      <FlightSearchForm />
+      <FlightSearchForm handleSearch={() => {}} />
     </div>
   );
 };

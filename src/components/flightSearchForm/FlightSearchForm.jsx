@@ -163,7 +163,7 @@ const FlightSearchForm = ({ defaultValues, handleSearch }) => {
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
       if (inputTxt) handleFilter(inputTxt);
-    }, 500); // value in ms
+    }, 1000); // value in ms
 
     return () => {
       clearTimeout(debounceTimeout);

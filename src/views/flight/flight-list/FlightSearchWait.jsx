@@ -41,9 +41,9 @@ const FlightSearchWait = ({ data }) => {
         <span className="me-2 fw-bolder fs-5">{`${Childrens} Childrens, `}</span>
         <span className="fw-bolder fs-5">{`${Infants} Infants`}</span>
       </div>
-      <div class="text-center mt-3">
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
+      <div className="text-center mt-3">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
       </div>
     </div>
