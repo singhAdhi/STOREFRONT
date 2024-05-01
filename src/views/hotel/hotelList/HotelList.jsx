@@ -89,7 +89,7 @@ const HotelList = () => {
       };
       // let url = `https://ibeapi.giift.com/IBENEW/api/Hotel/GetHotelSearchResponse`;
 
-      let url = "src/dummyApiData/hotel/GetHotelSearchResponse_DATA.json";
+      let url = "public/dummyApiData/hotel/GetHotelSearchResponse_DATA.json";
       hotelApi
         .get(url)
         .then(({ data: { GetHotelSearchResponse_DATA } }) => {

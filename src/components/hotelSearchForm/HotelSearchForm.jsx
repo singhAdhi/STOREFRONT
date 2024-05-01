@@ -126,7 +126,7 @@ const HotelSearchForm = ({ handleSearch, defaultValues = initialValues }) => {
   }, [values.Country]);
 
   let cityNameApiCall = async () => {
-    const url = `src/dummyApiData/hotel/GetAllHotelCities_DATA.json`;
+    const url = `public/dummyApiData/hotel/GetAllHotelCities_DATA.json`;
     hotelApi
       .get(url)
       .then(({ data }) => {

@@ -62,7 +62,7 @@ const ShopList = ({}) => {
 
   let fetchData = async (filter) => {
     let filterName = `SearchProducts${filter ? filter : urlText}_DATA`;
-    const url = `src/dummyApiData/shop/${filterName}.json`;
+    const url = `public/dummyApiData/shop/${filterName}.json`;
     shopApi
       .get(url)
       .then(({ data }) => {
@@ -104,7 +104,7 @@ const ShopList = ({}) => {
       GeoLocationPropertyName: null,
     };
     // let url = `/api/StoreFront/SearchProducts`;
-    let url = "src/dummyApiData/shop/SearchProductsBaby_DATA.json";
+    let url = "public/dummyApiData/shop/SearchProductsBaby_DATA.json";
     shopApi
       .get(url, body)
       .then(({ data }) => {

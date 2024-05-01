@@ -41,7 +41,7 @@ const ShopNavbar = () => {
       Terms: [],
     };
     // let url = `/api/StoreFront/SearchCategories`;
-    let url = "src/dummyApiData/shop/SearchCategories_DATA.json";
+    let url = "public/dummyApiData/shop/SearchCategories_DATA.json";
     shopApi
       .get(url)
       .then(({ data }) => {

@@ -129,7 +129,7 @@ const FlightSearchForm = ({ defaultValues, handleSearch }) => {
     try {
       // let url = `https://ibeuat.giift.com/api/flight/GetAllAirField`;
 
-      let url = "/dummyApiData/flight/GetAllAirField_DATA.json";
+      let url = "public/dummyApiData/flight/GetAllAirField_DATA.json";
       flightApi
         .get(url)
         .then(({ data: { GetAllAirField_DATA } }) => {
@@ -146,7 +146,7 @@ const FlightSearchForm = ({ defaultValues, handleSearch }) => {
     try {
       // let url = `https://ibeuat.giift.com/api/flight/GetAllCarriers`;
 
-      let url = "/dummyApiData/flight/GetAllCarriers_DATA.json";
+      let url = "public/dummyApiData/flight/GetAllCarriers_DATA.json";
       flightApi
         .get(url)
         .then(({ data: { GetAllCarriers_DATA } }) => {

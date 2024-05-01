@@ -39,7 +39,7 @@ const Cart = () => {
       LanguageCode: "en-US",
     };
 
-    let url = `src/dummyApiData/shop/SearchCart_DATA.json`;
+    let url = `public/dummyApiData/shop/SearchCart_DATA.json`;
     shopApi
       .get(url, body)
       .then(({ data }) => {
@@ -60,7 +60,7 @@ const Cart = () => {
     let cart = localStorage.getItem("cart");
     if (cart) {
       let items = JSON.parse(cart);
-      let url = "src/dummyApiData/shop/SearchProductsFeatured_DATA.json";
+      let url = "public/dummyApiData/shop/SearchProductsFeatured_DATA.json";
       shopApi
         .get(url)
         .then(

@@ -29,7 +29,7 @@ const HotelDetail = () => {
   }, []);
 
   let hotelInfo = async () => {
-    const url = `src/dummyApiData/hotel/GetHotelInformation_DATA.json`;
+    const url = `public/dummyApiData/hotel/GetHotelInformation_DATA.json`;
     hotelApi
       .get(url)
       .then(({ data }) => {

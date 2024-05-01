@@ -21,7 +21,7 @@ const Index = () => {
   }, []);
 
   const getStoreDetail = async () => {
-    let url = "src/dummyApiData/shop/GetStoreDetails_DATA.json";
+    let url = "public/dummyApiData/shop/GetStoreDetails_DATA.json";
     shopApi
       .get(url)
       .then(({ data }) => {

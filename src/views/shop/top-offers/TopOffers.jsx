@@ -30,7 +30,7 @@ const TopOffers = ({ top }) => {
 
   function getTopOffers() {
     setisloading(true);
-    let url = "src/dummyApiData/shop/SearchProductsTop_DATA.json";
+    let url = "public/dummyApiData/shop/SearchProductsTop_DATA.json";
     shopApi
       .get(url)
       .then(({ data }) => {

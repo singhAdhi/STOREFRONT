@@ -44,7 +44,7 @@ const Index = () => {
       CurrencyCode: "AED",
       LanguageCode: "en-US",
     };
-    let url = "src/dummyApiData/shop/SearchCart_DATA.json";
+    let url = "public/dummyApiData/shop/SearchCart_DATA.json";
     shopApi
       .get(url, body)
       .then(({ data }) => {
@@ -58,7 +58,7 @@ const Index = () => {
   const GetStoreDetails = () => {
     setisloading(true);
     // let url = `/api/StoreFront/GetStoreDetails?StoreId=${STORE_ID}`;
-    let url = "src/dummyApiData/shop/GetStoreDetails_DATA.json";
+    let url = "public/dummyApiData/shop/GetStoreDetails_DATA.json";
     shopApi
       .get(url)
       .then(({ data }) => {
@@ -80,7 +80,7 @@ const Index = () => {
     };
     // let url = `/api/StoreFront/SearchCategories`;
 
-    let url = "src/dummyApiData/shop/SearchCategories_DATA.json";
+    let url = "public/dummyApiData/shop/SearchCategories_DATA.json";
     shopApi
       .post(url, body)
       .then(({ data }) => {

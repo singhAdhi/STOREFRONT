@@ -29,7 +29,7 @@ const FeaturedOffers = ({ feature }) => {
 
   function getFeaturedOffers() {
     setisloading(true);
-    let url = "src/dummyApiData/shop/SearchProductsFeatured_DATA.json";
+    let url = "public/dummyApiData/shop/SearchProductsFeatured_DATA.json";
     shopApi
       .get(url)
       .then(({ data }) => {
