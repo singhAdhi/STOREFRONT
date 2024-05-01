@@ -33,7 +33,7 @@ const Sort = () => {
       Distance: 0.0,
       GeoLocationPropertyName: null,
     };
-    let url = `src/dummyApiData/shop/SearchCategories_DATA`;
+    let url = `/dummyApiData/shop/SearchCategories_DATA`;
     shopApi
       .get(url, body)
       .then(({ data }) => {

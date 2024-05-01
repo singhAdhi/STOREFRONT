@@ -30,7 +30,7 @@ const Navbar = () => {
       Terms: [],
     };
     // let url = `/api/StoreFront/SearchCategories`;
-    let url = "src/dummyApiData/shop/SearchCategories_DATA.json";
+    let url = "/dummyApiData/shop/SearchCategories_DATA.json";
     shopApi({ url })
       .then(({ data }) => {
         let shopcatlog = data.SearchCategories_DATA.find(
