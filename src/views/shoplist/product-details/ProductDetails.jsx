@@ -15,7 +15,7 @@ import { newProducts } from "../../../redux/shop/featuredoffers/FeaturedOffersSl
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductDetails } from "../../../redux/product-details/ProductDetailsSlice";
 import axios from "axios";
-import ShopNavbar from "../../Shop/shop-nav/ShopNavbar";
+import ShopNav from "../../Shop/shop-nav/ShopNavbar";
 import { CustomerId, CustomerName, STORE_ID } from "../../../config";
 import { shopApi } from "../../../api/services";
 import {
@@ -155,7 +155,7 @@ const ProductDetails = () => {
   return (
     <>
       {/* <Breadcrumbs /> */}
-      <ShopNavbar />
+      <ShopNav />
       <div className="dvBreadcrumbs">
         <div className="container-lg">
           <nav>
