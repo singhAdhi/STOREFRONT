@@ -5,7 +5,7 @@ import Filter from "../filter/Filter";
 import Products from "../products/Products";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
-import ShopNav from "../../Shop/shop-nav/ShopNavbar";
+// import ShopNav from "../../../views/Shop/shop-nav/ShopNavbar";
 import { useSelector } from "react-redux";
 import { STORE_ID } from "../../../config";
 import { shopApi } from "../../../api/services";
