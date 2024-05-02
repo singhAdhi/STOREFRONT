@@ -7,13 +7,13 @@ const SwiperButtons = (props) => {
         <div className="d-flex justify-content-center">
           <div className="swiper-button-prev pe-3">
             <img
-              src="public/assets/images/icons/arrows/left-yellow-arrow-2.svg"
+              src="assets/images/icons/arrows/left-yellow-arrow-2.svg"
               alt=""
             />
           </div>
           <div className="swiper-button-next">
             <img
-              src="public/assets/images/icons/arrows/right-yellow-arrow-2.svg"
+              src="assets/images/icons/arrows/right-yellow-arrow-2.svg"
               alt=""
             />
           </div>

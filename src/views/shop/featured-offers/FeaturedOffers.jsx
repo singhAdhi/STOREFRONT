@@ -29,7 +29,7 @@ const FeaturedOffers = ({ feature }) => {
 
   function getFeaturedOffers() {
     setisloading(true);
-    let url = "public/dummyApiData/shop/SearchProductsFeatured_DATA.json";
+    let url = "/dummyApiData/shop/SearchProductsFeatured_DATA.json";
     shopApi
       .get(url)
       .then(({ data }) => {
@@ -81,13 +81,13 @@ const FeaturedOffers = ({ feature }) => {
                       <div className="d-flex justify-content-center">
                         <div className="swiper-button-prev-featured pe-3">
                           <img
-                            src="public/assets/images/icons/arrows/left-black-arrow.svg"
+                            src="assets/images/icons/arrows/left-black-arrow.svg"
                             alt=""
                           />
                         </div>
                         <div className="swiper-button-next-featured">
                           <img
-                            src="public/assets/images/icons/arrows/right-black-arrow.svg"
+                            src="assets/images/icons/arrows/right-black-arrow.svg"
                             alt=""
                           />
                         </div>

@@ -13,7 +13,7 @@ const TravelCard = ({ id, image, title, text }) => {
             <h2 className="heading-md-regular mb-2 d-flex align-items-center">
               <img
                 className="ms-n4 me-3"
-                src="public/assets/images/icons/arrows/triangle-icon.svg"
+                src="assets/images/icons/arrows/triangle-icon.svg"
                 alt=""
               />
               {title}

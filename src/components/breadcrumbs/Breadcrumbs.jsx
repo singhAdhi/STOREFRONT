@@ -45,10 +45,7 @@ const Breadcrumbs = () => {
                   onClick={handleBack}
                   aria-label="Go back"
                 >
-                  <img
-                    src="public/assets/images/icons/arrows/back-arrow.svg"
-                    alt=""
-                  />
+                  <img src="assets/images/icons/arrows/back-arrow.svg" alt="" />
                 </button>
               </li>
               <li className="breadcrumb-item">

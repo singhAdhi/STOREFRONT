@@ -50,8 +50,7 @@ const FlightList = () => {
       };
       // let url = `https://ibeapi.giift.com/IBENEW/api/Hotel/GetHotelSearchResponse`;
 
-      let url =
-        "https://alliswellll.netlify.app/dummyApiData/flight/AirSearchRequest_DATA.json";
+      let url = "/public/dummyApiData/flight/AirSearchRequest_DATA.json";
       flightApi
         .get(url)
         .then(({ data: { AirSearchRequest_DATA } }) => {
