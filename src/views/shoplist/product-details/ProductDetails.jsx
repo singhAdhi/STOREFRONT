@@ -51,7 +51,7 @@ const ProductDetails = () => {
     }
     setisloading(true);
     // let url = `/api/StoreFront/GetProductById/${productid}?StoreId=${STORE_ID}&CatalogId=${CATALOG_ID}&LanguageCode=en-US&CurrencyCode=AED`;
-    let url = `public/dummyApiData/shop/${productid}.json`;
+    let url = `/public/dummyApiData/shop/${productid}.json`;
     shopApi
       .get(url)
       .then(({ data }) => {
